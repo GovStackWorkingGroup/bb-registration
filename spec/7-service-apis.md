@@ -4,7 +4,7 @@ This section describes external APIs that must be implemented by the building bl
 
 Registration BB is expected to host the following API services.
 
-## 8.1 Statistics API
+## 7.1 Statistics API
 
 The statistics API gives BB operational statistics- number of processed applications (per: operator, registration, service, date).
 
