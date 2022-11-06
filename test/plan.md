@@ -1,5 +1,14 @@
 # Test plan for the Registration building block.
 
+
+## Levels of Tests
+
+1. ensure that application can be launched via docker with a adaptor and a security server
+2. check that all defined API endpoints in the openAPI-spec.yaml return proper response codes
+3. check browser-test compliance for the canonical e-service
+
+
+=======
 Non-functional tests: 
 
 1. All `examples` must be runnable via `docker compose up`.
