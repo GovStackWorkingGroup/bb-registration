@@ -12,6 +12,8 @@ The statistics API gives BB operational statistics- number of processed applicat
 
 ![Illustration 5- resource model for Registration BB Statistics APi.](<.gitbook/assets/image4 (1) (1).png>)
 
+API specifications are described in the Github [file](../api/GovStack\_Registration\_BB\_API\_template-1.1.0-resolved.json).
+
 **Standards:**
 
 This section defines standards and protocols used by the API. The API is built using representational state transfer (REST) software architectural style ([https://restfulapi.net/](https://restfulapi.net)) and described in Open API 3 standard ([https://swagger.io/specification/](https://swagger.io/specification/)) using YAML (a human-readable data-serialization language - [http://yaml.org/](http://yaml.org)). Request and response body is in JSON (lightweight data-interchange format - [https://www.json.org/json-en.html](https://www.json.org/json-en.html)).

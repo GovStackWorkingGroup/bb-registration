@@ -49,8 +49,8 @@ For each interaction, the following information is provided:
 ![Illustration 7 - Authentication and authorization. See editable diagram.](.gitbook/assets/image8.png)
 
 **Notes:**\
-\*\*\*\*Pre-requirements: user has passed the provisioning of user credentials and this can authenticate/log in to Govstack (sandbox) system. User roles are also added by Security (IAM) system when token is sent to the Building Block. Registration BB in this case is operating as Building Block.\
-See full description of the user authentication in [Security BB](../security-requirements/) documentation.
+Pre-requirements: user has passed the provisioning of user credentials and this can authenticate/log in to Govstack (sandbox) system. User roles are also added by Security (IAM) system when token is sent to the Building Block. Registration BB in this case is operating as Building Block.\
+See full description of the user authentication in Security BB [documentation](https://govstack.gitbook.io/specification/building-blocks/security-requirements/5-cross-cutting-requirements#docs-internal-guid-95b38c92-7fff-abfc-b395-b64d56ed6c74).
 
 Data structures:
 
@@ -78,7 +78,7 @@ See full description of the User registration in [Security BB](../security-requi
 ![Illustration 9- Self registration via foundational ID. See an editable diagram.](.gitbook/assets/image12.png)
 
 **Notes**:\
-\*\*\*\*Pre-requirements: user does not have user credentials to authenticate/log in to Govstack (sandbox) system. Registration BB in this case is operating as Building Block UI. See full description of the User registration in [Security BB ](../security-requirements/)documentation.
+Pre-requirements: user does not have user credentials to authenticate/log in to Govstack (sandbox) system. Registration BB in this case is operating as Building Block UI. See full description of the User registration in Security BB [documentation](https://govstack.gitbook.io/specification/building-blocks/security-requirements/5-cross-cutting-requirements#docs-internal-guid-95b38c92-7fff-abfc-b395-b64d56ed6c74).
 
 **Interaction 3: Information Mediator (IM) BB**
 
@@ -115,7 +115,7 @@ Sequence diagram:
 **Name**: Setup for multiple Registration BBs
 
 **Description :**\
-\*\*\*\*The Registration BB can be set up as a standalone BB facilitating multiple institutions and services in one system instance (See illustration 1 below ).\
+The Registration BB can be set up as a standalone BB facilitating multiple institutions and services in one system instance (See illustration 1 below ).\
 Setup in one shared instance is required when one single window service is built together with multiple institutions (multiple registrations inside one service). This enables sharing of resources such as proceflow, screens, data, user rights, infrastructure, maintenance personnel etc.
 
 ![Illustration 14 - Domain specific  setup diagram for multiple Registration BB-s in one ecosystem.
@@ -174,7 +174,7 @@ Use case: e-service user initiates a registration service to issue a payment vou
 
 **Data structures**:
 
-| **Name**           | **Required Data** | **Notes**                                                           |
-| ------------------ | ----------------- | ------------------------------------------------------------------- |
-| Voucher activation | Voucher ID        | <p>See more in <a href="../payments/">Payment BB</a></p><p><br></p> |
-| Response           | Status            | The response is stored in Registration BB.                          |
+| **Name**           | **Required Data** | **Notes**                                                                                                                 |
+| ------------------ | ----------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Voucher activation | Voucher ID        | <p>See more in <a href="https://govstack.gitbook.io/specification/building-blocks/payments">Payment BB</a></p><p><br></p> |
+| Response           | Status            | The response is stored in Registration BB.                                                                                |
