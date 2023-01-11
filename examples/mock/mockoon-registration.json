@@ -1,0 +1,42 @@
+{
+  "uuid": "9ea8d795-abc6-4993-b4d3-a33d4a0541a0",
+  "lastMigration": 24,
+  "name": "Registration",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3003,
+  "hostname": "0.0.0.0",
+  "routes": [],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": []
+}
