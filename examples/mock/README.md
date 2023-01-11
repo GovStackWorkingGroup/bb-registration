@@ -7,7 +7,7 @@ Registration BB
 
 To run dockerized version of mocked API use shell script `test_entrypoint.sh`
 (requires `docker` and `docker-compose`). By default, API is available on port
-`3333`, application runs on port `3003` in Docker host. Dockerfile was created
+`3355`, application runs on port `3003` in Docker host. Dockerfile was created
 using mockoon-cli.
 
 ## Changes in API definition
