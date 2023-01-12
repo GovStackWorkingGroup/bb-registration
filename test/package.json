@@ -1,0 +1,11 @@
+{
+  "name": "bb-registration-api-tests",
+  "version": "0.1.0",
+  "scripts": {
+    "test": "cucumber-js"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "8.10.0",
+    "pactum": "3.3.2"
+  }
+}
