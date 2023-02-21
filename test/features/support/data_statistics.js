@@ -1,105 +1,95 @@
-const pactum = require('pactum');
+const chai = require('chai');
+const { spec } = require('pactum');
 const { Given, When, Then, Before, After } = require('@cucumber/cucumber');
-const { localhost, header } = require('./helpers/helpers');
+const {
+  localhost,
+  dataStatisticsEndpoint,
+  dataStatisticsResponseSchema,
+  defaultExpectedResponseTime,
+} = require('./helpers/helpers');
+
+chai.use(require('chai-json-schema'));
 
 let specDataStatistics;
-let startDate;
-let endDate;
 
-const baseUrl = `${localhost}data/statistics/1.0`;
+const baseUrl = localhost + dataStatisticsEndpoint;
 
-Before(() => {
-  specDataStatistics = pactum.spec();
+Before({ tags: '@endpoint=/data/statistics/1.0' }, () => {
+  specDataStatistics = spec();
 });
 
-// Background:
-Given('The user wants to receives the service statistics', () => {
-  startDate = '2021-01-30';
-  endDate = '2021-01-30';
-  return startDate, endDate;
-});
+// Scenario: Retrieve the service statistics
+Given(
+  'User wants to retrieve the service statistics',
+  () => 'User wants to retrieve the service statistics'
+);
 
-// Scenario: The user successfully receives the service statistics
 When(
-  'The user triggers an action to receive the service statistics with registration name "MTCS"',
-  () => {
+  'User sends GET request with given {string} as Information-Mediator-Client header',
+  InformationMediatorClient =>
     specDataStatistics
       .get(baseUrl)
-      .withHeaders(`${header.key}`, `${header.value}`)
-      .withQueryParams('registrationName', 'MTCS');
-  }
+      .withHeaders('Information-Mediator-Client', InformationMediatorClient)
 );
 
-Then(
-  'The user successfully receives the service statistics with registration name "MTCS"',
-  async () => {
-    await specDataStatistics.toss();
-    specDataStatistics.response().should.have.status(200);
-    specDataStatistics.response().should.have.jsonLike([
-      {
-        processed: 100,
-        approved: 90,
-        sentBack: 3,
-        rejected: 7,
-        references: {
-          startDate: '2021-01-30',
-          endDate: '2021-01-30',
-          registrationName: 'MTCS',
-          operator: 'Henry Snow',
-          role: 'Handler',
-          timeframeDay: true,
-          timeframeWeek: false,
-          timeframeMonth: false,
-          timeframeYear: false,
-        },
-      },
-    ]);
-  }
+Then('User receives a response', async () => await specDataStatistics.toss());
+
+Then('The response should be returned in a timely manner', () =>
+  specDataStatistics
+    .response()
+    .to.have.responseTimeLessThan(defaultExpectedResponseTime)
 );
 
-// Scenario: The user is not able to receives the service statistics, because of an invalid request
+Then('The response should have status 200', () =>
+  specDataStatistics.response().to.have.status(200)
+);
+
+Then('The response should match json schema', () =>
+  chai
+    .expect(specDataStatistics._response.json)
+    .to.be.jsonSchema(dataStatisticsResponseSchema)
+);
+
+// Scenario: Retrieve the service statistics using optional parameters
 When(
-  'The user triggers an action to receive the service statistics with an invalid request',
-  () => {
-    specDataStatistics.get(baseUrl).withHeaders(`${header.key}`, '');
-  }
+  'User provides optional query parameters {string} as startDate {string} as endDate {string} as registrationName {string} as operator {string} as role {string} as timeframe',
+  (startDate, endDate, registrationName, operator, role, timeframe) =>
+    specDataStatistics.withQueryParams({
+      startDate: startDate,
+      endDate: endDate,
+      registrationName: registrationName,
+      operator: operator,
+      role: role,
+      timeframe: timeframe,
+    })
 );
 
-Then(
-  'The result of an operation returns an error, because of an invalid request',
-  async () => {
-    await specDataStatistics.toss();
-    specDataStatistics.response().should.have.status(400);
-    specDataStatistics
-      .response()
-      .should.have.body(
-        '{\n  "Invalid format of Information-Mediator-Client, should not be null"\n}'
-      );
-  }
+Then('The response header content-type should be {string}', expected =>
+  specDataStatistics.response().to.have.header('content-type', expected)
 );
 
-// Scenario: The user is not able to receives the service statistics, because it does not exist in the database
+// Scenario: Unable to retrieve the service statistics because of an invalid header
+Then('The response should have status 400', () =>
+  specDataStatistics.response().to.have.status(400)
+);
+
+// Scenario: Unable to retrieve the service statistics because of a missing header
+When('User sends GET request without Information-Mediator-Client header', () =>
+  specDataStatistics.get(baseUrl)
+);
+
+// Scenario: Unable to retrieve the service statistics because they do not exist
 When(
-  'The user triggers an action to receive the service statistics with registration name "MMT"',
-  () => {
-    specDataStatistics
-      .get(baseUrl)
-      .withHeaders(`${header.key}`, `${header.value}`)
-      .withQueryParams('registrationName', 'MMT');
+  'User provides query parameter {string} as registrationName',
+  registrationName => {
+    specDataStatistics.withQueryParams('registrationName', registrationName);
   }
 );
 
-Then(
-  'The result of an operation returns an error, because "MMT" registration does not exist in the database',
-  async () => {
-    await specDataStatistics.toss();
-    specDataStatistics.response().should.have.status(404);
-    specDataStatistics
-      .response()
-      .should.have.body('{\n  "Requests not found"\n}');
-  }
+Then('The response should have status 404', () =>
+  specDataStatistics.response().to.have.status(404)
 );
 
-After(() => {
+After({ tags: '@endpoint=/data/statistics/1.0' }, () => {
   specDataStatistics.end();
 });
