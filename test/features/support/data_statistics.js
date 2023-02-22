@@ -13,8 +13,9 @@ chai.use(require('chai-json-schema'));
 let specDataStatistics;
 
 const baseUrl = localhost + dataStatisticsEndpoint;
+const endpointTag = { tags: `@endpoint=/${dataStatisticsEndpoint}` };
 
-Before({ tags: '@endpoint=/data/statistics/1.0' }, () => {
+Before(endpointTag, () => {
   specDataStatistics = spec();
 });
 
@@ -90,6 +91,6 @@ Then('The response should have status 404', () =>
   specDataStatistics.response().to.have.status(404)
 );
 
-After({ tags: '@endpoint=/data/statistics/1.0' }, () => {
+After(endpointTag, () => {
   specDataStatistics.end();
 });
