@@ -15,11 +15,16 @@
       "responses": [
         {
           "uuid": "71a7f6f6-4915-44cc-8fa6-99bf69e99880",
-          "body": "[\n  {\n    \"processed\": 100,\n    \"approved\": 90,\n    \"sentBack\": 3,\n    \"rejected\": 7,\n    \"references\": {\n      \"startDate\": \"2021-01-30\",\n      \"endDate\": \"2021-01-30\",\n      \"registrationName\": \"MTCS\",\n      \"operator\": \"Henry Snow\",\n      \"role\": \"Handler\",\n      \"timeframeDay\": true,\n      \"timeframeWeek\": false,\n      \"timeframeMonth\": false,\n      \"timeframeYear\": false\n    }\n  }\n]",
+          "body": "[\n  {\n    \"processed\": 100,\n    \"approved\": 90,\n    \"sentBack\": 3,\n    \"rejected\": 7,\n    \"references\": {\n      \"startDate\": {{queryParam 'startDate' '' true}},\n      \"endDate\": {{queryParam 'endDate.1' '' true}},\n      \"registrationName\": {{queryParam 'registrationName.1' '' true}},\n      \"operator\": {{queryParam 'operator.1' '' true}},\n      \"role\": {{queryParam 'role.1' '' true}},\n      \"timeframeDay\": \n      {{#switch (queryParam 'timeframe.1')}}\n        {{#case 'day'}}true{{/case}}\n        {{#default}}false{{/default}}\n      {{/switch}},\n      \"timeframeWeek\":\n      {{#switch (queryParam 'timeframe.1')}}\n        {{#case 'week'}}true{{/case}}\n        {{#default}}false{{/default}}\n      {{/switch}},\n      \"timeframeMonth\":\n      {{#switch (queryParam 'timeframe.1')}}\n        {{#case 'month'}}true{{/case}}\n        {{#default}}false{{/default}}\n      {{/switch}},\n      \"timeframeYear\":\n      {{#switch (queryParam 'timeframe.1')}}\n        {{#case 'year'}}true{{/case}}\n        {{#default}}false{{/default}}\n      {{/switch}}\n    }\n  }\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "Success Response",
-          "headers": [],
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
@@ -28,15 +33,15 @@
             {
               "target": "header",
               "modifier": "Information-Mediator-Client",
-              "value": "[a-zA-Z0-9_]+\\/[a-zA-Z0-9_]+\\/[a-zA-Z0-9_]+\\/[a-zA-Z0-9_]+",
+              "value": "^[a-zA-Z0-9_]+\\/[a-zA-Z0-9_]+\\/[a-zA-Z0-9_]+\\/[a-zA-Z0-9_-]+$",
               "invert": false,
               "operator": "regex"
             },
             {
               "target": "query",
               "modifier": "registrationName",
-              "value": "MTCS",
-              "invert": false,
+              "value": "n0tex1st",
+              "invert": true,
               "operator": "equals"
             }
           ],
@@ -47,7 +52,7 @@
         },
         {
           "uuid": "e58acf9e-801b-4c31-b4da-67de62ccdf6e",
-          "body": "{\n  \"Requests not found\"\n}",
+          "body": "",
           "latency": 0,
           "statusCode": 404,
           "label": "Requests not found",
@@ -60,14 +65,14 @@
             {
               "target": "header",
               "modifier": "Information-Mediator-Client",
-              "value": "[a-zA-Z0-9_]+\\/[a-zA-Z0-9_]+\\/[a-zA-Z0-9_]+\\/[a-zA-Z0-9_]+",
+              "value": "^[a-zA-Z0-9_]+\\/[a-zA-Z0-9_]+\\/[a-zA-Z0-9_]+\\/[a-zA-Z0-9_-]+$",
               "invert": false,
               "operator": "regex"
             },
             {
               "target": "query",
               "modifier": "registrationName",
-              "value": "MMT",
+              "value": "n0tex1st",
               "invert": false,
               "operator": "equals"
             }
@@ -79,10 +84,10 @@
         },
         {
           "uuid": "f473ceb8-4dd7-46b2-bc13-b20a0c758a64",
-          "body": "{\n  \"Invalid format of Information-Mediator-Client, should not be null\"\n}",
+          "body": "",
           "latency": 0,
           "statusCode": 400,
-          "label": "Invalid mediator client format",
+          "label": "Invalid input supplied",
           "headers": [],
           "bodyType": "INLINE",
           "filePath": "",
@@ -92,12 +97,19 @@
             {
               "target": "header",
               "modifier": "Information-Mediator-Client",
-              "value": "[a-zA-Z0-9_]+\\\\/[a-zA-Z0-9_]+\\\\/[a-zA-Z0-9_]+\\\\/[a-zA-Z0-9_]+",
+              "value": "",
               "invert": false,
               "operator": "null"
+            },
+            {
+              "target": "header",
+              "modifier": "Information-Mediator-Client",
+              "value": "^[a-zA-Z0-9_]+\\/[a-zA-Z0-9_]+\\/[a-zA-Z0-9_]+\\/[a-zA-Z0-9_-]+$",
+              "invert": true,
+              "operator": "regex"
             }
           ],
-          "rulesOperator": "AND",
+          "rulesOperator": "OR",
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": true
