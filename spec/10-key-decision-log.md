@@ -1,11 +1,11 @@
 # 10 Key Decision Log
 
-1. Registration BB and Digital Registries BB is separated into two building blocks.
-2. The UNCTAD’s [eRegistrations ](http://businessfacilitation.org/online-single-windows/)system will be used as a reference system as it fulfills most of the BB requirements.
-3. Additional section “Coverage map” will be added.
-4. “Coverage map” was moved to section 6.3.
+1. Registration BB and Digital Registries BB is separated into two building blocks. 31.08.2021
+2. The UNCTAD’s [eRegistrations ](http://businessfacilitation.org/online-single-windows/)system will be used as a reference system as it fulfills most of the BB requirements. 31.08.2021
+3. Additional section “Coverage map” will be added. 05.12.2021
+4. “Coverage map” was moved to section 6.3. 05.12.2021
 5. Infrastructure capabilities added (9.5). 05.12.2021
-6. Review comments incorporated to the main document 24.02.2022 (see below). Future consideration chapter updated based on reviewers comments. Recommendations not to be considered in this building block documented (see below)
+6. Review comments incorporated to the main document (see below). Future consideration chapter updated based on reviewers comments. Recommendations not to be considered in this building block documented (see below). 24.02.2022
 
 | **1. Incorporated in V1**                                                                                                                                                                                                                                                                                                                   |                                                                                                                                                                                                                                                                                                                                                                     |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
