@@ -8,8 +8,5 @@
 * [5 Functional Requirements](5-functional-requirements.md)
 * [6 Data Structures](6-data-structures.md)
 * [7 Service APIs](7-service-apis.md)
-* [8 Workflows](8-workflows.md)
+* [8 Internal Workflows](8-workflows.md)
 * [9 Other Resources](9-other-resources.md)
-* [10 Key Decision Log](10-key-decision-log.md)
-* [11 Future Considerations](11-future-considerations.md)
-
