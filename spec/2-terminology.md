@@ -1,4 +1,4 @@
-# 2 Terminology
+# 3 Terminology
 
 Several elements of the glossary are based on the terminology defined by the [World Wide Web Consortium (W3C) recommendations on the “Verifiable Credentials Data Model 1.0” (Nov. 2019](https://www.w3.org/TR/vc-data-model/#terminology)) and [Open ID Connect ](https://openid.net/specs/openid-connect-core-1\_0.html#Terminology)Core 1.0.
 
@@ -58,6 +58,9 @@ The result of a registration is usually a credential (sometimes called: certific
 
 **Determinant**\
 A determinant is an attribute, defined in the rule, used as a filter to determine/trigger if (1) an entity is subject to a registration and/or (2) what requirements this entity must provide to register.&#x20;
+
+**UC- Use Case**\
+A specific situation in which a product/Building Block or service could potentially be used.
 
 Examples:
 

@@ -1,10 +1,10 @@
-# 7 Service APIs
+# 8 Service APIs
 
 This section describes external APIs that must be implemented by the building block. Additional APIs may be implemented by the building block (all APIs must adhere to the standards and protocols defined), but the listed APIs define a minimal set that must be provided by any implementation.
 
 Registration BB is expected to host the following API services.
 
-## 7.1 Statistics API
+## 8.1 Statistics API
 
 The statistics API gives BB operational statistics- number of processed applications (per: operator, registration, service, date).
 
@@ -13,6 +13,8 @@ The statistics API gives BB operational statistics- number of processed applicat
 ![Illustration 5- resource model for Registration BB Statistics APi.](<.gitbook/assets/image4 (1) (1).png>)
 
 API specifications are described in the Github [file](../api/GovStack\_Registration\_BB\_API\_template-1.1.0-resolved.json).
+
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack\_Registration\_BB\_API\_template-1.1.0-resolved.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack\_Registration\_BB\_API\_template-1.1.0-resolved.json)&#x20;
 
 **Standards:**
 

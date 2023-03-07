@@ -1,4 +1,4 @@
-# 4 Cross-Cutting Requirements
+# 5 Cross-Cutting Requirements
 
 The cross-cutting requirements described in this section are an extension of the cross-cutting requirements defined in the Architecture specification document (here) and Security requirements ([here](https://govstack.gitbook.io/specification/building-blocks/security-requirements)). This section will highlight important requirements or describe any additional cross-cutting requirements that apply to this building block.
 
@@ -10,7 +10,7 @@ The cross-cutting requirements described in this section are an extension of the
 
 Egress, in the world of networking, implies traffic that exits an entity or a network boundary, while Ingress is traffic that enters the boundary of a network. Private networks here refers to resources inside the network boundary of a data center or cloud environment and its IP space is completely under the control of an entity who operates it.
 
-## 4.1 Overarching Requirements <a href="#docs-internal-guid-5b083c0e-7fff-0396-fba2-8a081b3bbff8" id="docs-internal-guid-5b083c0e-7fff-0396-fba2-8a081b3bbff8"></a>
+## 5.1 Overarching Requirements <a href="#docs-internal-guid-5b083c0e-7fff-0396-fba2-8a081b3bbff8" id="docs-internal-guid-5b083c0e-7fff-0396-fba2-8a081b3bbff8"></a>
 
 This section describes Registration BB requirements that must be fulfilled in all components.
 

@@ -4,7 +4,7 @@ description: >-
   building block must be able to perform.
 ---
 
-# 3 Key Digital Functionalities
+# 4 Key Digital Functionalities
 
 These functionalities are described as business processes as opposed to technical specifications or API definitions.
 
@@ -17,7 +17,7 @@ The no-code development platform is used by authorized personnel, called “anal
 
 The online registration services developed with the no code platform are used by the applicants who want to be registered and by the operators in charge of processing the requests.
 
-## 3.1 No-Code Development Platform <a href="#docs-internal-guid-f7c824af-7fff-a3d3-5a87-3efe0d1dcff9" id="docs-internal-guid-f7c824af-7fff-a3d3-5a87-3efe0d1dcff9"></a>
+## 4.1 No-Code Development Platform <a href="#docs-internal-guid-f7c824af-7fff-a3d3-5a87-3efe0d1dcff9" id="docs-internal-guid-f7c824af-7fff-a3d3-5a87-3efe0d1dcff9"></a>
 
 The no-code development platform acts as a rules engine, a screens (user interface) and flow builder and a control configurator:
 
@@ -31,7 +31,7 @@ The no-code development platform acts as a rules engine, a screens (user interfa
 
 ![Illustration 3 - Example of flow builder (UNCTAD’s eRegistrations).](<.gitbook/assets/image7 (1) (1).png>)
 
-## 3.2 The Online Registration Services <a href="#docs-internal-guid-d85f59a4-7fff-1564-6ae2-86d67f36a258" id="docs-internal-guid-d85f59a4-7fff-1564-6ae2-86d67f36a258"></a>
+## 4.2 The Online Registration Services <a href="#docs-internal-guid-d85f59a4-7fff-1564-6ae2-86d67f36a258" id="docs-internal-guid-d85f59a4-7fff-1564-6ae2-86d67f36a258"></a>
 
 The online registration services (e-services) created through the no-code development platform are adapted to any type of registration. They consist in a succession of online screens and actions through which:
 
@@ -40,7 +40,7 @@ The online registration services (e-services) created through the no-code develo
 * Validation: one or more human or automated (“robot” or “BOT role”) operators can review the elements provided, approve or reject an application, send claims to a registry and issue a credential (we call this part: “processing”)
 * For each service, user rights can be defined and statistical reports can be configured (“administration” part)
 
-## 3.3 Out of Scope Assumptions
+## 4.3 Out of Scope Assumptions
 
 * Registration BB does not define which registrant/object should be registered. But allowing applicants to determine if they are or not subject to a registration is part of the registration BB.
 * Long term storing of registration data/claims and results is not covered in this BB. See Digital Registries BB for data storage functionalities. However, the integration capability to the Digital Registries BB is part of the scope.

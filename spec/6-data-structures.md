@@ -1,20 +1,20 @@
-# 6 Data Structures
+# 7 Data Structures
 
 The resource model shows the relationship between data objects that are used by this Building Block.
 
-## 6.1 Standards/Protocols
+## 7.1 Standards/Protocols
 
 The following standards are applicable to data structures in the registration building block in addition to the general Architecture Requirements:
 
 1. QR code must be generated with the ISO/IEC 18004:2015 standard
 
-## 6.2 Resource Model
+## 7.2 Resource Model
 
 The resource model provides a basic description of each data object that is used by the building block. It also shows the relationship between data objects.
 
 ![Illustration 4 - Resource model. See editable diagram here](<.gitbook/assets/image16 (1).png>)
 
-## 6.3 Data Elements <a href="#docs-internal-guid-719783cd-7fff-5c75-35f4-db5323cd903f" id="docs-internal-guid-719783cd-7fff-5c75-35f4-db5323cd903f"></a>
+## 7.3 Data Elements <a href="#docs-internal-guid-719783cd-7fff-5c75-35f4-db5323cd903f" id="docs-internal-guid-719783cd-7fff-5c75-35f4-db5323cd903f"></a>
 
 The data elements provide detail for the resource model defined above. This section will list the core/required fields for each resource. Note that the data elements can be extended for a particular use case, but they must always contain at least the fields defined here.
 

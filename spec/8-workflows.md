@@ -1,4 +1,4 @@
-# 8 Workflows
+# 9 Internal Workflows
 
 This workflow section provides a detailed view of how this building block will interact with other building blocks to support common use cases. It lists workflows that this building block must support. Other workflows may be implemented in addition to those listed.
 
@@ -9,9 +9,9 @@ In this section two main workflows are described:
 
 For each workflow interaction, a sub-section is added.
 
-## 8.1 Workflow- Creating a Registration Service (Admin Function)
+## 9.1 Workflow- Creating a Registration Service (Admin Function)
 
-### 8.1.1 Description
+### 9.1.1 Description
 
 Analyst/administrator as the main actor in this workflow will create a new e-service by filling the required registration requirements, create screens for the user and publish the service on the web ready to be used by internet users.
 
@@ -19,13 +19,13 @@ As a pre-condition the user/analyst has authentication credentials and authoriza
 
 As a post-condition, the e-Service has beglossaryen published on the internet for users to use immediately. The optimal time for an Analyst to build the e-service of a simple registration service is 2h.
 
-### 8.1.2 User Journey <a href="#docs-internal-guid-5a2b9287-7fff-e40c-0d61-101056e94a79" id="docs-internal-guid-5a2b9287-7fff-e40c-0d61-101056e94a79"></a>
+### 9.1.2 User Journey <a href="#docs-internal-guid-5a2b9287-7fff-e40c-0d61-101056e94a79" id="docs-internal-guid-5a2b9287-7fff-e40c-0d61-101056e94a79"></a>
 
 User journey is the step by step journey that a user takes to reach their goal. This journey consists of a number of website pages/screens and decision points that carry the user from one step to another. The user journey is used to map out the current journey a typical user might take to reach their goal
 
 ![Illustration 6- user journey of creating a registration service. See editable file here.](<.gitbook/assets/image11 (1).png>)
 
-### 8.1.3 Interaction with Other Building Blocks <a href="#docs-internal-guid-67b89c8a-7fff-6917-6030-b4cb08422e15" id="docs-internal-guid-67b89c8a-7fff-6917-6030-b4cb08422e15"></a>
+### 9.1.3 Interaction with Other Building Blocks <a href="#docs-internal-guid-67b89c8a-7fff-6917-6030-b4cb08422e15" id="docs-internal-guid-67b89c8a-7fff-6917-6030-b4cb08422e15"></a>
 
 This workflow requires interaction with following building blocks:
 
@@ -126,9 +126,9 @@ In other cases the Registration BBs can be installed in different instances (dom
 ![Illustration 15 - Domain specific  setup diagram for multiple Registration BBs in one ecosystem.
 See Diagrams.net for an editable diagram.](.gitbook/assets/image13.png)
 
-## 8.2 Workflow- Using a Registration Service <a href="#docs-internal-guid-6bac7ec4-7fff-2f07-f48f-168981104eec" id="docs-internal-guid-6bac7ec4-7fff-2f07-f48f-168981104eec"></a>
+## 9.2 Workflow- Using a Registration Service <a href="#docs-internal-guid-6bac7ec4-7fff-2f07-f48f-168981104eec" id="docs-internal-guid-6bac7ec4-7fff-2f07-f48f-168981104eec"></a>
 
-### 8.2.1 Description <a href="#docs-internal-guid-461ecfeb-7fff-864b-45ae-1579ead4d1c0" id="docs-internal-guid-461ecfeb-7fff-864b-45ae-1579ead4d1c0"></a>
+### 9.2.1 Description <a href="#docs-internal-guid-461ecfeb-7fff-864b-45ae-1579ead4d1c0" id="docs-internal-guid-461ecfeb-7fff-864b-45ae-1579ead4d1c0"></a>
 
 Citizen/ applicant, as the main actor in the process will open a web URL address and authenticate. Once authenticated, the applicant opens an e-service and fills required data fields /claims on the first screen. System/Rule engine will then validate if the user is applicable for any registrations and if so will open a list of mandatory or optional registrations for the user to select. Once selected the system will fill the form with required data fields relevant for the applicant to fill. In addition the system will show which documents are relevant for the applicant to upload and how much fees to pay. An applicant will then fill data, upload documents, select a payment method and make the payment (if required). If designed so the Control Configurator component will validate captured data against external API data and in case validation fails issue warnings to the applicant. After payment, the applicant can submit the application file for registration and processing. System validates if all required fields are correctly filled upon the submission.
 
@@ -145,7 +145,7 @@ As a post condition, the applicant was able to fill a registration form and subm
 
 ![Illustration 12 - The process of filing an application file. See editable version here](<.gitbook/assets/image15 (1).png>)
 
-### **8**.2.2 Interaction with other Building Blocks <a href="#docs-internal-guid-c743f131-7fff-938e-2c36-011d9f1ab41a" id="docs-internal-guid-c743f131-7fff-938e-2c36-011d9f1ab41a"></a>
+### 9.2.2 Interaction with other Building Blocks <a href="#docs-internal-guid-c743f131-7fff-938e-2c36-011d9f1ab41a" id="docs-internal-guid-c743f131-7fff-938e-2c36-011d9f1ab41a"></a>
 
 This workflow requires interaction with following building blocks:
 
