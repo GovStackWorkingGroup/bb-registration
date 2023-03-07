@@ -1,8 +1,9 @@
 # Table of contents
 
 * [Registration](README.md)
-* [1 Description](1-description.md)
-* [2 Terminology](2-terminology.md)
+* [1 Version History](1-version-history.md)
+* [2 Description](1-description.md)
+* [3 Terminology](2-terminology.md)
 * [3 Key Digital Functionalities](3-key-digital-functionalities.md)
 * [4 Cross-Cutting Requirements](4-cross-cutting-requirements.md)
 * [5 Functional Requirements](5-functional-requirements.md)
