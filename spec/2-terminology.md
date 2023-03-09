@@ -1,6 +1,6 @@
 # 3 Terminology
 
-Several elements of the glossary are based on the terminology defined by the [World Wide Web Consortium (W3C) recommendations on the “Verifiable Credentials Data Model 1.0” (Nov. 2019](https://www.w3.org/TR/vc-data-model/#terminology)) and [Open ID Connect ](https://openid.net/specs/openid-connect-core-1\_0.html#Terminology)Core 1.0.
+Several elements of the glossary are based on the terminology defined by the [World Wide Web Consortium (W3C) recommendations on the “Verifiable Credentials Data Model 1.0” (Nov. 2019](https://www.w3.org/TR/vc-data-model/#terminology)) and [Open ID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1\_0.html#Terminology).
 
 **Registration**\
 Process through which an entity gets claims recorded in a registry and a credential proving the registration, in exchange of providing some requirements.
@@ -15,7 +15,7 @@ An attribute asserted by an entity, about itself or another entity.
 A property (data, information) relating to an entity
 
 **Subject**\
-An entity obliged or entitled to a registration, or about which a claim is made
+An entity obliged or entitled to registration, or about which a claim is made
 
 **Asserter**\
 An entity that asserts a claim.
@@ -33,19 +33,19 @@ Entity that requests the registration of claims in a registry.
 A registrar or a staff of a registrar who is processing the request of an applicant.
 
 **Credential**\
-A paper or electronic document created by an issuer and displaying one or more claims about one or more entities
+A paper or electronic document created by an issuer and displaying one or more claims about one or more entities.
 
 **Issuer**\
-Entity which creates a credential for one or more entities
+Entity that creates a credential for one or more entities.
 
 **Scope**\
-A set of claims and/or credentials required for a registration
+A set of claims and/or credentials required for a registration.
 
 **Service**\
 Name given to a registration, or to a combination of registrations which can be undertaken simultaneously, by the entity(ies) in charge of the registration process.
 
 **Regulation**\
-Normative text (law, decree, deed, decision, etc.) issued by a public entity
+Normative text (law, decree, deed, decision, etc.) issued by a public entity.
 
 **Rule**\
 Any regulation, or part of a regulation, which creates for specific subjects an obligation or a right to register, and defines, for each category of subjects, the results and requirements of the registration.
@@ -54,7 +54,7 @@ Any regulation, or part of a regulation, which creates for specific subjects an 
 Information (i.e. claims and credentials) and fees which must be provided in a registration process. Requirements may vary according to each subject.
 
 **Result**\
-The result of a registration is usually a credential (sometimes called: certificate, license, permit, card, etc.) proving the registration, in addition to the recording of information in a registry,
+The result of a registration is usually a credential (sometimes called: certificate, license, permit, card, etc.) proving the registration, in addition to the recording of information in a registry.
 
 **Determinant**\
 A determinant is an attribute, defined in the rule, used as a filter to determine/trigger if (1) an entity is subject to a registration and/or (2) what requirements this entity must provide to register.&#x20;
