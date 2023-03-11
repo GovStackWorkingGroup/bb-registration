@@ -82,7 +82,12 @@
 				"tags": ["applicant-task-controller"],
 				"summary": "Claim task by id",
 				"operationId": "claimTaskById",
-				"parameters": [{
+				"parameters": [
+				  {
+            "$ref": "#/components/parameters/Information-Mediator-Client"
+          },
+          
+				  {
 					"name": "id",
 					"in": "path",
 					"required": true,
@@ -132,7 +137,12 @@
 				"tags": ["applicant-task-controller"],
 				"summary": "Sign and complete opperator task by id",
 				"operationId": "singOpperatorForm",
-				"parameters": [{
+				"parameters": [
+				  {
+            "$ref": "#/components/parameters/Information-Mediator-Client"
+          },
+          
+				  {
 					"name": "id",
 					"in": "path",
 					"required": true,
@@ -199,7 +209,12 @@
 				"tags": ["operator-task-controller"],
 				"summary": "Process and complete applicant task by id",
 				"operationId": "processApplicantForm",
-				"parameters": [{
+				"parameters": [ 
+				  {
+            "$ref": "#/components/parameters/Information-Mediator-Client"
+          },
+          
+				  {
 					"name": "id",
 					"in": "path",
 					"required": true,
@@ -270,7 +285,11 @@
 				"summary": "Retrieve all tasks, optionally by applicant user ID",
 				"description": "Returns task list",
 				"operationId": "getTasks",
-				"parameters": [{
+				"parameters": [
+				  {
+            "$ref": "#/components/parameters/Information-Mediator-Client"
+          },
+				  {
 						"name": "processInstanceId",
 						"in": "query",
 						"required": false,
@@ -343,7 +362,11 @@
 				"summary": "Get task by  id",
 				"description": "Returns list of tasks by  task id",
 				"operationId": "getTaskById",
-				"parameters": [{
+				"parameters": [
+				  {
+            "$ref": "#/components/parameters/Information-Mediator-Client"
+          },
+				  {
 					"name": "id",
 					"in": "path",
 					"required": true,
@@ -382,7 +405,12 @@
 				"summary": "Retrieve count of all tasks",
 				"description": "Returns tasks count",
 				"operationId": "countTasks",
-				"parameters": [{
+				"parameters": [
+				  {
+            "$ref": "#/components/parameters/Information-Mediator-Client"
+          },
+          
+				  {
 					"name": "rootProcessInstanceId",
 					"in": "query",
 					"required": false,
