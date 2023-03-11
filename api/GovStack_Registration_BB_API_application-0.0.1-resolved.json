@@ -19,67 +19,7 @@
 	}],
 
 	"paths": {
-		"/api/task/{id}/save": {
-			"post": {
-				"tags": ["applicant-task-controller"],
-				"description": "API endpoint that allows anyone to save application data",
-				"summary": "Save form data",
-				"operationId": "saveFormData",
-				"parameters": [{
-					"name": "id",
-					"in": "path",
-					"required": true,
-					"schema": {
-						"type": "string"
-					}
-				}],
-				"requestBody": {
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/FormDataDto"
-							}
-						}
-					},
-					"required": true
-				},
-				"responses": {
-					"500": {
-						"description": "Internal server error",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/SystemErrorDto"
-								}
-							}
-						}
-					},
-					"200": {
-						"description": "Form data successfully saved"
-					},
-					"404": {
-						"description": "Task hasn't found",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/SystemErrorDto"
-								}
-							}
-						}
-					},
-					"422": {
-						"description": "Form data validation error",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/ValidationErrorDto"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
+	
 		"/api/task/{id}/complete": {
 			"post": {
 				"tags": ["applicant-task-controller"],
@@ -327,7 +267,7 @@
 		"/api/task": {
 			"get": {
 				"tags": ["applicant-task"],
-				"summary": "Retrieve all tasks by applicant user ID",
+				"summary": "Retrieve all tasks, optionally by applicant user ID",
 				"description": "Returns task list",
 				"operationId": "getTasks",
 				"parameters": [{
@@ -399,7 +339,7 @@
 
 		"/api/task/{id}": {
 			"get": {
-				"tags": ["applicant-task-controller"],
+				"tags": ["applicant-task"],
 				"summary": "Get task by  id",
 				"description": "Returns list of tasks by  task id",
 				"operationId": "getTaskById",
@@ -435,12 +375,13 @@
 				}
 			}
 		},
-		"/api/task/lightweight": {
+	
+		"/api/task/count": {
 			"get": {
-				"tags": ["applicant-task"],
-				"summary": "Retrieve all tasks",
-				"description": "Returns lightweight task list",
-				"operationId": "getLightweightTasks",
+				"tags": ["applicant-task-controller"],
+				"summary": "Retrieve count of all tasks",
+				"description": "Returns tasks count",
+				"operationId": "countTasks",
 				"parameters": [{
 					"name": "rootProcessInstanceId",
 					"in": "query",
@@ -448,58 +389,18 @@
 					"schema": {
 						"type": "string"
 					}
-				}, {
-					"name": "firstResult",
-					"in": "query",
-					"description": "Pagination of results. Specifies the index of the first result to return.",
-					"schema": {
-						"type": "integer"
-					}
-				}, {
-					"name": "maxResult",
-					"in": "query",
-					"description": "Pagination of results. Specifies the maximum number of results to return. Will return less results if there are no more results left.",
-					"schema": {
-						"type": "integer"
-					}
-				}, {
-					"name": "sortBy",
-					"in": "query",
-					"description": "Sort the results lexicographically by a given criterion. Valid values are instanceId, caseInstanceId, dueDate, executionId, caseExecutionId,assignee, created, description, id, name, nameCaseInsensitive and priority. Must be used in conjunction with the sortOrder parameter.",
-					"schema": {
-						"type": "string"
-					}
-				}, {
-					"name": "sortOrder",
-					"in": "query",
-					"description": "Sort the results in a given order. Values may be asc for ascending order or desc for descending order. Must be used in conjunction with the sortBy parameter.",
-					"schema": {
-						"type": "string"
-					}
-				}],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"content": {
-							"*/*": {
-								"schema": {
-									"type": "array",
-									"items": {
-										"$ref": "#/components/schemas/ApplicantTaskLightweightResponse"
-									}
-								}
-							}
+				}, 
+				
+					{
+						"name": "applicantId",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string"
 						}
 					}
-				}
-			}
-		},
-		"/api/task/count": {
-			"get": {
-				"tags": ["applicant-task-controller"],
-				"summary": "Retrieve count of all tasks",
-				"description": "Returns tasks count",
-				"operationId": "countTasks",
+			  ],
+			
 				"responses": {
 					"200": {
 						"description": "OK",
