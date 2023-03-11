@@ -14,8 +14,18 @@ The statistics API gives Building Block operational statistics- number of proces
 
 API specifications are described in the GitHub [file](../api/GovStack\_Registration\_BB\_API\_template-1.1.0-resolved.json).
 
+[https://github.com/GovStackWorkingGroup/bb-registration/blob/main/api/GovStack\_Registration\_BB\_API\_template-1.1.0-resolved.json](../api/GovStack\_Registration\_BB\_API\_template-1.1.0-resolved.json)&#x20;
+
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack\_Registration\_BB\_API\_template-1.1.0-resolved.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack\_Registration\_BB\_API\_template-1.1.0-resolved.json)&#x20;
 
 **Standards:**
 
 This section defines the standards and protocols used by the API. The API is built using a representational state transfer ([REST](https://restfulapi.net/)) software architectural style and described in [Open API 3 standard](https://swagger.io/specification/) using [YAML ](http://yaml.org/)(a human-readable data-serialization language). The request and response body is in [JSON ](https://www.json.org/json-en.html)(lightweight data-interchange format).
+
+
+
+### 7.2 List all assignments API
+
+/api/task&#x20;
+
+An applicant can see/monitor the status of the submitted application file
