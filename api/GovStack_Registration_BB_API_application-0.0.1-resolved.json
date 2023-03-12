@@ -19,209 +19,26 @@
 	}],
 
 	"paths": {
-	
-		"/api/task/{id}/complete": {
-			"post": {
-				"tags": ["applicant-task-controller"],
-				"summary": "Complete task by id",
-				"operationId": "completeTaskById",
-				"parameters": [{
-					"name": "id",
-					"in": "path",
-					"required": true,
-					"schema": {
-						"type": "string"
-					}
-				}],
-				"requestBody": {
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/FormDataDto"
-							}
-						}
-					},
-					"required": true
-				},
-				"responses": {
-					"200": {
-						"description": "Task successfully completed",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/CompletedTaskResponse"
-								}
-							}
-						}
-					},
-					"500": {
-						"description": "Internal server error",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/SystemErrorDto"
-								}
-							}
-						}
-					},
-					"404": {
-						"description": "Task hasn't found",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/SystemErrorDto"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/api/task/{id}/claim": {
-			"post": {
-				"tags": ["applicant-task-controller"],
-				"summary": "Claim task by id",
-				"operationId": "claimTaskById",
-				"parameters": [
-				  {
-            "$ref": "#/components/parameters/Information-Mediator-Client"
-          },
-          
-				  {
-					"name": "id",
-					"in": "path",
-					"required": true,
-					"schema": {
-						"type": "string"
-					}
-				}],
-				"responses": {
-					"204": {
-						"description": "Task successfully claimed"
-					},
-					"500": {
-						"description": "Internal server error",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/SystemErrorDto"
-								}
-							}
-						}
-					},
-					"409": {
-						"description": "Task already assigned on another person",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/SystemErrorDto"
-								}
-							}
-						}
-					},
-					"404": {
-						"description": "Task hasn't found or already completed",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/SystemErrorDto"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/api/opperator/task/{id}/sign-form": {
-			"post": {
-				"tags": ["applicant-task-controller"],
-				"summary": "Sign and complete opperator task by id",
-				"operationId": "singOpperatorForm",
-				"parameters": [
-				  {
-            "$ref": "#/components/parameters/Information-Mediator-Client"
-          },
-          
-				  {
-					"name": "id",
-					"in": "path",
-					"required": true,
-					"schema": {
-						"type": "string"
-					}
-				}],
-				"requestBody": {
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/FormDataDto"
-							}
-						}
-					},
-					"required": true
-				},
-				"responses": {
-					"500": {
-						"description": "Internal server error",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/SystemErrorDto"
-								}
-							}
-						}
-					},
-					"422": {
-						"description": "Task hasn't verified",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/ValidationErrorDto"
-								}
-							}
-						}
-					},
-					"200": {
-						"description": "Task successfully signed and completed",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/CompletedTaskResponse"
-								}
-							}
-						}
-					},
-					"404": {
-						"description": "Task hasn't found",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/SystemErrorDto"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
+
+
 		"/api/applicant/task/{id}/sign-form": {
 			"post": {
 				"tags": ["operator-task-controller"],
 				"summary": "Process and complete applicant task by id",
 				"operationId": "processApplicantForm",
-				"parameters": [ 
-				  {
-            "$ref": "#/components/parameters/Information-Mediator-Client"
-          },
-          
-				  {
-					"name": "id",
-					"in": "path",
-					"required": true,
-					"schema": {
-						"type": "string"
+				"parameters": [{
+						"$ref": "#/components/parameters/Information-Mediator-Client"
+					},
+
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
 					}
-				}],
+				],
 				"requestBody": {
 					"content": {
 						"application/json": {
@@ -285,16 +102,16 @@
 				"summary": "Retrieve all tasks, optionally by applicant user ID",
 				"description": "Returns task list",
 				"operationId": "getTasks",
-				"parameters": [
-				  {
-            "$ref": "#/components/parameters/Information-Mediator-Client"
-          },
-				  {
+				"parameters": [{
+						"$ref": "#/components/parameters/Information-Mediator-Client"
+					},
+					{
 						"name": "processInstanceId",
 						"in": "query",
 						"required": false,
 						"schema": {
-							"type": "string"
+							"type": "string",
+							"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 						}
 					},
 					{
@@ -302,7 +119,8 @@
 						"in": "query",
 						"required": false,
 						"schema": {
-							"type": "string"
+							"type": "string",
+							"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 						}
 					},
 					{
@@ -310,28 +128,32 @@
 						"in": "query",
 						"description": "Pagination of results. Specifies the index of the first result to return.",
 						"schema": {
-							"type": "integer"
+							"type": "integer",
+							"example": 1
 						}
 					}, {
 						"name": "maxResult",
 						"in": "query",
 						"description": "Pagination of results. Specifies the maximum number of results to return. Will return less results if there are no more results left.",
 						"schema": {
-							"type": "integer"
+							"type": "integer",
+							"example": 10
 						}
 					}, {
 						"name": "sortBy",
 						"in": "query",
 						"description": "Sort the results lexicographically by a given criterion. Valid values are instanceId, caseInstanceId, dueDate, executionId, caseExecutionId,assignee, created, description, id, name, nameCaseInsensitive and priority. Must be used in conjunction with the sortOrder parameter.",
 						"schema": {
-							"type": "string"
+							"type": "string",
+							"example": "created"
 						}
 					}, {
 						"name": "sortOrder",
 						"in": "query",
 						"description": "Sort the results in a given order. Values may be asc for ascending order or desc for descending order. Must be used in conjunction with the sortBy parameter.",
 						"schema": {
-							"type": "string"
+							"type": "string",
+							"example": "asc"
 						}
 					}
 				],
@@ -362,18 +184,19 @@
 				"summary": "Get task by  id",
 				"description": "Returns list of tasks by  task id",
 				"operationId": "getTaskById",
-				"parameters": [
-				  {
-            "$ref": "#/components/parameters/Information-Mediator-Client"
-          },
-				  {
-					"name": "id",
-					"in": "path",
-					"required": true,
-					"schema": {
-						"type": "string"
+				"parameters": [{
+						"$ref": "#/components/parameters/Information-Mediator-Client"
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"example": "8a70cd6d-bdb2-11ed-9397-0242ac120004"
+						}
 					}
-				}],
+				],
 				"responses": {
 					"200": {
 						"description": "Returns task by id",
@@ -397,67 +220,22 @@
 					}
 				}
 			}
-		},
-	
-		"/api/task/count": {
-			"get": {
-				"tags": ["applicant-task-controller"],
-				"summary": "Retrieve count of all tasks",
-				"description": "Returns tasks count",
-				"operationId": "countTasks",
-				"parameters": [
-				  {
-            "$ref": "#/components/parameters/Information-Mediator-Client"
-          },
-          
-				  {
-					"name": "rootProcessInstanceId",
-					"in": "query",
-					"required": false,
-					"schema": {
-						"type": "string"
-					}
-				}, 
-				
-					{
-						"name": "applicantId",
-						"in": "query",
-						"required": false,
-						"schema": {
-							"type": "string"
-						}
-					}
-			  ],
-			
-				"responses": {
-					"200": {
-						"description": "OK",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/CountResponse"
-								}
-							}
-						}
-					}
-				}
-			}
 		}
 	},
 	"components": {
-	  
-	  "parameters": {
-      "Information-Mediator-Client": {
-        "in": "header",
-        "name": "Information-Mediator-Client",
-        "example": "eGovStack/GOV/90000009/digitalregistries",
-        "description": "Format is: INSTANCE/CLASS/MEMBER/SUBSYSTEM",
-        "schema": {
-          "type": "string"
-        },
-        "required": true
-      }
-    },
+
+		"parameters": {
+			"Information-Mediator-Client": {
+				"in": "header",
+				"name": "Information-Mediator-Client",
+				"example": "eGovStack/GOV/90000009/digitalregistries",
+				"description": "Format is: INSTANCE/CLASS/MEMBER/SUBSYSTEM",
+				"schema": {
+					"type": "string"
+				},
+				"required": true
+			}
+		},
 		"schemas": {
 			"FormDataDto": {
 				"type": "object",
@@ -469,7 +247,8 @@
 						}
 					},
 					"decision": {
-						"type": "string"
+						"type": "string",
+						"example": "approve"
 					},
 					"x-access-token": {
 						"type": "string"
@@ -480,16 +259,20 @@
 				"type": "object",
 				"properties": {
 					"traceId": {
-						"type": "string"
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
 					"code": {
-						"type": "string"
+						"type": "string",
+						"example": "4006"
 					},
 					"message": {
-						"type": "string"
+						"type": "string",
+						"example": "Something is wrong with the data, please check one more time."
 					},
 					"localizedMessage": {
-						"type": "string"
+						"type": "string",
+						"example": "error"
 					}
 				}
 			},
@@ -497,13 +280,16 @@
 				"type": "object",
 				"properties": {
 					"message": {
-						"type": "string"
+						"type": "string",
+						"example": "Something is wrong with the data, please check one more time."
 					},
 					"field": {
-						"type": "string"
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
 					"value": {
-						"type": "string"
+						"type": "string",
+						"example": "test ABC"
 					}
 				}
 			},
@@ -522,13 +308,16 @@
 				"type": "object",
 				"properties": {
 					"traceId": {
-						"type": "string"
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
 					"code": {
-						"type": "string"
+						"type": "string",
+						"example": "6008"
 					},
 					"message": {
-						"type": "string"
+						"type": "string",
+						"example": "Something is wrong with the data, please check one more time."
 					},
 					"details": {
 						"$ref": "#/components/schemas/ErrorsListDto"
@@ -539,16 +328,20 @@
 				"type": "object",
 				"properties": {
 					"id": {
-						"type": "string"
+						"type": "string",
+						"example": "8a70cd6d-bdb2-11ed-9397-0242ac120004"
 					},
 					"processInstanceId": {
-						"type": "string"
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
 					"rootProcessInstanceId": {
-						"type": "string"
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
 					"rootProcessInstanceEnded": {
-						"type": "boolean"
+						"type": "boolean",
+						"example": "true"
 					},
 					"variables": {
 						"type": "object",
@@ -562,10 +355,12 @@
 				"type": "object",
 				"properties": {
 					"type": {
-						"type": "string"
+						"type": "string",
+						"example": "Abc"
 					},
 					"value": {
-						"type": "object"
+						"type": "object",
+						"example": "Test"
 					},
 					"valueInfo": {
 						"type": "object",
@@ -579,99 +374,125 @@
 				"type": "object",
 				"properties": {
 					"id": {
-						"type": "string"
+						"type": "string",
+						"example": "8a70cd6d-bdb2-11ed-9397-0242ac120004"
 					},
 					"taskDefinitionKey": {
-						"type": "string"
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
 					"name": {
-						"type": "string"
+						"type": "string",
+						"example": "Application xyz"
 					},
 					"assignee": {
-						"type": "string"
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
 					"status": {
-						"type": "string"
+						"type": "string",
+						"example": "PENDING"
 					},
 
 					"applicantId": {
-						"type": "string"
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
 
 
 
 					"created": {
 						"type": "string",
-						"format": "date-time"
+						"format": "date-time",
+						"example": "2000-10-23T00:00:00.000Z"
 					},
 					"registered": {
 						"type": "string",
-						"format": "date-time"
+						"format": "date-time",
+						"example": "2000-10-23T00:00:00.000Z"
 					},
 
 					"description": {
-						"type": "string"
+						"type": "string",
+						"example": "Any text."
 					},
 					"processDefinitionName": {
-						"type": "string"
+						"type": "string",
+						"example": "Post partum registration service"
 					},
 					"processInstanceId": {
-						"type": "string"
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
 					"processDefinitionId": {
-						"type": "string"
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
 					"formKey": {
-						"type": "string"
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
 					"suspended": {
-						"type": "boolean"
+						"type": "boolean",
+						"example": "true"
 					},
 					"businessKey": {
-						"type": "string"
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
 					"Results": {
-						"type": "string"
+						"type": "string",
+						"example": "todo"
 					}
-
 				}
 			},
 			"SignableDataUserTaskResponse": {
 				"type": "object",
 				"properties": {
 					"id": {
-						"type": "string"
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
 					"taskDefinitionKey": {
-						"type": "string"
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
 					"name": {
-						"type": "string"
+						"type": "string",
+						"example": "John Smith"
 					},
 					"assignee": {
-						"type": "string"
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
 					"created": {
 						"type": "string",
-						"format": "date-time"
+						"format": "date-time",
+						"example": "2000-10-23T00:00:00.000Z"
 					},
 					"description": {
-						"type": "string"
+						"type": "string",
+						"example": "Any text"
 					},
 					"processInstanceId": {
-						"type": "string"
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
 					"processDefinitionId": {
-						"type": "string"
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
 					"processDefinitionName": {
-						"type": "string"
+						"type": "string",
+						"example": "Post partum registration service"
 					},
 					"formKey": {
-						"type": "string"
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
 					"suspended": {
-						"type": "boolean"
+						"type": "boolean",
+						"example": "true"
 					},
 					"formVariables": {
 						"type": "object",
@@ -684,7 +505,7 @@
 						"type": "array",
 						"items": {
 							"type": "string",
-							"enum": ["PENDING", "APPROVE", "SEND BACK FOR CORRECTION", "REJECT"]
+							"enum": ["pending", "approve", "sendBack", "reject"]
 						}
 					},
 					"data": {
@@ -692,29 +513,6 @@
 						"additionalProperties": {
 							"type": "object"
 						}
-					},
-					"esign": {
-						"type": "boolean"
-					}
-				}
-			},
-			"ApplicantTaskLightweightResponse": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "string"
-					},
-					"assignee": {
-						"type": "string"
-					}
-				}
-			},
-			"CountResponse": {
-				"type": "object",
-				"properties": {
-					"count": {
-						"type": "integer",
-						"format": "int64"
 					}
 				}
 			}
