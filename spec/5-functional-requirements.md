@@ -1,7 +1,7 @@
 ---
 description: >-
   The Functional Requirements section lists the technical capabilities that this
-  Building Block must/could have.
+  building block must/could have.
 ---
 
 # 6 Functional Requirements
@@ -202,10 +202,13 @@ As a healthcare worker, I want to:
 * Operators can see statistics of the processing.&#x20;
 * Each back office operator can only see relevant data of the application. Operators are authorized to see and process their role-related applications.
 
-| REQ-# | Requirement                                                                                                                                                                                                                                                                                                            | Type     |
-| ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| API-1 | <p>The system has an API service that enables to register new application files in the Registration Building Block. <br>API endpoints with correct authentication credentials can be used as a service by Plug-in components for submitting captured user application information to Registration Building Block. </p> | Required |
-| API-2 | System has an API that contains an e-service application file  schema with all data fields. Schema can be used by other Building Blocks and components to create alternative e-service channels.                                                                                                                       | Required |
+| REQ-#  | Requirement                                                                                                                                                                                                                     | Type     |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| API-1  | System has an API service that enables to register new application files in the Registration Building Block. See chapter 8.3                                                                                                    | Required |
+| API-2  | System has an API that enables to view a schema of an e-service application file with all data fields. Schema can be used by other Building Blocks and components to create alternative e-service channels (e.g. mobile apps).  | Optional |
+| API- 3 | System has an API that enables to view a list of registered application file processing tasks.  See chapter 8.2                                                                                                                 | Required |
+| API-4  | System has an API that enables to change the status of registered application file process flow- complete application processing task. See chapter 8.4.                                                                         | Required |
+| API-5  | System has an API that enables to view statistics of processing.  See chapter 8.1.                                                                                                                                              | Required |
 
 ## 6.3 Coverage Map
 
