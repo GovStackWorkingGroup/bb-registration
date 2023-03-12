@@ -61,7 +61,7 @@
 						}
 					},
 					"422": {
-						"description": "Task hasn't verified",
+						"description": "Task was not verified",
 						"content": {
 							"*/*": {
 								"schema": {
@@ -81,7 +81,7 @@
 						}
 					},
 					"404": {
-						"description": "Task hasn't found",
+						"description": "Task was not found",
 						"content": {
 							"*/*": {
 								"schema": {
@@ -209,7 +209,7 @@
 						}
 					},
 					"404": {
-						"description": "Task hasn't found",
+						"description": "Task was not found",
 						"content": {
 							"*/*": {
 								"schema": {
