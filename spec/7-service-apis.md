@@ -29,3 +29,19 @@ This section defines the standards and protocols used by the API. The API is bui
 /api/task&#x20;
 
 An applicant can see/monitor the status of the submitted application file
+
+{% embed url="https://github.com/GovStackWorkingGroup/bb-registration/blob/ingmarvali-API-1/api/GovStack_Registration_BB_API_workflow-0.0.1-resolved.json" %}
+
+### 7.3 Create new application API
+
+Definitions:&#x20;
+
+Process- Service that is created to capture user information.&#x20;
+
+Instance- Application file created in the service.&#x20;
+
+/api/process-definition/{key}/start-with-form&#x20;
+
+
+
+{% embed url="https://github.com/GovStackWorkingGroup/bb-registration/blob/ingmarvali-API-1/api/GovStack_Registration_BB_API-registration-0.0.1-resolved.json" %}
