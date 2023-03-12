@@ -12,7 +12,11 @@ The statistics API gives Building Block operational statistics- number of proces
 
 ![Illustration 5- resource model for Registration Building Block Statistics API.](<.gitbook/assets/image4 (1) (1).png>)
 
-API specifications are described in the GitHub [file](../api/GovStack\_Registration\_BB\_API\_template-1.1.0-resolved.json).
+API specifications are described in the Github [file](../api/GovStack\_Registration\_BB\_API\_template-1.1.0-resolved.json) and displayed here:
+
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API_template-1.1.0-resolved.json" path="/data/statistics/1.0" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API_template-1.1.0-resolved.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API_template-1.1.0-resolved.json)
+{% endswagger %}
 
 [https://github.com/GovStackWorkingGroup/bb-registration/blob/main/api/GovStack\_Registration\_BB\_API\_template-1.1.0-resolved.json](../api/GovStack\_Registration\_BB\_API\_template-1.1.0-resolved.json)&#x20;
 
