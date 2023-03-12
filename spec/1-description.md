@@ -4,7 +4,7 @@
 
 The information provided by the applicant consists of data and/or credentials issued by public or private entities. Money is provided to pay for one or more registration fees/costs.
 
-A registration involves at least two parties: an applicant who wants to register (something or somebody) and an authorized representative of a registrar in charge of registering the data and issuing the credential.
+A registration involves at least two parties: an applicant who wants to register (something or somebody) and an authorized representative of a registry in charge of registering the data and issuing the credential.
 
 A registration may involve more than two parties: one or more third parties can be requested to assert/confirm the information provided by the applicant (a notary, a family member, a witness, another public entity, or a non-human entity such as a database); or to receive the payment made by the applicant (a bank, a cashier, an online payment service). The registry or registries where the information is written can also be considered as a third party.
 

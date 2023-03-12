@@ -4,7 +4,7 @@ The cross-cutting requirements described in this section are an extension of the
 
 **Inclusion issues** - Multiple languages, assisted model, differently-abled people, etc.
 
-The cross-cutting requirements described in this section are an extension of the cross-cutting requirements defined in the [Architecture specification](../architecture-and-nonfunctional-requirements/) and [Security requirements](../security-requirements/). This section will highlight important requirements or describe any additional cross-cutting requirements that apply to this Building Block.
+The cross-cutting requirements described in this section are an extension of the cross-cutting requirements defined in the [Architecture specification](https://govstack.gitbook.io/specification/architecture-and-nonfunctional-requirements) and [Security requirements](https://govstack.gitbook.io/specification/security-requirements). This section will highlight important requirements or describe any additional cross-cutting requirements that apply to this Building Block.
 
 **Secure ingress and egress access mechanisms** (Information Mediator and API gateway)
 

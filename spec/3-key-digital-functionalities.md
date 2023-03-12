@@ -21,7 +21,7 @@ The online registration services developed with the no-code platform are used by
 
 The no-code development platform acts as a rules engine, a screens (user interface), a flow builder, and a control configurator.
 
-* **Rules engine**: a tool transforming legal rules relating to a registration (i.e subjects, results, requirements, and determinants), defined by a human analyst, into machine-readable statements. See [definition](https://en.wikipedia.org/wiki/Business\_rules\_engine) and [illustration](https://www.digital.nsw.gov.au/digital-transformation/policy-lab/rules-code) of “rules engine”.
+* **Rules engine**: a tool transforming legal rules relating to a registration (i.e subjects, results, requirements, and determinants), defined by a human analyst, into machine-readable statements.&#x20;
 * **Screens** (user interface) and flow builder: a tool for a human analyst to create and organize the screens and fields that are necessary for the registration (application file) and processing.
 * **Controls configurator**: a tool for a human analyst to define, for each field in the application file and processing screens, what controls will be applied (input format, formulas, actions/checks between fields and with external databases).
 
