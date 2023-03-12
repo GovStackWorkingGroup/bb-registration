@@ -1,0 +1,382 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Registration BB API descriptions",
+		"description": "API from Registration BB",
+		"termsOfService": "#",
+		"contact": {
+			"email": "ingmar.vali@gmail.com"
+		},
+		"license": {
+			"name": "Apache 2.0",
+			"url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+		},
+		"version": "0.0.1"
+	},
+	"servers": [{
+		"url": "http://ss2.egovstack.net/r1/eGovStack/COM/11222456/RegistrationBB/creg/",
+		"description": "Information Mediator BB Security server"
+	}],
+
+	"paths": {
+	
+
+		"/api/process-definition/{key}/start-with-form": {
+			"post": {
+				"tags": ["application-registration"],
+				"summary": "Start application process instance with form",
+				"description": "Creates application process instance",
+				"operationId": "createProcessInstanceWithForm",
+				"parameters": [
+				  {
+            "$ref": "#/components/parameters/Information-Mediator-Client"
+          },
+				  
+				  {
+					"name": "key",
+					"description": "I think this key is issued by the creator app and = id, ",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string",
+						"example": "81c4445c-bff6-11ed-afa1-0242ac120002"
+					}
+				}],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/FormDataDto"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"500": {
+						"description": "Internal server error",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/SystemErrorDto"
+								}
+							}
+						}
+					},
+					"200": {
+						"description": "Returns started application process instance",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/StartProcessInstanceResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Business process definition hasn't found",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/SystemErrorDto"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+
+
+
+		
+	},
+	"components": {
+	      "parameters": {
+      "Information-Mediator-Client": {
+        "in": "header",
+        "name": "Information-Mediator-Client",
+        "example": "eGovStack/GOV/90000009/digitalregistries",
+        "description": "Format is: INSTANCE/CLASS/MEMBER/SUBSYSTEM",
+        "schema": {
+          "type": "string"
+        },
+        "required": true
+      }
+    },
+		"schemas": {
+		  	"FormDataDto": {
+				"type": "object",
+				"properties": {
+					"data": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "object"
+						}
+					},
+					"x-access-token": {
+						"type": "string"
+					}
+				}
+			},
+			
+					"StartProcessInstanceResponse": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"processDefinitionId": {
+						"type": "string"
+					},
+					"ended": {
+						"type": "boolean"
+					}
+				}
+			},
+			"SystemErrorDto": {
+				"type": "object",
+				"properties": {
+					"traceId": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					},
+					"message": {
+						"type": "string"
+					},
+					"localizedMessage": {
+						"type": "string"
+					}
+				}
+			},
+			"ErrorDetailDto": {
+				"type": "object",
+				"properties": {
+					"message": {
+						"type": "string"
+					},
+					"field": {
+						"type": "string"
+					},
+					"value": {
+						"type": "string"
+					}
+				}
+			},
+			"ErrorsListDto": {
+				"type": "object",
+				"properties": {
+					"errors": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/ErrorDetailDto"
+						}
+					}
+				}
+			},
+			"ValidationErrorDto": {
+				"type": "object",
+				"properties": {
+					"traceId": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					},
+					"message": {
+						"type": "string"
+					},
+					"details": {
+						"$ref": "#/components/schemas/ErrorsListDto"
+					}
+				}
+			},
+			"CompletedTaskResponse": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"processInstanceId": {
+						"type": "string"
+					},
+					"rootProcessInstanceId": {
+						"type": "string"
+					},
+					"rootProcessInstanceEnded": {
+						"type": "boolean"
+					},
+					"variables": {
+						"type": "object",
+						"additionalProperties": {
+							"$ref": "#/components/schemas/VariableValueResponse"
+						}
+					}
+				}
+			},
+			"VariableValueResponse": {
+				"type": "object",
+				"properties": {
+					"type": {
+						"type": "string"
+					},
+					"value": {
+						"type": "object"
+					},
+					"valueInfo": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "object"
+						}
+					}
+				}
+			},
+			"ApplicantTaskResponse": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"taskDefinitionKey": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"assignee": {
+						"type": "string"
+					},
+					"status": {
+						"type": "string"
+					},
+
+					"applicantId": {
+						"type": "string"
+					},
+
+
+
+					"created": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"registered": {
+						"type": "string",
+						"format": "date-time"
+					},
+
+					"description": {
+						"type": "string"
+					},
+					"processDefinitionName": {
+						"type": "string"
+					},
+					"processInstanceId": {
+						"type": "string"
+					},
+					"processDefinitionId": {
+						"type": "string"
+					},
+					"formKey": {
+						"type": "string"
+					},
+					"suspended": {
+						"type": "boolean"
+					},
+					"businessKey": {
+						"type": "string"
+					},
+					"Results": {
+						"type": "string"
+					}
+
+				}
+			},
+			"SignableDataUserTaskResponse": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"taskDefinitionKey": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"assignee": {
+						"type": "string"
+					},
+					"created": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"description": {
+						"type": "string"
+					},
+					"processInstanceId": {
+						"type": "string"
+					},
+					"processDefinitionId": {
+						"type": "string"
+					},
+					"processDefinitionName": {
+						"type": "string"
+					},
+					"formKey": {
+						"type": "string"
+					},
+					"suspended": {
+						"type": "boolean"
+					},
+					"formVariables": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "object"
+						}
+					},
+					"decisionValidationPack": {
+						"uniqueItems": true,
+						"type": "array",
+						"items": {
+							"type": "string",
+							"enum": ["PENDING", "APPROVE", "SEND BACK FOR CORRECTION", "REJECT"]
+						}
+					},
+					"data": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "object"
+						}
+					},
+					"esign": {
+						"type": "boolean"
+					}
+				}
+			},
+			"ApplicantTaskLightweightResponse": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"assignee": {
+						"type": "string"
+					}
+				}
+			},
+			"CountResponse": {
+				"type": "object",
+				"properties": {
+					"count": {
+						"type": "integer",
+						"format": "int64"
+					}
+				}
+			}
+		}
+	}
+}
