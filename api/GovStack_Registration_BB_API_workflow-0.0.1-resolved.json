@@ -21,85 +21,13 @@
 	"paths": {
 
 
-		"/api/applicant/task/{id}/sign-form": {
-			"post": {
-				"tags": ["operator-task-controller"],
-				"summary": "Process and complete applicant task by id",
-				"operationId": "processApplicantForm",
-				"parameters": [{
-						"$ref": "#/components/parameters/Information-Mediator-Client"
-					},
-
-					{
-						"name": "id",
-						"in": "path",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
-				"requestBody": {
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/FormDataDto"
-							}
-						}
-					},
-					"required": true
-				},
-				"responses": {
-					"500": {
-						"description": "Internal server error",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/SystemErrorDto"
-								}
-							}
-						}
-					},
-					"422": {
-						"description": "Task was not verified",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/ValidationErrorDto"
-								}
-							}
-						}
-					},
-					"200": {
-						"description": "Task successfully signed and completed",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/CompletedTaskResponse"
-								}
-							}
-						}
-					},
-					"404": {
-						"description": "Task was not found",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/SystemErrorDto"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
 
 
 
 		"/api/task": {
 			"get": {
 				"tags": ["applicant-task"],
-				"summary": "Retrieve all tasks, optionally by applicant user ID",
+				"summary": "Retrieve all applicant tasks (application files)",
 				"description": "Returns task list",
 				"operationId": "getTasks",
 				"parameters": [{
@@ -175,6 +103,82 @@
 			}
 		},
 
+
+
+
+
+		"/api/applicant/task/{id}/sign-form": {
+			"post": {
+				"tags": ["operator-task-controller"],
+				"summary": "Process and complete applicant task by id",
+				"operationId": "processApplicantForm",
+				"parameters": [{
+						"$ref": "#/components/parameters/Information-Mediator-Client"
+					},
+
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/FormDataDto"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"500": {
+						"description": "Internal server error",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/SystemErrorDto"
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Task was not verified",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ValidationErrorDto"
+								}
+							}
+						}
+					},
+					"200": {
+						"description": "Task successfully signed and completed",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/CompletedTaskResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Task was not found",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/SystemErrorDto"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
 
 
 
