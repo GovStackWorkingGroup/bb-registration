@@ -35,6 +35,7 @@
 					},
 					{
 						"name": "processInstanceId",
+						"description": "Service ID",
 						"in": "query",
 						"required": false,
 						"schema": {
@@ -44,6 +45,7 @@
 					},
 					{
 						"name": "applicantId",
+						"description": "Applicant user ID",
 						"in": "query",
 						"required": false,
 						"schema": {
