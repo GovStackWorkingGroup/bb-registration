@@ -394,7 +394,8 @@
 					},
 					"assignee": {
 						"type": "string",
-						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004",
+						"description": "operator ID who is processing the applicant file"
 					},
 					"status": {
 						"type": "string",
@@ -441,17 +442,15 @@
 						"type": "string",
 						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
-					"suspended": {
-						"type": "boolean",
-						"example": "true"
-					},
 					"businessKey": {
 						"type": "string",
-						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004", 
+						"description": "Key issued for the application file by client system"
 					},
 					"Results": {
 						"type": "string",
-						"example": "todo"
+						"example": "todo",
+						"description": "An array of documents issued by the Registration. Contains ID for the document"
 					}
 				}
 			},
@@ -472,12 +471,14 @@
 					},
 					"assignee": {
 						"type": "string",
-						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004",
+						"description": "operator ID who is processing the applicant file"
 					},
 					"created": {
 						"type": "string",
 						"format": "date-time",
-						"example": "2000-10-23T00:00:00.000Z"
+						"example": "2000-10-23T00:00:00.000Z",
+						"description": "Time when the application file was created by the user"
 					},
 					"description": {
 						"type": "string",
@@ -499,10 +500,7 @@
 						"type": "string",
 						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
-					"suspended": {
-						"type": "boolean",
-						"example": "true"
-					},
+					
 					"formVariables": {
 						"type": "object",
 						"additionalProperties": {
