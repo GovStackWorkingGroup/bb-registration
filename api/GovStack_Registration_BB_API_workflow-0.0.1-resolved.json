@@ -2,7 +2,8 @@
 	"openapi": "3.0.0",
 	"info": {
 		"title": "Registration Building Block API for Applicant user services",
-		"description": "Applicant can see tasks and submit new applications to the Registration BB",
+		"description": "Applicant can see tasks and submit new applications to the Registration BB.  
+	 1. get all files of a user; 2. get all available services for a user - this would include a form schema ID needed for each service; 3.  get all form schemas/ get a specific form schema; 4. submit a new file : this will require a dynamic data object that should match the needed form schema",
 		"termsOfService": "#",
 		"contact": {
 			"email": "ingmar.vali@gmail.com"
@@ -410,12 +411,14 @@
 					"created": {
 						"type": "string",
 						"format": "date-time",
-						"example": "2000-10-23T00:00:00.000Z"
+						"example": "2000-10-23T00:00:00.000Z",
+						"description": "Time when the application file was created by the user"
 					},
 					"registered": {
 						"type": "string",
 						"format": "date-time",
-						"example": "2000-10-23T00:00:00.000Z"
+						"example": "2000-10-23T00:00:00.000Z",
+						"description": "Time when the application file was registered in the Registration BB system"
 					},
 
 					"description": {
