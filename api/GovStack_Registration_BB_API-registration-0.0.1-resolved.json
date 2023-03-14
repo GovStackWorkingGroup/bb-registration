@@ -129,7 +129,7 @@
 					},
 					"processDefinitionId": {
 						"type": "string",
-						"description": "81c4445c-bff6-11ed-afa1-0242ac120002"
+						"description": "uuid of the process definition of which this is an instance of; e.g. 81c4445c-bff6-11ed-afa1-0242ac120002"
 					},
 					"ended": {
 						"type": "boolean",
