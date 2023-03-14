@@ -1,8 +1,8 @@
 {
 	"openapi": "3.0.0",
 	"info": {
-		"title": "Registration BB API descriptions",
-		"description": "API from Registration BB",
+		"title": "Registration Building Block API for Applicant user services",
+		"description": "Applicant can see tasks and submit new applications to the Registration BB",
 		"termsOfService": "#",
 		"contact": {
 			"email": "ingmar.vali@gmail.com"
