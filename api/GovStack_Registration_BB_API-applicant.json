@@ -21,9 +21,9 @@
   "paths": {
 
 
-    "/api/applicant/{service-version-id}/register-application": {
+    "/api/applicant/{serviceVersionId}/registerApplication": {
       "post": {
-        "tags": ["application-registration"],
+        "tags": ["Application registration"],
         "summary": "Create application process with form data",
         "description": "Creates application file in Registration BB and starts the process",
         "operationId": "registerApplication",
@@ -32,7 +32,7 @@
           },
 
           {
-            "name": "service-version-id",
+            "name": "serviceVersionId",
             "description": "Service version ID. Every new version of the service schema gets a new Service ID (ProcessDefinitionId )",
             "example": "895e9b8a-c569-11ed-b47f-0242ac12000c",
             "in": "path",
@@ -91,9 +91,9 @@
 
 
 
-		"/api/applicant/application-file": {
+		"/api/applicant/applicationFileList": {
 			"get": {
-				"tags": ["application-files"],
+				"tags": ["Application files"],
 				"summary": "Retrieve all applicant's application files",
 				"description": "Returns application list",
 				"operationId": "getApplicantFileList",
@@ -162,7 +162,7 @@
 								"schema": {
 									"type": "array",
 									"items": {
-										"$ref": "#/components/schemas/ApplicantApplicationFileResponse"
+										"$ref": "#/components/schemas/ApplicantApplicationFileListResponse"
 									}
 								}
 							}
@@ -170,16 +170,57 @@
 					}
 				}
 			}
+		},
+		
+
+		"/api/applicant/applicationFile/{applicationFileId}": {
+			"get": {
+				"tags": ["Application files"],
+				"summary": "Get application file by  ID",
+				"description": "Returns application file",
+				"operationId": "getApplicationFileById",
+				"parameters": [{
+						"$ref": "#/components/parameters/Information-Mediator-Client"
+					},
+					{
+						"name": "applicationFileId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"example": "8a70cd6d-bdb2-11ed-9397-0242ac120004"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Returns application file by id",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApplicantApplicationFileResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Application file was not found",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/SystemError"
+								}
+							}
+						}
+					}
+				}
+			}
 		}
+	},
+		
 
 
 
-
-
-
-
-
-  },
   "components": {
     "parameters": {
       "Information-Mediator-Client": {
@@ -212,12 +253,12 @@
       "CreateApplicationFileResponse": {
         "type": "object",
         "properties": {
-          "application-file-id": {
+          "applicationFileId": {
             "type": "string",
             "description": " Application file identifier 81c4445c-bff6-11ed-afa1-0242ac120002",
             "example": "81c4445c-bff6-11ed-afa1-0242ac120002"
           },
-          "service-version-id": {
+          "serviceVersionId": {
             "type": "string",
             "description": "Service version identifier 81c4445c-bff6-11ed-afa1-0242ac120002",
             "example": "81c4445c-bff6-11ed-afa1-0242ac120002"
@@ -225,16 +266,16 @@
           "status": {
             "type": "string",
             "description": "status of the application file",
-            "example": "validated"
+            "example": "approve"
           }
         }
       },
       
       
-      "ApplicantApplicationFileResponse": {
+      "ApplicantApplicationFileListResponse": {
 				"type": "object",
 				"properties": {
-					"application-file-id": {
+					"applicationFileId": {
             "type": "string",
             "description": " Application file identifier 81c4445c-bff6-11ed-afa1-0242ac120002",
             "example": "81c4445c-bff6-11ed-afa1-0242ac120002"
@@ -261,9 +302,6 @@
 						"type": "string",
 						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
-
-
-
 					"created": {
 						"type": "string",
 						"format": "date-time",
@@ -281,12 +319,12 @@
 						"type": "string",
 						"example": "Any text."
 					},
-					"service-name": {
+					"serviceName": {
 						"type": "string",
 						"example": "Post partum registration service"
 					},
 				
-					"service-version-id": {
+					"serviceVersionId": {
 						"type": "string",
 						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
@@ -302,6 +340,80 @@
 					}
 				}
 			},
+			
+			
+			
+			"ApplicantApplicationFileResponse": {
+				"type": "object",
+				"properties": {
+					"applicationFileId": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
+					},
+					"taskDefinitionKey": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
+					},
+					"name": {
+						"type": "string",
+						"example": "John Smith"
+					},
+					"assignee": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004",
+						"description": "operator ID who is processing the applicant file"
+					},
+					"created": {
+						"type": "string",
+						"format": "date-time",
+						"description": "Time when the application file was created by the user",
+						"example": "2000-10-23T00:00:00.000Z"
+					},
+					"description": {
+						"type": "string",
+						"example": "Any text"
+					},
+					"serviceVersionId": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
+					},
+					"serviceName": {
+						"type": "string",
+						"example": "Post partum registration service"
+					},
+					"formKey": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
+					},
+					
+					"formVariables": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "object"
+						}
+					},
+					"status": {
+						"uniqueItems": true,
+						"type": "array",
+						"items": {
+							"type": "string",
+							"enum": ["pending", "approve", "sendBack", "reject"]
+						}
+					},
+					"data": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "object"
+						}
+					}
+				}
+			},
+			
+			
+			
+			
+			
+			
       "SystemError": {
         "type": "object",
         "properties": {
