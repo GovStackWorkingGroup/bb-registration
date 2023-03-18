@@ -1,10 +1,16 @@
+---
+description: >-
+  This section provides information on the core data structures/data models that
+  are used by this Building Block.
+---
+
 # 7 Data Structures
 
 The resource model shows the relationship between data objects that are used by this Building Block.
 
 ## 7.1 Standards/Protocols
 
-The following standards are applicable to data structures in the registration building block in addition to the general Architecture Requirements:
+The following standards are applicable to data structures in the Registration Building Block in addition to the general Architecture Requirements:
 
 * QR code must be generated with the ISO/IEC 18004:2015 standard
 

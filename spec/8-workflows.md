@@ -1,3 +1,9 @@
+---
+description: >-
+  This section provides a detailed view of how this Building Block will interact
+  with other Building Blocks to support common use cases.
+---
+
 # 9 Internal Workflows
 
 This workflow section provides a detailed view of how this Building Block will interact with other Building Blocks to support common use cases. It lists workflows that this Building Block must support. Other workflows may be implemented in addition to those listed.
@@ -66,15 +72,15 @@ Illustration 7 - Authentication and authorization.
 
 
 **Notes:**\
-Pre-requirements: user has passed the provisioning of user credentials and this can authenticate/login to Govstack (sandbox) system. User roles are also added by Security (IAM) system when the token is sent to the Building Block. Registration Building Block in this case is operating as Building Block.\
+Pre-requirements: user has passed the provisioning of user credentials and this can authenticate/login to GovStack (sandbox) system. User roles are also added by an Identity and Access Management (IAM) Security system when the token is sent to the Building Block. Registration Building Block in this case is operating as Building Block.\
 See the full description of the user authentication in the [Security Building Block documentation](https://govstack.gitbook.io/specification/security-requirements/5-cross-cutting-requirements#docs-internal-guid-95b38c92-7fff-abfc-b395-b64d56ed6c74).
 
 Data structures:
 
 | **Name**                                | **Required Data**                                                                                                 | **Notes**                                                                                                                                                                                                                   |
 | --------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <p><br>Existing user authentication</p> | <p><br>Credentials: username/e-mail/ UID,</p><p>Password,</p><p>URL of client system</p>                          | <p><br>User credentials vary depending on the country. Some countries may have additional user credentials, for example User ID number.<br><br></p><p>Precondition- user is registered in the Govstack sandbox.<br><br></p> |
-| <p><br>Authorization</p>                | <p><br>Roles</p><p>Example: “Service A”; “Registration Role A”; “Institution A”; “Part A”; “Part B”; “SADMIN”</p> | <p><br>IAM integration.<br><br></p><p>Precondition- user is registered in the Govstack sandbox (IAM)</p>                                                                                                                    |
+| <p><br>Existing user authentication</p> | <p><br>Credentials: username/e-mail/ UID,</p><p>Password,</p><p>URL of client system</p>                          | <p><br>User credentials vary depending on the country. Some countries may have additional user credentials, for example User ID number.<br><br></p><p>Precondition- user is registered in the GovStack sandbox.<br><br></p> |
+| <p><br>Authorization</p>                | <p><br>Roles</p><p>Example: “Service A”; “Registration Role A”; “Institution A”; “Part A”; “Part B”; “SADMIN”</p> | <p><br>IAM integration.<br><br></p><p>Precondition- user is registered in the GovStack sandbox (IAM)</p>                                                                                                                    |
 
 **Interaction 2: User Registration (Security Building Block)**
 
@@ -103,9 +109,9 @@ Illustration 8- Self registration&#x20;
 
 **Notes**:
 
-Pre-requirements: user does not have user credentials to authenticate/login to Govstack (sandbox) system.\
-Registration BB in this case is operating as Building Block UI.\
-See full description of the User registration in [Security BB documentation.](https://govstack.gitbook.io/specification/security-requirements)
+Pre-requirements: user does not have user credentials to authenticate/login to GovStack (sandbox) system.\
+Registration Building Block in this case is operating as Building Block UI.\
+See full description of the User registration in [Security Building Block documentation](https://govstack.gitbook.io/specification/security-requirements).
 
 **Sequence Diagram for User Self Registration via Foundational ID:**
 
@@ -126,7 +132,7 @@ User->Security(IAM): User clicks validation link in SMS or email
 
 ```
 
-Illustration 9- Self registration via foundational ID. See an editable diagram.
+Illustration 9: Self-registration via foundational ID. See an editable diagram.
 
 
 
@@ -156,13 +162,13 @@ Illustration 10- IM API description.
 
 **Data structures:**
 
-| **Name**                                                 | **Required Data**                                                                                 | **Notes**                                                                                                                                                                                                                                                                         |
-| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <p><br>Get list of registered institutions/databases</p> | <p><br>Return: List of data providers (institution name, system name, ID)</p>                     | <p><br>The returned list (institution ID, system name) will be given as an input to the next call to see the list of APIs<br><br></p>                                                                                                                                             |
-| <p><br>Request API descriptions</p>                      | <p><br>Datasource name, ID, URL of the service and url for the service descriptions (swagger)</p> | <p><br>Pre requirements:</p><p>*Subscription for Registration BB to use the IM system is done.</p><p>*Before the Registration BB can use API information for screen populating with data the system must import API service descriptions<br><br></p>                              |
-| <p><br>Get service descriptions</p>                      | <p><br>Input: URL of the OAPI service.</p><p>Output: OAPI descriptions</p>                        | <p><br>It works like Swagger. This endpoint may be external.</p><p><br></p><p>Example API services to integrate to Registration BB screens:</p><ol><li>Registry BB - Register of Mother and Child Program</li><li>Payment BB API to read received payments data<br><br></li></ol> |
+| **Name**                                                 | **Required Data**                                                                                 | **Notes**                                                                                                                                                                                                                                                                                                             |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <p><br>Get list of registered institutions/databases</p> | <p><br>Return: List of data providers (institution name, system name, ID)</p>                     | <p><br>The returned list (institution ID, system name) will be given as an input to the next call to see the list of APIs<br><br></p>                                                                                                                                                                                 |
+| <p><br>Request API descriptions</p>                      | <p><br>Datasource name, ID, URL of the service and url for the service descriptions (swagger)</p> | <p><br>Pre requirements:</p><p>· Subscription for Registration Building Block to use the Information Mediator system is done.</p><p>· Before the Registration Building Block can use API information for screen populating with data the system must import API service descriptions<br><br></p>                      |
+| <p><br>Get service descriptions</p>                      | <p><br>Input: URL of the OAPI service.</p><p>Output: OAPI descriptions</p>                        | <p><br>It works like Swagger. This endpoint may be external.</p><p><br></p><p>Example API services to integrate to Registration Building Block screens:</p><ol><li>Registry Building Block - Register of Mother and Child Program</li><li>Payment Building Block API to read received payments data<br><br></li></ol> |
 
-**Interaction 4: Payment BB**
+**Interaction 4: Payment Building Block**
 
 **Name**: Get list of payment options (Payment Building Block)
 
@@ -218,7 +224,7 @@ The back office operator as the main actor in the second part of the process rec
 
 **Preconditions**:\
 As a pre-condition, the web system is accessible from the internet, and the service is published, the user/applicant has user credentials for authentication. No authorization is needed for applicants if the service is usable by all users.\
-The user/operator has authentication credentials and authorization to the web portal/back office system and to a service, if not open to all users. If a service needs to read or write data from an external source (IM-API) that requires authorization then this is already authorized for the Registration Building Block.\
+The user/operator has authentication credentials and authorization to the web portal/back office system and to a service, if not open to all users. If a service needs to read or write data from an external source (Information Mediator-API) that requires authorization then this is already authorized for the Registration Building Block.\
 As a postcondition, the applicant was able to fill out a registration form and submit an application. As an operator, the user was able to see the pending applications and process the applications.
 
 **Sequence Diagram:**

@@ -1,3 +1,7 @@
+---
+description: This section provides context for this Building Block.
+---
+
 # 2 Description
 
 “Registration” is a process through which an applicant gets information recorded in a registry and receives a credential as proof of registration, in exchange for providing information, with or without money.
