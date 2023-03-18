@@ -218,7 +218,92 @@
           }
         }
       }
-    }
+    },
+    #test
+    
+    "/api/applicant/{applicationFileId}/documentUpload": {
+	    "post": {
+		    "summary": "Upload a requiremetn document",
+	  	  "operationId": "uploadFile",
+	  	  "tags": ["Application registration"],
+	    	"parameters": [{
+		  	  "name": "applicationFileId",
+		  	  "in": "path",
+		    	"description": "Application file ID to update",
+		    	"required": true,
+		  	  "schema": {
+		  	  	"type": "string",
+		  	  	"example": "8a70cd6d-bdb2-11ed-9397-0242ac120004"
+
+			}
+		}, {
+			"name": "requirementId",
+			"in": "query",
+			"description": "Requirement ID",
+			"required": false,
+			"schema": {
+				"type": "string"
+			}
+		}],
+
+		"requestBody": {
+			"required": true,
+			"content": {
+				"multipart/form-data": {
+					"schema": {
+						"properties": {
+							"file": {
+								"type": "array",
+								"items": {
+									"type": "string",
+									"format": "base64",
+									"example": "V2UgbG92ZSBqc29uIQ=="
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"responses": {
+			"200": {
+				"description": "File successfully uploaded",
+				"content": {
+					"*/*": {
+						"schema": {
+							"$ref": "#/components/schemas/apiResponse"
+						}
+					}
+				}
+			},
+			"400": {
+				"description": "Bad request, file upload failed",
+				"content": {
+					"*/*": {
+						"schema": {
+							"$ref": "#/components/schemas/SystemError"
+						}
+
+					}
+
+				}
+			},
+			"500": {
+				"description": "Internal server error",
+				"content": {
+					"*/*": {
+						"schema": {
+							"$ref": "#/components/schemas/SystemError"
+						}
+					}
+				}
+			}
+		}
+	}
+
+}
+    
+    
   },
   "components": {
     "parameters": {
