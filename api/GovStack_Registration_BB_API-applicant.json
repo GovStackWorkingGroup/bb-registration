@@ -21,10 +21,10 @@
   "paths": {
 
 
-    "/api/process-definition/{service}/{version}/start-with-form": {
+    "/api/applicant/{service-version-id}/register-application": {
       "post": {
         "tags": ["application-registration"],
-        "summary": "Start application process with form data",
+        "summary": "Create application process with form data",
         "description": "Creates application file in Registration BB and starts the process",
         "operationId": "registerApplication",
         "parameters": [{
@@ -32,17 +32,9 @@
           },
 
           {
-            "name": "service",
-            "description": "Service ID",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "version",
-            "description": "Service version",
+            "name": "service-version-id",
+            "description": "Service version ID. Every new version of the service schema gets a new Service ID (ProcessDefinitionId )",
+            "example": "895e9b8a-c569-11ed-b47f-0242ac12000c",
             "in": "path",
             "required": true,
             "schema": {
@@ -72,17 +64,17 @@
             }
           },
           "200": {
-            "description": "Returns started application process instance",
+            "description": "Returns created application file process ID",
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/StartProcessInstanceResponse"
+                  "$ref": "#/components/schemas/CreateApplicationFileResponse"
                 }
               }
             }
           },
           "404": {
-            "description": "Business process definition was not found",
+            "description": "Application file process id was not found",
             "content": {
               "*/*": {
                 "schema": {
@@ -129,20 +121,23 @@
         }
       },
 
-      "StartProcessInstanceResponse": {
+      "CreateApplicationFileResponse": {
         "type": "object",
         "properties": {
-          "id": {
+          "application-file-id": {
             "type": "string",
-            "description": "81c4445c-bff6-11ed-afa1-0242ac120002"
+            "description": " Application file identifier 81c4445c-bff6-11ed-afa1-0242ac120002",
+            "example": "81c4445c-bff6-11ed-afa1-0242ac120002"
           },
-          "processDefinitionId": {
+          "service-version-id": {
             "type": "string",
-            "description": "uuid of the process definition of which this is an instance of; e.g. 81c4445c-bff6-11ed-afa1-0242ac120002"
+            "description": "Service version identifier 81c4445c-bff6-11ed-afa1-0242ac120002",
+            "example": "81c4445c-bff6-11ed-afa1-0242ac120002"
           },
-          "ended": {
-            "type": "boolean",
-            "description": "true"
+          "status": {
+            "type": "string",
+            "description": "status of the application file",
+            "example": "validated"
           }
         }
       },
@@ -155,15 +150,17 @@
           },
           "code": {
             "type": "string",
-            "description": "500"
+            "description": "Message code",
+            "example": "500"
           },
           "message": {
             "type": "string",
-            "description": "Message text"
+            "description": "message text in english",
+            "example": "Internal server error"
           },
-          "localizedMessage": {
+          "errorMessage": {
             "type": "string",
-            "description": "Message text"
+            "description": "Additional error for int"
           }
         }
       }
