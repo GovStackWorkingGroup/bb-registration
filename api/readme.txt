@@ -8,9 +8,16 @@ This specification was prepared by a team comprising Frank Grozel (UNCTAD), Ingm
 
 Status: Draft
 
+Definitions:
+service-key =  ProcessDefinitionKey = Service unique ID
+service-version-id = ProcessDefinitionId = service version  ID
+application-file-id = ProcessInstanceId - Apllication file id
 
-Reference
-UNCTAD eRegistrations: https://digitalgovernment.world/  
-UNCTAD https://unctad.org/
-Data Factory Ukrain
-Use Cases: https://solutions.dial.community/building_blocks/registration
+
+Reference systems: 
+
+* UNCTAD eRegistrations: https://digitalgovernment.world/  
+* Data Factory, Ukraine stack
+
+Use Cases: 
+https://solutions.dial.community/building_blocks/registration
