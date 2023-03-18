@@ -1,0 +1,172 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Registration Building Block API for Applicant user services",
+		"description": "Applicant can see tasks and submit new applications to the Registration BB.  1. get all files of a user; 2. get all available services for a user - this would include a form schema ID needed for each service; 3.  get all form schemas/ get a specific form schema; 4. submit a new file : this will require a dynamic data object that should match the needed form schema",
+		"termsOfService": "#",
+    "contact": {
+      "email": "ingmar.vali@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "0.0.2"
+  },
+  "servers": [{
+    "url": "http://ss2.egovstack.net/r1/eGovStack/COM/11222456/RegistrationBB/creg/",
+    "description": "Information Mediator BB Security server"
+  }],
+
+  "paths": {
+
+
+    "/api/process-definition/{service}/{version}/start-with-form": {
+      "post": {
+        "tags": ["application-registration"],
+        "summary": "Start application process with form data",
+        "description": "Creates application file in Registration BB and starts the process",
+        "operationId": "registerApplication",
+        "parameters": [{
+            "$ref": "#/components/parameters/Information-Mediator-Client"
+          },
+
+          {
+            "name": "service",
+            "description": "Service ID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "version",
+            "description": "Service version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FormData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemError"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Returns started application process instance",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/StartProcessInstanceResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Business process definition was not found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+
+
+
+
+  },
+  "components": {
+    "parameters": {
+      "Information-Mediator-Client": {
+        "in": "header",
+        "name": "Information-Mediator-Client",
+        "example": "eGovStack/GOV/90000009/digitalregistries",
+        "description": "Format is: INSTANCE/CLASS/MEMBER/SUBSYSTEM",
+        "schema": {
+          "type": "string"
+        },
+        "required": true
+      }
+    },
+    "schemas": {
+      "FormData": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "x-access-token": {
+            "type": "string"
+          }
+        }
+      },
+
+      "StartProcessInstanceResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "81c4445c-bff6-11ed-afa1-0242ac120002"
+          },
+          "processDefinitionId": {
+            "type": "string",
+            "description": "uuid of the process definition of which this is an instance of; e.g. 81c4445c-bff6-11ed-afa1-0242ac120002"
+          },
+          "ended": {
+            "type": "boolean",
+            "description": "true"
+          }
+        }
+      },
+      "SystemError": {
+        "type": "object",
+        "properties": {
+          "traceId": {
+            "type": "string",
+            "description": "81c4445c-bff6-11ed-afa1-0242ac120002"
+          },
+          "code": {
+            "type": "string",
+            "description": "500"
+          },
+          "message": {
+            "type": "string",
+            "description": "Message text"
+          },
+          "localizedMessage": {
+            "type": "string",
+            "description": "Message text"
+          }
+        }
+      }
+    }
+  }
+}
