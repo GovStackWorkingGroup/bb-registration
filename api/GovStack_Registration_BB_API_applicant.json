@@ -1,3 +1,12 @@
+# We would propose, for a citizen/applicant user:
+# - get all files of a user  (done)
+# - get all available services for a user - this would include a form schema ID needed for each service
+# - get all form schemas/ get a specific form schema
+# - submit a new file : this will require a dynamic data object that should match the needed form schema (done)
+# - document upload? 
+
+
+
 {
   "openapi": "3.0.0",
   "info": {
