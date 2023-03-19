@@ -4,7 +4,7 @@ This repository holds OpenAPI definitions for Registration Building Block - one 
 Each building block API definition must be stored in a json file that is compatible with the OpenAPI 3.0 standard
 
 Acknowledgement
-This specification was prepared by a team comprising Frank Grozel (UNCTAD), Ingmar Vali (UNCTAD), Tambet Artma (Centre of Registers and Information Systems), Saurav Bhattarai (GIZ), Dr Ramkumar (ITU), Rauno Kulla (UNCTAD), Sebastian Leidig.
+This specification was prepared by a team comprising Frank Grozel (UNCTAD), Ingmar Vali (ITU), Tambet Artma (ITU), Saurav Bhattarai (GIZ), Dr Ramkumar (ITU), Rauno Kulla (UNCTAD), Sebastian Leidig, Annemarii Hunt.
 
 Status: Draft
 
