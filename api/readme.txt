@@ -9,9 +9,9 @@ This specification was prepared by a team comprising Frank Grozel (UNCTAD), Ingm
 Status: Draft
 
 Definitions:
-service-key =  ProcessDefinitionKey = Service unique ID
-service-version-id = ProcessDefinitionId = service version  ID
-application-file-id = ProcessInstanceId - Apllication file id
+serviceKey =  ProcessDefinitionKey = Service unique ID
+serviceVersionId = ProcessDefinitionId = service version  ID
+applicationFileId = ProcessInstanceId - Apllication file id
 
 
 Reference systems: 
