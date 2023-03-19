@@ -238,6 +238,7 @@ This workflow requires interaction with the following Building Blocks:
 * Authentication and authorization (Security Building Block)- see “Creating a registration service”
 * Information Mediator Building Block
 * Payment Building Block
+* Digital Registries Building Block
 
 For each interaction, the following information is provided:
 
