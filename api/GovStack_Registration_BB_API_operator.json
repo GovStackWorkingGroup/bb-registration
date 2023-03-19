@@ -1,3 +1,9 @@
+# We are proposing for operator user: 
+# - get a list of services 
+# - get the details of a service, including the flow (part B roles) - this would also include  a form schema ID needed for each role to be submitted + available 
+# - get the list of files for a specific part B role
+# - change the status of a file in a part B role :  this will require a dynamic data object that should match the needed form schema
+
 {
   "openapi": "3.0.0",
   "info": {
