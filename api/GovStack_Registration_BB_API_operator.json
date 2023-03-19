@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Registration Building Block API for an Operator user services",
-    "description": "Operator can see tasks and submit new applications to the Registration BB.  1. get all files of a user; 2. get all available services for a user - this would include a form schema ID needed for each service; 3.  get all form schemas/ get a specific form schema; 4. submit a new file : this will require a dynamic data object that should match the needed form schema",
+    "description": "Operator can see tasks and process submitted application files.",
     "termsOfService": "#",
     "contact": {
       "email": "ingmar.vali@gmail.com"
@@ -20,81 +20,15 @@
     }
   ],
   "paths": {
-    "/api/applicant/{serviceVersionId}/registerApplication": {
-      "post": {
-        "tags": [
-          "Application registration"
-        ],
-        "summary": "Create application process with form data",
-        "description": "Creates application file in Registration BB and starts the process",
-        "operationId": "registerApplication",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Information-Mediator-Client"
-          },
-          {
-            "name": "serviceVersionId",
-            "description": "Service version ID. Every new version of the service schema gets a new Service ID (ProcessDefinitionId )",
-            "example": "895e9b8a-c569-11ed-b47f-0242ac12000c",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/FormData"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Returns created application file process ID",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/createApplicationFileResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Application file process id was not found",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/SystemError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/SystemError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/applicant/applicationFileList": {
+   
+    "/api/operator/operatorTaskList": {
       "get": {
         "tags": [
           "Application files"
         ],
-        "summary": "Retrieve all applicant's application files",
-        "description": "Returns application list",
-        "operationId": "getApplicantFileList",
+        "summary": "Retrieve all application prossessing tasks",
+        "description": "Returns task list",
+        "operationId": "getOperatorTaskList",
         "parameters": [
           {
             "$ref": "#/components/parameters/Information-Mediator-Client"
@@ -110,8 +44,8 @@
             }
           },
           {
-            "name": "applicantId",
-            "description": "Applicant user ID",
+            "name": "assigneeId",
+            "description": "Opperator user ID",
             "in": "query",
             "required": false,
             "schema": {
@@ -173,7 +107,7 @@
         }
       }
     },
-    "/api/applicant/applicationFile/{applicationFileId}": {
+    "/api/operator/applicationFile/{applicationFileId}": {
       "get": {
         "tags": [
           "Application files"
@@ -221,7 +155,7 @@
     },
     #test
     
-    "/api/applicant/{applicationFileId}/documentUpload": {
+    "/api/operator/{applicationFileId}/documentUpload": {
 	    "post": {
 		    "summary": "Upload a requiremetn document",
 	  	  "operationId": "uploadFile",
@@ -372,7 +306,7 @@
           "assignee": {
             "type": "string",
             "example": "42962de0-bdb2-11ed-9397-0242ac120004",
-            "description": "operator ID who is processing the applicant file"
+            "description": "operator ID who is processing the application file"
           },
           "status": {
             "type": "string",
