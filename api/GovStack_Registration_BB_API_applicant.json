@@ -20,7 +20,7 @@
 
   "paths": {
 
-
+# Register application in registration bb workflow 
     "/api/applicant/{serviceVersionId}/registerApplication": {
       "post": {
         "tags": ["Application registration"],
@@ -90,7 +90,7 @@
     
 
 
-
+# Workflow application file list 
 		"/api/applicant/applicationFileList": {
 			"get": {
 				"tags": ["Application files"],
@@ -172,7 +172,7 @@
 			}
 		},
 		
-
+# Workflow application file content
 		"/api/applicant/applicationFile/{applicationFileId}": {
 			"get": {
 				"tags": ["Application files"],
@@ -218,6 +218,91 @@
 		}
 	},
 		
+# Application file requirement documetns upload
+ "/api/applicant/{applicationFileId}/documentUpload": {
+    "post": {
+      "summary": "Upload a requiremetn document",
+      "operationId": "uploadFile",
+      "tags": [
+        "Application registration"
+      ],
+      "parameters": [
+        {
+          "name": "applicationFileId",
+          "in": "path",
+          "description": "Application file ID to update",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "example": "8a70cd6d-bdb2-11ed-9397-0242ac120004"
+          }
+        },
+        {
+          "name": "requirementId",
+          "in": "query",
+          "description": "Requirement ID",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "multipart/form-data": {
+            "schema": {
+              "properties": {
+                "file": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "format": "base64",
+                    "example": "V2UgbG92ZSBqc29uIQ=="
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "File successfully uploaded",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/uploadResponse"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Bad request, file upload failed",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemError"
+              }
+            }
+          }
+        },
+        "500": {
+          "description": "Internal server error",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemError"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+
+
 
 
 
@@ -436,7 +521,27 @@
             "description": "Additional error for int"
           }
         }
+      },
+      
+       "uploadResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "##default"
+        }
       }
+      
     }
   }
 }
