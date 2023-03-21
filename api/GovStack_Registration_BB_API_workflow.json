@@ -1,0 +1,218 @@
+{"openapi": "3.0.0",
+  "info": {
+    "title": "Registration Building Block API for Applicant user services",
+		"description": "Applicant can see list of registration services from registration workflow component. Modification of Govstack Workflow BB service description",
+		"termsOfService": "#",
+    "contact": {
+      "email": "ingmar.vali@gmail.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/license/mit/"
+    },
+    "version": "0.0.1"
+  },
+  "servers": [{
+    "url": "http://ss2.egovstack.net/r1/eGovStack/COM/11222456/RegistrationBB/creg/",
+    "description": "Information Mediator BB Security server"
+  }],
+
+  "paths": {
+        "/processes": {
+      "get": {
+        "tags": [
+          "Applicant",
+        ],
+        "summary": "returns a list of services (workflow processes i.e., definitions of process)",
+        "description": "Listing of all services with basic information",
+        "operationId": "getProcessList",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "example": "Register Mother and Child"
+          } 
+          
+        ],
+        "responses": {
+          "200": {
+            "description": "list of processes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Process"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "services not found"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/processes/{processId}": {
+      "get": {
+        "tags": [
+          "Applicant"
+        ],
+        "summary": "returns detailed information about a service",
+        "description": "Pass in the ID of the service and it will return all information about that service\n",
+        "operationId": "getProcess",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/processIdParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "process found and representation returned",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Process"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "process not found"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    }
+
+    },
+
+
+
+
+
+  "components": {
+    "parameters": {
+      "Information-Mediator-Client": {
+        "in": "header",
+        "name": "Information-Mediator-Client",
+        "example": "eGovStack/GOV/90000009/digitalregistries",
+        "description": "Format is: INSTANCE/CLASS/MEMBER/SUBSYSTEM",
+        "schema": {
+          "type": "string"
+        },
+        "required": true
+      },
+      
+      
+      
+      "processIdQueryParam": {
+        "in": "query",
+        "name": "processId",
+        "required": false,
+        "schema": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "description": "The id for a defined process in the workflow engine."
+      },
+      "processIdParam": {
+        "in": "path",
+        "name": "processId",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "description": "The id for a defined process in the workflow engine."
+      }
+      
+      
+      
+      
+    },
+    "schemas": {
+      "ProcessDefinition": {
+        "type": "object",
+        "required": [
+          "name",
+          "type",
+          "version"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "name of a process"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "None",
+              "Private",
+              "Public"
+            ]
+          },
+          "version": {
+            "type": "string"
+          },
+          "isExecutable": {
+            "type": "boolean",
+            "description": "Specifies whether the Process is executable"
+          },
+          "isClosed": {
+            "type": "boolean",
+            "description": "whether Messages and Events, not modeled in Process, can occur when the Process is executed or performed"
+          },
+          "description": {
+            "type": "string"
+          },
+          "processBody": {
+            "$ref": "#/components/schemas/ListOfProperties"
+          }
+        }
+      },
+      "Process": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "generated by a system surrogate primary key"
+          },
+          "processDefinition": {
+            "$ref": "#/components/schemas/ProcessDefinition"
+          }
+        }
+      },
+      
+      "ListOfProperties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "InternalServerError": {
+        "description": "Internal server error, please contact administrator"
+      }
+    }
+  }
+}
