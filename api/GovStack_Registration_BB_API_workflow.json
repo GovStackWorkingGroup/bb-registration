@@ -1,7 +1,7 @@
 {"openapi": "3.0.0",
   "info": {
     "title": "Registration Building Block API for Applicant user services",
-		"description": "Applicant can see list of registration services from registration workflow component. Modification of Govstack Workflow BB service description",
+		"description": "Applicant can see list of registration services from registration workflow component. Modification of Govstack Workflow BB service description https://github.com/GovStackWorkingGroup/bb-workflow/tree/main/api ",
 		"termsOfService": "#",
     "contact": {
       "email": "ingmar.vali@gmail.com"
@@ -76,7 +76,7 @@
         ],
         "responses": {
           "200": {
-            "description": "process found and representation returned",
+            "description": "Service found and representation returned",
             "content": {
               "application/json": {
                 "schema": {
@@ -152,7 +152,8 @@
         "properties": {
           "name": {
             "type": "string",
-            "description": "name of a process"
+            "description": "name of a service",
+            "example": "Mother and Child Registration"
           },
           "type": {
             "type": "string",
