@@ -6,11 +6,11 @@ description: >-
 
 # 4 Key Digital Functionalities
 
-The Registration Building Block is a software platform that enables online registration services, their creation and administration. It is composed of the following capabilities:
+The Registration Building Block is a software platform that enables online registration services, their creation, and administration. It is composed of the following capabilities:
 
 1. **Online registration** (e-services for a citizen/operator to register with an entity for any number of services)
 2. **Processing of registrations** (a back office system to validate registration requests through human or automated operators)&#x20;
-3. **Development platform for online registration and processing** (to set up the interfaces, rules and workflows for the above mentioned capabilities)
+3. **Development platform for online registration and processing** (to set up the interfaces, rules, and workflows for the above-mentioned capabilities)
 
 To enable flexible and affordable creation and adjustment of the e-services, a no-code approach for the development platform is strongly recommended. The development platform is used by authorized personnel, called “analysts”, entrusted by the entities in charge of the registrations to develop the corresponding online registration services.
 
@@ -33,21 +33,21 @@ The online registration services (e-services) created through the development pl
 In general, a registration process always consists of the following steps although steps may be skipped if they are not applicable to the specific registration's context:
 
 1. Applicant accesses the platform to initiate the registration process.
-2. The system may smartly evaluate the user data and guide the user towards the relevant eligible registration(s).
+2. The system may smartly evaluate the user data and guide the user toward the relevant eligible registration(s).
 3. Applicant applies for the registration:
-   1. Applicant fills the registration form providing all required data
-   2. Applicant uploads required documents/credentials
-   3. Applicant is guided to pay the calculated fees
-   4. Applicant reviews information, can be reminded of any information missing through automatic validation and confirms his/her will to apply for registration.
-   5. If designed so the Control functionality will validate captured data against external API data and in case validation fails issue warnings to the applicant.&#x20;
-4. Operator/bot processes the registration application, validating the request
-   1. Application file is registered and workflow is created.&#x20;
-   2. Operator will then open the application and verify the application content and make a decision (approve, reject, send back for correction).
-   3. If the back office processing flow has multiple roles then the approval by the first processing role operator will take the application processing task to the next role in the workflow.
+   * Applicant fills the registration form providing all required data;
+   * Applicant uploads required documents/credentials;
+   * Applicant is guided to pay the calculated fees;
+   * Applicant reviews information, can be reminded of any information missing through automatic validation, and confirms his/her will to apply for registration;
+   * If designed so, the Control functionality will validate captured data against external API data and in case validation fails issue warnings to the applicant.&#x20;
+4. Operator/bot processes the registration application, validating the request:
+   * Application file is registered and workflow is created;
+   * Operator will then open the application and verify the application content and make a decision (approve, reject, or send it back for correction);
+   * If the back office processing flow has multiple roles then the approval by the first processing role operator will take the application processing task to the next role in the workflow.
 5. Registration
-   1. System makes a registration of relevant information in the registry (Digital Registries BB)&#x20;
+   * System makes a registration of relevant information in the registry (Digital Registries Building Block)&#x20;
 
-_for further details refer to the Functional Requirements section, especially "6.1.2" and "6.2"_
+N.B. For further details refer to the Functional Requirements section, especially "6.1.2" and "6.2".
 
 ## 4.3 Development Platform <a href="#docs-internal-guid-f7c824af-7fff-a3d3-5a87-3efe0d1dcff9" id="docs-internal-guid-f7c824af-7fff-a3d3-5a87-3efe0d1dcff9"></a>
 

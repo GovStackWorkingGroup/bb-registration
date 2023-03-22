@@ -17,17 +17,17 @@ description: >-
 
 ### 10.3 API Descriptions
 
-* **API descriptions in** [**Github**](https://github.com/GovStackWorkingGroup/bb-registration)****
+[API descriptions in GitHub](https://github.com/GovStackWorkingGroup/bb-registration).
 
 ### 10.4 Security Requirements
 
-* ****[**Security requirements**](https://govstack.gitbook.io/specification/building-blocks/security-requirements)****
+[The reference document for the security requirements.](https://govstack.gitbook.io/specification/security-requirements)
 
 ### **10.5 Architecture Requirements**
 
-* ****[**Architecture requirements**](https://govstack.gitbook.io/specification/building-blocks/architecture-and-nonfunctional-requirements)****
+[The Architecture requirements guidance](https://govstack.gitbook.io/specification/architecture-and-nonfunctional-requirements/introduction).
 
 ### 10.6 Interoperability Requirements
 
-* ****[**Information Mediator requirements**](https://govstack.gitbook.io/specification/building-blocks/information-mediation)****
+[The Information Mediator requirements](https://govstack.gitbook.io/specification/building-blocks/information-mediation).
 

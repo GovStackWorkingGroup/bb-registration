@@ -10,8 +10,8 @@ This workflow section provides a detailed view of how this Building Block will i
 
 In this section two main workflows are described:
 
-* Creating a registration service
-* Using a registration service
+* Creating a registration service.
+* Using a registration service.
 
 For each workflow interaction, a sub-section is added.
 
@@ -29,28 +29,28 @@ As a post-condition, the e-Service is published on the internet for users to use
 
 User journey is the step-by-step journey that a user takes to reach their goal. This journey consists of a number of website pages/screens and decision points that carry the user from one step to another. The user journey is used to map out the current journey a typical user might take to reach their goal.
 
-![Illustration 6- user journey of creating a registration service. See editable file here.](<.gitbook/assets/image11 (1).png>)
+![Illustration 6- user journey of creating a registration service. ](<.gitbook/assets/image11 (1).png>)
 
 ### 9.1.3 Interaction with Other Building Blocks <a href="#docs-internal-guid-67b89c8a-7fff-6917-6030-b4cb08422e15" id="docs-internal-guid-67b89c8a-7fff-6917-6030-b4cb08422e15"></a>
 
 This workflow requires interaction with the following Building Blocks:
 
-1. Authentication and authorization (Security Building Block)
-2. User registration (Security Building Block)
-3. Information Mediator Building Block
-4. Payment Building Block
-5. Setup for multiple Registration Building Blocks
+* Authentication and authorization (Security Building Block);
+* User registration (Security Building Block);
+* Information Mediator Building Block;
+* Payment Building Block;
+* Setup for multiple Registration Building Blocks.
 
 For each interaction, the following information is provided:
 
-* Name
-* Sequence diagram
-* Notes
-* Data structures (link to data resources defined above)
+* Name;
+* Sequence diagram;
+* Notes;
+* Data structures (link to data resources defined above).
 
 **Interaction 1: Authentication and Authorization (Security Building Block)**
 
-**Name**: Authentication - Existing user authentication (Security Building Block)
+**Name**: Authentication - Existing user authentication (Security Building Block).
 
 ```mermaid
 sequenceDiagram
@@ -80,7 +80,7 @@ Data structures:
 | **Name**                                | **Required Data**                                                                                                 | **Notes**                                                                                                                                                                                                                   |
 | --------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | <p><br>Existing user authentication</p> | <p><br>Credentials: username/e-mail/ UID,</p><p>Password,</p><p>URL of client system</p>                          | <p><br>User credentials vary depending on the country. Some countries may have additional user credentials, for example User ID number.<br><br></p><p>Precondition- user is registered in the GovStack sandbox.<br><br></p> |
-| <p><br>Authorization</p>                | <p><br>Roles</p><p>Example: “Service A”; “Registration Role A”; “Institution A”; “Part A”; “Part B”; “SADMIN”</p> | <p><br>IAM integration.<br><br></p><p>Precondition- user is registered in the GovStack sandbox (IAM)</p>                                                                                                                    |
+| <p><br>Authorization</p>                | <p><br>Roles</p><p>Example: “Service A”; “Registration Role A”; “Institution A”; “Part A”; “Part B”; “SADMIN”</p> | <p><br>Identity and Access Management (IAM) integration.<br><br></p><p>Precondition- user is registered in the GovStack sandbox (IAM)</p>                                                                                   |
 
 **Interaction 2: User Registration (Security Building Block)**
 
@@ -110,8 +110,8 @@ Illustration 8- Self registration&#x20;
 **Notes**:
 
 Pre-requirements: user does not have user credentials to authenticate/login to GovStack (sandbox) system.\
-Registration Building Block in this case is operating as Building Block UI.\
-See full description of the User registration in [Security Building Block documentation](https://govstack.gitbook.io/specification/security-requirements).
+Registration Building Block in this case is operating as a Building Block user interface.\
+See the full description of the User registration in [Security Building Block documentation](https://govstack.gitbook.io/specification/security-requirements).
 
 **Sequence Diagram for User Self Registration via Foundational ID:**
 
@@ -132,12 +132,12 @@ User->Security(IAM): User clicks validation link in SMS or email
 
 ```
 
-Illustration 9: Self-registration via foundational ID. See an editable diagram.
+Illustration 9: Self-registration via foundational ID.&#x20;
 
 
 
 **Notes**:\
-Pre-requirements: user does not have user credentials to authenticate/login to Govstack (sandbox) system. Registration BB in this case is operating as Building Block UI. See the full description of the User registration in the [Security Building Block documentation](https://govstack.gitbook.io/specification/security-requirements/5-cross-cutting-requirements#docs-internal-guid-95b38c92-7fff-abfc-b395-b64d56ed6c74).
+Pre-requirements: user does not have user credentials to authenticate/login to Govstack (sandbox) system. Registration Building Block in this case is operating as Building Block UI. See the full description of the User registration in the [Security Building Block documentation](https://govstack.gitbook.io/specification/security-requirements/5-cross-cutting-requirements#docs-internal-guid-95b38c92-7fff-abfc-b395-b64d56ed6c74).
 
 **Interaction 3: Information Mediator Building Block**
 
@@ -201,7 +201,7 @@ Illustration 11- Request payment options.&#x20;
 **Name**: Setup for multiple Registration Building Blocks
 
 **Description :**\
-The Registration BB can be set up as a standalone BB facilitating multiple institutions and services in one system instance (See illustration 1 below ).\
+The Registration Building Block can be set up as a standalone Building Block facilitating multiple institutions and services in one system instance (See illustration 1 below).\
 Setup in one shared instance is required when one single window service is built together with multiple institutions (multiple registrations inside one service). This enables sharing of resources such as Process Flow Diagrams, screens, data, user rights, infrastructure, maintenance personnel, etc.
 
 ![Illustration 14 - Domain specific  setup diagram for multiple Registration BB-s in one ecosystem.](.gitbook/assets/image9.png)
@@ -220,7 +220,7 @@ The citizen/applicant, as the main actor in the process, will open a web URL add
 
 The back office system registers all applications submitted. If configured so, the process flow may have bot(s) and human(s) in the flow. Bot roles process applications by validating information against external API information. When processed the BOT role will pass the processing task to the next role.
 
-The back office operator as the main actor in the second part of the process receives a task notification message and authenticates to the web system. The system shows a list of applications assigned for the operator to process. The operator will then open the application and verify the application content and make a decision (approve, reject, send back for correction). If an application has discrepancies then the operator will mark the errors and/or explain the reasons for rejections. When the application file is positively processed by the back office operators, then the applicant will receive the credential/result of the application. If the back office processing flow has multiple roles then the approval by the first processing role operator will take the application processing task to the next role.
+The back office operator as the main actor in the second part of the process receives a task notification message and authenticates to the web system. The system shows a list of applications assigned for the operator to process. The operator will then open the application and verify the application content and make a decision (approve, reject, or send back for correction). If an application has discrepancies then the operator will mark the errors and/or explain the reasons for rejections. When the application file is positively processed by the back office operators, then the applicant will receive the credential/result of the application. If the back office processing flow has multiple roles then the approval by the first processing role operator will take the application processing task to the next role.
 
 **Preconditions**:\
 As a pre-condition, the web system is accessible from the internet, and the service is published, the user/applicant has user credentials for authentication. No authorization is needed for applicants if the service is usable by all users.\
@@ -235,17 +235,17 @@ As a postcondition, the applicant was able to fill out a registration form and s
 
 This workflow requires interaction with the following Building Blocks:
 
-* Authentication and authorization (Security Building Block)- see “Creating a registration service”
-* Information Mediator Building Block
-* Payment Building Block
-* Digital Registries Building Block
+* Authentication and authorization (Security Building Block) - see “Creating a registration service”;
+* Information Mediator Building Block;
+* Payment Building Block;
+* Digital Registries Building Block.
 
 For each interaction, the following information is provided:
 
-* Name
-* Sequence diagram
-* Data structures (link to data resources defined above)
-* Notes
+* Name;
+* Sequence diagram;
+* Data structures (link to data resources defined above);
+* Notes.
 
 **Interaction 1: Voucher Pre-Activation (Payment Building Block)**
 

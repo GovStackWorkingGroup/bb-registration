@@ -16,7 +16,7 @@ Registration Building Block is expected to host the following API services.
 
 ## 8.1 Statistics API
 
-The statistics API gives Building Block operational statistics- number of processed applications (per: operator, registration, service, date).
+The statistics API gives Building Block operational statistics, that reference the number of processed applications (per operator, registration, service, date).
 
 API specifications are described in the Github [file](../api/GovStack\_Registration\_BB\_API\_template-1.1.0-resolved.json) and displayed here:
 
@@ -30,7 +30,7 @@ API specifications are described in the Github [file](../api/GovStack\_Registrat
 
 Description: Lists registered application files as assignments.&#x20;
 
-Request endpoint: GET /api/task&#x20;
+Request endpoint: GET/api/task&#x20;
 
 {% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/ingmarvali-API-1/api/GovStack_Registration_BB_API_workflow-0.0.1-resolved.json" path="/api/task" method="get" %}
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/ingmarvali-API-1/api/GovStack_Registration_BB_API_workflow-0.0.1-resolved.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/ingmarvali-API-1/api/GovStack_Registration_BB_API_workflow-0.0.1-resolved.json)
@@ -52,9 +52,9 @@ Request endpoint:  /api/process-definition/{key}/start-with-form&#x20;
 
 Definitions:&#x20;
 
-Process- Service that is created to capture users information.&#x20;
+Process: A service that is created to capture users' information.&#x20;
 
-Instance- Application file created in the service.&#x20;
+Instance: Application file created in the service.&#x20;
 
 
 
@@ -66,7 +66,7 @@ Instance- Application file created in the service.&#x20;
 
 ### 8.4 Workflow processing task API
 
-Description: Process and complete applicant task by id
+Description: Process and complete applicant task by id.
 
 Request endpoint:  /api/applicant/task/{id}/sign-form
 

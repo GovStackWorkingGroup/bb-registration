@@ -17,19 +17,19 @@ In some cases, multiple registration processes can take place simultaneously, i.
 In practice, from the **applicant’s point of view**, a registration process can entail the following operations:
 
 * Answer questions to determine:
-  * if the applicant is eligible to register
-  * the data, credentials/documents and fees required, according to the applicant’s case
-* Provide data in a form, upload copies of credentials/documents
-* Pay fees at a physical point of payment (bank, cashier, etc.) or through an online service
-* Confirm his/her will to register
-* Query the status of the registration process
-* Receive credentials electronically or collect them at a physical point of collection
+  * if the applicant is eligible to register;
+  * the data, credentials/documents, and fees required, according to the applicant’s case.
+* Provide data in a form, and upload copies of credentials/documents.
+* Pay fees at a physical point of payment (bank, cashier, etc.) or through an online service.
+* Confirm his/her will to register.
+* Query the status of the registration process.
+* Receive credentials electronically or collect them at a physical point of collection.
 
 From the **point of view of the entity in charge (Registrar)** of the registration, the process can include the following operations:
 
 * Ask questions to the applicant, on one or more screens, to determine, according to the answers:
-  * if the applicant is entitled to register
-  * the data, documents, and fees required, according to the applicant’s case
+  * if the applicant is entitled to register;
+  * the data, documents, and fees required, according to the applicant’s case.
 * Display, on one or various screens, the necessary fields for the applicant to enter the required data and documents (including a receipt of payment, in case the system does not propose an online payment option or if the user for some reason wants to make the payment physically or directly, in the traditional way).
 * Control that the information entered is complete and correct (and the applicant is entitled to register).
 * Validate the information submitted or, in case the information entered is incomplete or incorrect, send the file back to the applicant for correction.
