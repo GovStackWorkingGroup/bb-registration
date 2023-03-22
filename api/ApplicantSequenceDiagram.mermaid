@@ -1,0 +1,22 @@
+sequenceDiagram
+    App->>+Registration BB: GET /processes
+    Registration BB-->>-App: list of processes(services)
+    
+    App->>+Registration BB: GET /processes/{processId}
+    Registration BB-->>-App: ListOfProperties, serviceKey, serviceVersionId
+
+    App->>+Registration BB: GET /eForms/{serviceKey}
+    Registration BB-->>-App: EFormSchema
+
+
+    App->>+Registration BB: POST /api/applicant/{serviceVersionId}/registerApplication
+    Registration BB-->>-App: applicationFileId
+
+    App->>+Registration BB: GET /api/applicant/applicationFileList
+    Registration BB-->>-App: List of applications, applicationFileId
+
+    App->>+Registration BB: GET /api/applicant/applicationFile/{applicationFileId}
+    Registration BB-->>-App: Data 
+
+    App->>+Registration BB: GET /data/statistics/1.0
+    Registration BB-->>-App: statistics data
