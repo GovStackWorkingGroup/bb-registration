@@ -1,42 +1,42 @@
 {
-  "openapi": "3.0.0",
-  "info": {
-    "title": "Registration Building Block API for Applicant user services",
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Registration Building Block API for Applicant user services",
 		"description": "User/applicant can register new applications",
 		"termsOfService": "#",
-    "contact": {
-      "email": "ingmar.vali@gmail.com"
-    },
-    "license": {
-      "name": "MIT",
-      "url": "https://opensource.org/license/mit/"
-    },
-    "version": "0.0.2"
-  },
-  "servers": [{
-    "url": "http://ss2.egovstack.net/r1/eGovStack/COM/11222456/RegistrationBB/creg/",
-    "description": "Information Mediator BB Security server"
-  }],
+		"contact": {
+			"email": "ingmar.vali@gmail.com"
+		},
+		"license": {
+			"name": "MIT",
+			"url": "https://opensource.org/license/mit/"
+		},
+		"version": "0.0.2"
+	},
+	"servers": [{
+		"url": "http://ss2.egovstack.net/r1/eGovStack/COM/11222456/RegistrationBB/creg/",
+		"description": "Information Mediator BB Security server"
+	}],
 
-  "paths": {
+	"paths": {
 		"/api/service/{serviceKey}/start": {
 			"post": {
 				"tags": ["service"],
 				"summary": "Start service application file",
 				"description": "Returns started application file id",
 				"operationId": "startApplicationFile",
-				"parameters": [
-				  {
-            "$ref": "#/components/parameters/Information-Mediator-Client"
-          },
-          {
-					"name": "serviceKey",
-					"in": "path",
-					"required": true,
-					"schema": {
-						"type": "string"
+				"parameters": [{
+						"$ref": "#/components/parameters/Information-Mediator-Client"
+					},
+					{
+						"name": "serviceKey",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
 					}
-				}],
+				],
 				"responses": {
 					"500": {
 						"description": "Internal server error",
@@ -78,17 +78,17 @@
 				"description": "Returns started service application file ID",
 				"operationId": "startApplicationFileForm",
 				"parameters": [{
-            "$ref": "#/components/parameters/Information-Mediator-Client"
-          },
-          {
-					"name": "serviceKey",
-					"in": "path",
-					"required": true,
-					"schema": {
-						"type": "string"
+						"$ref": "#/components/parameters/Information-Mediator-Client"
+					},
+					{
+						"name": "serviceKey",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
 					}
-				}
-					],
+				],
 				"requestBody": {
 					"content": {
 						"application/json": {
@@ -214,24 +214,24 @@
 				}
 			}
 		}
-	  
+
 	},
-	
-	
-	
+
+
+
 	"components": {
-	  "parameters": {
-      "Information-Mediator-Client": {
-        "in": "header",
-        "name": "Information-Mediator-Client",
-        "example": "eGovStack/GOV/90000009/digitalregistries",
-        "description": "Format is: INSTANCE/CLASS/MEMBER/SUBSYSTEM",
-        "schema": {
-          "type": "string"
-        },
-        "required": true
-      }
-    },
+		"parameters": {
+			"Information-Mediator-Client": {
+				"in": "header",
+				"name": "Information-Mediator-Client",
+				"example": "eGovStack/GOV/90000009/digitalregistries",
+				"description": "Format is: INSTANCE/CLASS/MEMBER/SUBSYSTEM",
+				"schema": {
+					"type": "string"
+				},
+				"required": true
+			}
+		},
 		"schemas": {
 			"SystemError": {
 				"type": "object",
@@ -250,13 +250,35 @@
 					}
 				}
 			},
+
+
+			"uploadResponse": {
+				"type": "object",
+				"properties": {
+					"code": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"type": {
+						"type": "string"
+					},
+					"message": {
+						"type": "string"
+					}
+				},
+				"xml": {
+					"name": "##default"
+				}
+			},
+
+
 			"StartServiceResponse": {
 				"type": "object",
 				"properties": {
 					"fileId": {
 						"type": "string",
-            "description": " Application file identifier 81c4445c-bff6-11ed-afa1-0242ac120002",
-            "example": "81c4445c-bff6-11ed-afa1-0242ac120002"
+						"description": " Application file identifier 81c4445c-bff6-11ed-afa1-0242ac120002",
+						"example": "81c4445c-bff6-11ed-afa1-0242ac120002"
 					},
 					"serviceKey": {
 						"type": "string",
@@ -267,7 +289,7 @@
 						"description": "Free text application name",
 						"example": "Amya Yuko"
 					},
-					
+
 					"applicantId": {
 						"type": "string",
 						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
@@ -293,7 +315,7 @@
 						"type": "string",
 						"example": "Post partum registration service"
 					},
-				
+
 					"serviceVersionId": {
 						"type": "string",
 						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
@@ -303,7 +325,7 @@
 						"example": "42962de0-bdb2-11ed-9397-0242ac120004",
 						"description": "Form ID used in the data capturing"
 					},
-					
+
 					"status": {
 						"$ref": "#/components/schemas/StatusModel"
 					},
@@ -328,9 +350,9 @@
 					}
 				}
 			},
-		
 
-			
+
+
 			"StatusModel": {
 				"type": "object",
 				"properties": {
