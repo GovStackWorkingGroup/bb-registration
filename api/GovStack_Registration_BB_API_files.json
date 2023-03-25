@@ -1,0 +1,365 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Registration Building Block API for Applicant user services",
+		"description": "User/applicant can view registered applications",
+		"termsOfService": "#",
+		"contact": {
+			"email": "ingmar.vali@gmail.com"
+		},
+		"license": {
+			"name": "MIT",
+			"url": "https://opensource.org/license/mit/"
+		},
+		"version": "0.0.2"
+	},
+	"servers": [{
+		"url": "http://ss2.egovstack.net/r1/eGovStack/COM/11222456/RegistrationBB/creg/",
+		"description": "Information Mediator BB Security server"
+	}],
+
+	"paths": {
+
+
+
+		"/api/applicant/applicationFileList": {
+			"get": {
+				"tags": ["Application files"],
+				"summary": "Retrieve all applicant's application files",
+				"description": "Returns application list",
+				"operationId": "getApplicantFileList",
+				"parameters": [{
+						"$ref": "#/components/parameters/Information-Mediator-Client"
+					},
+					{
+						"name": "service-key",
+						"description": "Service Key",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"example": "P2c9280907f23fa95017f27efd0b20074"
+						}
+					},
+					{
+						"name": "applicantId",
+						"description": "Applicant user ID",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"example": "42962de0-bdb2-11ed-9397-0242ac120004"
+						}
+					},
+					{
+						"name": "firstResult",
+						"in": "query",
+						"description": "Pagination of results. Specifies the index of the first result to return.",
+						"schema": {
+							"type": "integer",
+							"example": 1
+						}
+					}, {
+						"name": "maxResult",
+						"in": "query",
+						"description": "Pagination of results. Specifies the maximum number of results to return. Will return less results if there are no more results left.",
+						"schema": {
+							"type": "integer",
+							"example": 10
+						}
+					}, {
+						"name": "sortBy",
+						"in": "query",
+						"description": "Sort the results lexicographically by a given criterion. Valid values are instanceId, caseInstanceId, dueDate, executionId, caseExecutionId,assignee, created, description, id, name, nameCaseInsensitive and priority. Must be used in conjunction with the sortOrder parameter.",
+						"schema": {
+							"type": "string",
+							"example": "created"
+						}
+					}, {
+						"name": "sortOrder",
+						"in": "query",
+						"description": "Sort the results in a given order. Values may be asc for ascending order or desc for descending order. Must be used in conjunction with the sortBy parameter.",
+						"schema": {
+							"type": "string",
+							"example": "asc"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/ApplicantApplicationFileListResponse"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+
+		"/api/applicant/applicationFile/{fileId}": {
+			"get": {
+				"tags": ["Application files"],
+				"summary": "Get application file by  ID",
+				"description": "Returns application file",
+				"operationId": "getApplicationFileById",
+				"parameters": [{
+						"$ref": "#/components/parameters/Information-Mediator-Client"
+					},
+					{
+						"name": "fileId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"example": "8a70cd6d-bdb2-11ed-9397-0242ac120004"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Returns application file by id",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApplicantApplicationFileResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Application file was not found",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/SystemError"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+
+
+
+	"components": {
+		"parameters": {
+			"Information-Mediator-Client": {
+				"in": "header",
+				"name": "Information-Mediator-Client",
+				"example": "eGovStack/GOV/90000009/digitalregistries",
+				"description": "Format is: INSTANCE/CLASS/MEMBER/SUBSYSTEM",
+				"schema": {
+					"type": "string"
+				},
+				"required": true
+			}
+		},
+		"schemas": {
+			"FormData": {
+				"type": "object",
+				"properties": {
+					"data": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "object"
+						}
+					},
+					"x-access-token": {
+						"type": "string"
+					}
+				}
+			},
+
+
+			"ApplicantApplicationFileListResponse": {
+				"type": "object",
+				"properties": {
+					"fileId": {
+						"type": "string",
+						"description": " Application file identifier 81c4445c-bff6-11ed-afa1-0242ac120002",
+						"example": "81c4445c-bff6-11ed-afa1-0242ac120002"
+					},
+					"taskDefinitionKey": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
+					},
+					"name": {
+						"type": "string",
+						"example": "Application xyz"
+					},
+					"assignee": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004",
+						"description": "operator ID who is processing the applicant file"
+					},
+					"status": {
+						"$ref": "#/components/schemas/StatusModel"
+					},
+
+					"applicantId": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
+					},
+					"created": {
+						"type": "string",
+						"format": "date-time",
+						"example": "2000-10-23T00:00:00.000Z",
+						"description": "Time when the application file was created by the user- Draft"
+					},
+					"registered": {
+						"type": "string",
+						"format": "date-time",
+						"example": "2000-10-23T00:00:00.000Z",
+						"description": "Time when the application file was registered in the Registration BB system"
+					},
+
+					"description": {
+						"type": "string",
+						"example": "Any text."
+					},
+					"serviceName": {
+						"type": "string",
+						"example": "Post partum registration service"
+					},
+
+					"serviceKey": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
+					},
+					"formKey": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
+					},
+
+					"certificateResults": {
+						"type": "string",
+						"example": "todo",
+						"description": "An array of documents issued by the Registration. Contains ID for the document"
+					}
+				}
+			},
+
+
+
+			"ApplicantApplicationFileResponse": {
+				"type": "object",
+				"properties": {
+					"fileId": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
+					},
+					"taskDefinitionKey": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
+					},
+					"name": {
+						"type": "string",
+						"example": "John Smith"
+					},
+					"assignee": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004",
+						"description": "operator ID who is processing the applicant file"
+					},
+					"created": {
+						"type": "string",
+						"format": "date-time",
+						"description": "Time when the application file was created by the user",
+						"example": "2000-10-23T00:00:00.000Z"
+					},
+					"description": {
+						"type": "string",
+						"example": "Any text"
+					},
+					"serviceKey": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
+					},
+					"serviceName": {
+						"type": "string",
+						"example": "Post partum registration service"
+					},
+					"formKey": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
+					},
+
+					"formVariables": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "object"
+						}
+					},
+					"status": {
+						"uniqueItems": true,
+						"type": "array",
+						"items": {
+							"type": "string",
+							"enum": ["pending", "approve", "sendBack", "reject"]
+						}
+					},
+					"data": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "object"
+						}
+					}
+				}
+			},
+
+
+
+
+
+
+			"SystemError": {
+				"type": "object",
+				"properties": {
+					"traceId": {
+						"type": "string",
+						"description": "81c4445c-bff6-11ed-afa1-0242ac120002"
+					},
+					"code": {
+						"type": "string",
+						"description": "Message code",
+						"example": "500"
+					},
+					"message": {
+						"type": "string",
+						"description": "message text in english",
+						"example": "Internal server error"
+					},
+					"errorMessage": {
+						"type": "string",
+						"description": "Additional error for int"
+					}
+				}
+			},
+
+
+
+			"StatusModel": {
+				"type": "object",
+				"properties": {
+					"code": {
+						"type": "string",
+						"enum": ["PENDING", "APPROVED", "SENDBACK", "REJECTED"]
+					},
+					"title": {
+						"type": "string"
+					}
+				}
+			}
+
+		}
+	}
+}
