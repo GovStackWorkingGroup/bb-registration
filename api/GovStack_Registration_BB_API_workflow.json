@@ -122,9 +122,6 @@
 				"description": "The id for a defined service in the registration BB workflow engine."
 			}
 
-
-
-
 		},
 		"schemas": {
 			"serviceDefinition": {
@@ -148,8 +145,8 @@
 					},
 					"version": {
 						"type": "string",
-						"description": "service version",
-						"example": "460831a6-bdac-11ed-9397-0242ac120004"
+						"description": "service version number",
+						"example": "123"
 					},
 					"type": {
 						"type": "string",
