@@ -1,24 +1,15 @@
-# We would propose, for a citizen/applicant user:
-# - get all files of a user  (done)
-# - get all available services for a user - this would include a form schema ID needed for each service
-# - get all form schemas/ get a specific form schema
-# - submit a new file : this will require a dynamic data object that should match the needed form schema (done)
-# - document upload? 
-
-
-
 {
   "openapi": "3.0.0",
   "info": {
     "title": "Registration Building Block API for Applicant user services",
-		"description": "Applicant can see tasks and submit new applications to the Registration BB.  1. get all files of a user; 2. get all available services for a user - this would include a form schema ID needed for each service; 3.  get all form schemas/ get a specific form schema; 4. submit a new file : this will require a dynamic data object that should match the needed form schema",
+		"description": "User/applicant can register new applications",
 		"termsOfService": "#",
     "contact": {
       "email": "ingmar.vali@gmail.com"
     },
     "license": {
-      "name": "Apache 2.0",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      "name": "MIT",
+      "url": "https://opensource.org/license/mit/"
     },
     "version": "0.0.2"
   },
@@ -28,151 +19,51 @@
   }],
 
   "paths": {
-
-# Register application in registration bb workflow 
-    "/api/applicant/{serviceVersionId}/registerApplication": {
-      "post": {
-        "tags": ["Application registration"],
-        "summary": "Create application process with form data",
-        "description": "Creates application file in Registration BB and starts the process",
-        "operationId": "registerApplication",
-        "parameters": [{
+		"/api/service/{serviceKey}/start": {
+			"post": {
+				"tags": ["service"],
+				"summary": "Start service application file",
+				"description": "Returns started application file id",
+				"operationId": "startApplicationFile",
+				"parameters": [
+				  {
             "$ref": "#/components/parameters/Information-Mediator-Client"
           },
-
           {
-            "name": "serviceVersionId",
-            "description": "Service version ID. Every new version of the service schema gets a new Service ID (ProcessDefinitionId )",
-            "example": "895e9b8a-c569-11ed-b47f-0242ac12000c",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/FormData"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/SystemError"
-                }
-              }
-            }
-          },
-          "200": {
-            "description": "Returns created application file process ID",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreateApplicationFileResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Application file process id was not found",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/SystemError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    
-    
-
-
-# Workflow application file list 
-		"/api/applicant/applicationFileList": {
-			"get": {
-				"tags": ["Application files"],
-				"summary": "Retrieve all applicant's application files",
-				"description": "Returns application list",
-				"operationId": "getApplicantFileList",
-				"parameters": [{
-						"$ref": "#/components/parameters/Information-Mediator-Client"
-					},
-					{
-						"name": "service-key",
-						"description": "Service Key",
-						"in": "query",
-						"required": false,
-						"schema": {
-							"type": "string",
-							"example": "P2c9280907f23fa95017f27efd0b20074"
-						}
-					},
-					{
-						"name": "applicantId",
-						"description": "Applicant user ID",
-						"in": "query",
-						"required": false,
-						"schema": {
-							"type": "string",
-							"example": "42962de0-bdb2-11ed-9397-0242ac120004"
-						}
-					},
-					{
-						"name": "firstResult",
-						"in": "query",
-						"description": "Pagination of results. Specifies the index of the first result to return.",
-						"schema": {
-							"type": "integer",
-							"example": 1
-						}
-					}, {
-						"name": "maxResult",
-						"in": "query",
-						"description": "Pagination of results. Specifies the maximum number of results to return. Will return less results if there are no more results left.",
-						"schema": {
-							"type": "integer",
-							"example": 10
-						}
-					}, {
-						"name": "sortBy",
-						"in": "query",
-						"description": "Sort the results lexicographically by a given criterion. Valid values are instanceId, caseInstanceId, dueDate, executionId, caseExecutionId,assignee, created, description, id, name, nameCaseInsensitive and priority. Must be used in conjunction with the sortOrder parameter.",
-						"schema": {
-							"type": "string",
-							"example": "created"
-						}
-					}, {
-						"name": "sortOrder",
-						"in": "query",
-						"description": "Sort the results in a given order. Values may be asc for ascending order or desc for descending order. Must be used in conjunction with the sortBy parameter.",
-						"schema": {
-							"type": "string",
-							"example": "asc"
-						}
+					"name": "serviceKey",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
 					}
-				],
+				}],
 				"responses": {
-					"200": {
-						"description": "OK",
+					"500": {
+						"description": "Internal server error",
 						"content": {
 							"*/*": {
 								"schema": {
-									"type": "array",
-									"items": {
-										"$ref": "#/components/schemas/ApplicantApplicationFileListResponse"
-									}
+									"$ref": "#/components/schemas/SystemError"
+								}
+							}
+						}
+					},
+					"200": {
+						"description": "Returns started application file id",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/StartServiceResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Business process definition hasn't found",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/SystemError"
 								}
 							}
 						}
@@ -180,40 +71,57 @@
 				}
 			}
 		},
-		
-# Workflow application file content
-		"/api/applicant/applicationFile/{applicationFileId}": {
-			"get": {
-				"tags": ["Application files"],
-				"summary": "Get application file by  ID",
-				"description": "Returns application file",
-				"operationId": "getApplicationFileById",
+		"/api/service/{serviceKey}/startWithForm": {
+			"post": {
+				"tags": ["service"],
+				"summary": "Start service application file with form",
+				"description": "Returns started service application file ID",
+				"operationId": "startApplicationFileForm",
 				"parameters": [{
-						"$ref": "#/components/parameters/Information-Mediator-Client"
-					},
-					{
-						"name": "applicationFileId",
-						"in": "path",
-						"required": true,
-						"schema": {
-							"type": "string",
-							"example": "8a70cd6d-bdb2-11ed-9397-0242ac120004"
-						}
+            "$ref": "#/components/parameters/Information-Mediator-Client"
+          },
+          {
+					"name": "serviceKey",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
 					}
-				],
+				}
+					],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/FormData"
+							}
+						}
+					},
+					"required": true
+				},
 				"responses": {
-					"200": {
-						"description": "Returns application file by id",
+					"500": {
+						"description": "Internal server error",
 						"content": {
 							"*/*": {
 								"schema": {
-									"$ref": "#/components/schemas/ApplicantApplicationFileResponse"
+									"$ref": "#/components/schemas/SystemError"
+								}
+							}
+						}
+					},
+					"200": {
+						"description": "Returns started process instance",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/StartServiceResponse"
 								}
 							}
 						}
 					},
 					"404": {
-						"description": "Application file was not found",
+						"description": "Business process definition hasn't found",
 						"content": {
 							"*/*": {
 								"schema": {
@@ -226,97 +134,11 @@
 			}
 		}
 	},
-		
-# Application file requirement documetns upload
- "/api/applicant/{applicationFileId}/documentUpload": {
-    "post": {
-      "summary": "Upload a requiremetn document",
-      "operationId": "uploadFile",
-      "tags": [
-        "Application registration"
-      ],
-      "parameters": [
-        {
-          "name": "applicationFileId",
-          "in": "path",
-          "description": "Application file ID to update",
-          "required": true,
-          "schema": {
-            "type": "string",
-            "example": "8a70cd6d-bdb2-11ed-9397-0242ac120004"
-          }
-        },
-        {
-          "name": "requirementId",
-          "in": "query",
-          "description": "Requirement ID",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "requestBody": {
-        "required": true,
-        "content": {
-          "multipart/form-data": {
-            "schema": {
-              "properties": {
-                "file": {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "format": "base64",
-                    "example": "V2UgbG92ZSBqc29uIQ=="
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "responses": {
-        "200": {
-          "description": "File successfully uploaded",
-          "content": {
-            "*/*": {
-              "schema": {
-                "$ref": "#/components/schemas/uploadResponse"
-              }
-            }
-          }
-        },
-        "400": {
-          "description": "Bad request, file upload failed",
-          "content": {
-            "*/*": {
-              "schema": {
-                "$ref": "#/components/schemas/SystemError"
-              }
-            }
-          }
-        },
-        "500": {
-          "description": "Internal server error",
-          "content": {
-            "*/*": {
-              "schema": {
-                "$ref": "#/components/schemas/SystemError"
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-
-
-
-
-
-
-  "components": {
-    "parameters": {
+	
+	
+	
+	"components": {
+	  "parameters": {
       "Information-Mediator-Client": {
         "in": "header",
         "name": "Information-Mediator-Client",
@@ -328,70 +150,42 @@
         "required": true
       }
     },
-    "schemas": {
-      "FormData": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object"
-            }
-          },
-          "x-access-token": {
-            "type": "string"
-          }
-        }
-      },
-
-      "CreateApplicationFileResponse": {
-        "type": "object",
-        "properties": {
-          "applicationFileId": {
-            "type": "string",
-            "description": " Application file identifier 81c4445c-bff6-11ed-afa1-0242ac120002",
-            "example": "81c4445c-bff6-11ed-afa1-0242ac120002"
-          },
-          "serviceVersionId": {
-            "type": "string",
-            "description": "Service version identifier 81c4445c-bff6-11ed-afa1-0242ac120002",
-            "example": "81c4445c-bff6-11ed-afa1-0242ac120002"
-          },
-          "status": {
-            "type": "string",
-            "description": "status of the application file",
-            "example": "approve"
-          }
-        }
-      },
-      
-      
-      "ApplicantApplicationFileListResponse": {
+		"schemas": {
+			"SystemError": {
 				"type": "object",
 				"properties": {
-					"applicationFileId": {
-            "type": "string",
+					"traceId": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					},
+					"message": {
+						"type": "string"
+					},
+					"localizedMessage": {
+						"type": "string"
+					}
+				}
+			},
+			"StartServiceResponse": {
+				"type": "object",
+				"properties": {
+					"fileId": {
+						"type": "string",
             "description": " Application file identifier 81c4445c-bff6-11ed-afa1-0242ac120002",
             "example": "81c4445c-bff6-11ed-afa1-0242ac120002"
-          },
-					"taskDefinitionKey": {
+					},
+					"serviceKey": {
 						"type": "string",
-						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
+						"example": "P2c9280957e579ad7017e58a3399f0068"
 					},
 					"name": {
 						"type": "string",
-						"example": "Application xyz"
+						"description": "Free text application name",
+						"example": "Amya Yuko"
 					},
-					"assignee": {
-						"type": "string",
-						"example": "42962de0-bdb2-11ed-9397-0242ac120004",
-						"description": "operator ID who is processing the applicant file"
-					},
-					"status": {
-						"type": "string",
-						"example": "PENDING"
-					},
-
+					
 					"applicantId": {
 						"type": "string",
 						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
@@ -422,135 +216,51 @@
 						"type": "string",
 						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
-					"formKey": {
+					"eFormId": {
 						"type": "string",
-						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004",
+						"description": "Form ID used in the data capturing"
 					},
 					
-					"certificateResults": {
-						"type": "string",
-						"example": "todo",
-						"description": "An array of documents issued by the Registration. Contains ID for the document"
+					"status": {
+						"$ref": "#/components/schemas/StatusModel"
+					},
+					"ended": {
+						"type": "boolean",
+						"example": "false",
+						"description": "True, if application file processing has ended"
 					}
 				}
 			},
-			
-			
-			
-			"ApplicantApplicationFileResponse": {
+			"FormData": {
 				"type": "object",
 				"properties": {
-					"applicationFileId": {
-						"type": "string",
-						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
-					},
-					"taskDefinitionKey": {
-						"type": "string",
-						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
-					},
-					"name": {
-						"type": "string",
-						"example": "John Smith"
-					},
-					"assignee": {
-						"type": "string",
-						"example": "42962de0-bdb2-11ed-9397-0242ac120004",
-						"description": "operator ID who is processing the applicant file"
-					},
-					"created": {
-						"type": "string",
-						"format": "date-time",
-						"description": "Time when the application file was created by the user",
-						"example": "2000-10-23T00:00:00.000Z"
-					},
-					"description": {
-						"type": "string",
-						"example": "Any text"
-					},
-					"serviceVersionId": {
-						"type": "string",
-						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
-					},
-					"serviceName": {
-						"type": "string",
-						"example": "Post partum registration service"
-					},
-					"formKey": {
-						"type": "string",
-						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
-					},
-					
-					"formVariables": {
-						"type": "object",
-						"additionalProperties": {
-							"type": "object"
-						}
-					},
-					"status": {
-						"uniqueItems": true,
-						"type": "array",
-						"items": {
-							"type": "string",
-							"enum": ["pending", "approve", "sendBack", "reject"]
-						}
-					},
 					"data": {
 						"type": "object",
 						"additionalProperties": {
 							"type": "object"
 						}
+					},
+					"eFormId": {
+						"type": "string"
 					}
 				}
 			},
+		
+
 			
-			
-			
-			
-			
-			
-      "SystemError": {
-        "type": "object",
-        "properties": {
-          "traceId": {
-            "type": "string",
-            "description": "81c4445c-bff6-11ed-afa1-0242ac120002"
-          },
-          "code": {
-            "type": "string",
-            "description": "Message code",
-            "example": "500"
-          },
-          "message": {
-            "type": "string",
-            "description": "message text in english",
-            "example": "Internal server error"
-          },
-          "errorMessage": {
-            "type": "string",
-            "description": "Additional error for int"
-          }
-        }
-      },
-      
-       "uploadResponse": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "type": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          }
-        },
-        "xml": {
-          "name": "##default"
-        }
-      }
-      
-    }
-  }
+			"StatusModel": {
+				"type": "object",
+				"properties": {
+					"code": {
+						"type": "string",
+						"enum": ["PENDING", "APPROVED", "SENDBACK", "REJECTED"]
+					},
+					"title": {
+						"type": "string"
+					}
+				}
+			}
+		}
+	}
 }
