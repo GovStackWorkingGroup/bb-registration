@@ -1,7 +1,7 @@
 {"openapi": "3.0.0",
   "info": {
     "title": "Registration Building Block API for Applicant user services",
-		"description": "Applicant can see list of service forms and search teh form schemas",
+		"description": "Get list of service forms and search the form schemas",
 		"termsOfService": "#",
     "contact": {
       "email": "ingmar.vali@gmail.com"
@@ -10,7 +10,7 @@
       "name": "MIT",
       "url": "https://opensource.org/license/mit/"
     },
-    "version": "0.0.1"
+    "version": "0.0.2"
   },
   "servers": [{
     "url": "http://ss2.egovstack.net/r1/eGovStack/COM/11222456/RegistrationBB/creg/",
@@ -19,7 +19,8 @@
 
   "paths": {
     "/eForms/{serviceKey}": {
-      "get": {	"tags": ["Applicant"],
+      "get": {	
+        "tags": ["Applicant"],
         "summary": "Retrieve a list of all available e-forms",
 				"description": "Returns e-service forms with schema",
 				"operationId": "getServiceSchemaByServiceKey",
@@ -29,7 +30,7 @@
 					"required": true,
 					"schema": {
 						"type": "string",
-						"example": "d98a205a-679b-485b-823d-7a32a391e744"
+						"example": "P2c9280957e579ad7017e58a3399f0068"
 					}
 				}],
         "responses": {
@@ -49,8 +50,9 @@
         }
       }
     },
-    "/eForms/{eFormId}": {
+    "/eFormSchema/{eFormId}": {
       "get": {
+        "tags": ["Applicant"],
         "summary": "Retrieve a specific e-form by ID",
         "parameters": [
           {
