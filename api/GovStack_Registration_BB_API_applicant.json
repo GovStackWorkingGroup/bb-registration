@@ -236,7 +236,7 @@
 								"schema": {
 									"type": "array",
 									"items": {
-										"$ref": "#/components/schemas/ApplicantApplicationFileListResponse"
+										"$ref": "#/components/schemas/applicantApplicationFileListResponse"
 									}
 								}
 							}
@@ -437,7 +437,7 @@
 					}
 				}
 			},
-			"ApplicantApplicationFileListResponse": {
+			"applicantApplicationFileListResponse": {
 				"type": "object",
 				"properties": {
 					"fileId": {
