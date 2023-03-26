@@ -1,8 +1,9 @@
 sequenceDiagram
     rect rgba(0, 0, 255, .1)
 
+
     App->>+Registration BB: GET /api/service/operatorFileList
-    Registration BB-->>-App: array of application files (fileId)
+    Registration BB-->>-App: array of application files (fileId, taskId)
     
     App->>+Registration BB: GET /api/service/applicationFile/{fileId}
     Registration BB-->>-App: File data and properties
@@ -10,8 +11,16 @@ sequenceDiagram
     App->>+Registration BB: PUT /api/service/{fileId}/updateWithForm
     Registration BB-->>-App: Response
 
-    App->>+Registration BB: PUT fulfill tasks
+    App->>+Registration BB: GET /api/task
+    Registration BB-->>-App: List of operators tasks
+
+    App->>+Registration BB: GET /api/task/{id}
+    Registration BB-->>-App: Response
+
+
+    App->>+Registration BB: POST /api/task/{id}/complete
     Registration BB-->>-App: Response
 
     
     end
+    
