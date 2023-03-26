@@ -1,99 +1,49 @@
 {
-  "openapi": "3.0.0",
-  "info": {
-    "title": "Registration Building Block API for Applicant user services",
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Registration Building Block API for Applicant user services",
 		"description": "User/applicant can register new applications",
 		"termsOfService": "#",
-    "contact": {
-      "email": "ingmar.vali@gmail.com"
-    },
-    "license": {
-      "name": "MIT",
-      "url": "https://opensource.org/license/mit/"
-    },
-    "version": "0.0.2"
-  },
-  "servers": [{
-    "url": "http://ss2.egovstack.net/r1/eGovStack/COM/11222456/RegistrationBB/creg/",
-    "description": "Information Mediator BB Security server"
-  }],
-
-  "paths": {
-		"/api/service/{serviceKey}/start": {
-			"post": {
-				"tags": ["service"],
-				"summary": "Start service application file",
-				"description": "Returns started application file id",
-				"operationId": "startApplicationFile",
-				"parameters": [
-				  {
-            "$ref": "#/components/parameters/Information-Mediator-Client"
-          },
-          {
-					"name": "serviceKey",
-					"in": "path",
-					"required": true,
-					"schema": {
-						"type": "string"
-					}
-				}],
-				"responses": {
-					"500": {
-						"description": "Internal server error",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/SystemError"
-								}
-							}
-						}
-					},
-					"200": {
-						"description": "Returns started application file id",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/StartServiceResponse"
-								}
-							}
-						}
-					},
-					"404": {
-						"description": "Business process definition hasn't found",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/SystemError"
-								}
-							}
-						}
-					}
-				}
-			}
+		"contact": {
+			"email": "ingmar.vali@gmail.com"
 		},
+		"license": {
+			"name": "MIT",
+			"url": "https://opensource.org/license/mit/"
+		},
+		"version": "0.0.2"
+	},
+	"servers": [{
+		"url": "http://ss2.egovstack.net/r1/eGovStack/COM/11222456/RegistrationBB/creg/",
+		"description": "Information Mediator BB Security server"
+	}],
+
+	"paths": {
+
 		"/api/service/{serviceKey}/startWithForm": {
 			"post": {
-				"tags": ["service"],
+				"tags": ["Application file"],
 				"summary": "Start service application file with form",
 				"description": "Returns started service application file ID",
 				"operationId": "startApplicationFileForm",
 				"parameters": [{
-            "$ref": "#/components/parameters/Information-Mediator-Client"
-          },
-          {
-					"name": "serviceKey",
-					"in": "path",
-					"required": true,
-					"schema": {
-						"type": "string"
+						"$ref": "#/components/parameters/Information-Mediator-Client"
+					},
+					{
+						"name": "serviceKey",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
 					}
-				}
-					],
+				],
 				"requestBody": {
+					"description": "Create a new application file in the system",
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/FormData"
+								"$ref": "#/components/schemas/applicationFileSubmit"
 							}
 						}
 					},
@@ -105,7 +55,7 @@
 						"content": {
 							"*/*": {
 								"schema": {
-									"$ref": "#/components/schemas/SystemError"
+									"$ref": "#/components/schemas/systemError"
 								}
 							}
 						}
@@ -115,7 +65,7 @@
 						"content": {
 							"*/*": {
 								"schema": {
-									"$ref": "#/components/schemas/StartServiceResponse"
+									"$ref": "#/components/schemas/applicationFileResponse"
 								}
 							}
 						}
@@ -125,7 +75,7 @@
 						"content": {
 							"*/*": {
 								"schema": {
-									"$ref": "#/components/schemas/SystemError"
+									"$ref": "#/components/schemas/systemError"
 								}
 							}
 						}
@@ -136,10 +86,10 @@
 
 		"/api/applicant/{fileId}/documentUpload": {
 			"post": {
-				"summary": "Upload a requiremetn document",
+				"summary": "Upload a requirement document",
 				"operationId": "uploadFile",
 				"tags": [
-					"service"
+					"Application file"
 				],
 				"parameters": [{
 						"name": "fileId",
@@ -149,6 +99,15 @@
 						"schema": {
 							"type": "string",
 							"example": "8a70cd6d-bdb2-11ed-9397-0242ac120004"
+						}
+					},
+					{
+						"name": "additionalMetadata",
+						"in": "query",
+						"description": "Additional Metadata",
+						"required": false,
+						"schema": {
+							"type": "string"
 						}
 					}
 				],
@@ -187,7 +146,7 @@
 						"content": {
 							"*/*": {
 								"schema": {
-									"$ref": "#/components/schemas/SystemError"
+									"$ref": "#/components/schemas/systemError"
 								}
 							}
 						}
@@ -197,7 +156,7 @@
 						"content": {
 							"*/*": {
 								"schema": {
-									"$ref": "#/components/schemas/SystemError"
+									"$ref": "#/components/schemas/systemError"
 								}
 							}
 						}
@@ -205,26 +164,136 @@
 				}
 			}
 		}
-	  
 	},
-	
-	
-	
 	"components": {
-	  "parameters": {
-      "Information-Mediator-Client": {
-        "in": "header",
-        "name": "Information-Mediator-Client",
-        "example": "eGovStack/GOV/90000009/digitalregistries",
-        "description": "Format is: INSTANCE/CLASS/MEMBER/SUBSYSTEM",
-        "schema": {
-          "type": "string"
-        },
-        "required": true
-      }
-    },
+		"parameters": {
+			"Information-Mediator-Client": {
+				"in": "header",
+				"name": "Information-Mediator-Client",
+				"example": "eGovStack/GOV/90000009/digitalregistries",
+				"description": "Format is: INSTANCE/CLASS/MEMBER/SUBSYSTEM",
+				"schema": {
+					"type": "string"
+				},
+				"required": true
+			}
+		},
 		"schemas": {
-			"SystemError": {
+			"applicationFileSubmit": {
+				"required": [
+					"applicantId"
+				],
+				"properties": {
+
+					"applicationName": {
+						"type": "string",
+						"description": "Free text application name",
+						"example": "Amya Yuko"
+					},
+					"applicantId": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004",
+						"description": "Applicant is a user who submitted application"
+					},
+					"created": {
+						"type": "string",
+						"format": "date-time",
+						"example": "2000-10-23T00:00:00.000Z",
+						"description": "Time when the application file was created by the user- Draft"
+					},
+
+					"formData": {
+						"$ref": "#/components/schemas/formData"
+					},
+
+					"documentUrls": {
+						"$ref": "#/components/schemas/documentUrls"
+					}
+
+				}
+			},
+			"applicationFileResponse": {
+				"required": [
+					"applicantId",
+					"serviceKey"
+				],
+				"properties": {
+
+					"fileId": {
+						"type": "string",
+						"description": " Application file identifier 81c4445c-bff6-11ed-afa1-0242ac120002",
+						"example": "81c4445c-bff6-11ed-afa1-0242ac120002"
+					},
+					"registered": {
+						"type": "string",
+						"format": "date-time",
+						"example": "2000-10-23T00:00:00.000Z",
+						"description": "Time when the application file was registered in the Registration BB system"
+					},
+					"serviceKey": {
+						"type": "string",
+						"example": "P2c9280957e579ad7017e58a3399f0068"
+					},
+					"serviceName": {
+						"type": "string",
+						"example": "Post partum registration service"
+					},
+					"status": {
+						"$ref": "#/components/schemas/statusModel"
+					},
+					"ended": {
+						"type": "boolean",
+						"example": "false",
+						"description": "True, if application file processing has ended"
+					},
+					"applicationData": {
+						"$ref": "#/components/schemas/applicationFileSubmit"
+					}
+				}
+			},
+			"formData": {
+				"type": "object",
+				"properties": {
+					"data": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "object"
+						}
+					},
+					"eFormId": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004",
+						"description": "Form ID used in the data capturing"
+					}
+				}
+			},
+			"documentUrls": {
+				"type": "array",
+				"xml": {
+					"wrapped": true
+				},
+				"items": {
+					"type": "string",
+					"xml": {
+						"name": "photoUrl"
+					}
+				}
+			},
+			"statusModel": {
+				"type": "object",
+				"properties": {
+					"code": {
+						"type": "string",
+						"enum": ["PENDING", "APPROVED", "SENDBACK", "REJECTED"],
+						"example": "APPROVED"
+					},
+					"title": {
+						"type": "string",
+						"example": "Approved"
+					}
+				}
+			},
+			"systemError": {
 				"type": "object",
 				"properties": {
 					"traceId": {
@@ -241,8 +310,6 @@
 					}
 				}
 			},
-			
-
 			"uploadResponse": {
 				"type": "object",
 				"properties": {
@@ -260,101 +327,18 @@
 				"xml": {
 					"name": "##default"
 				}
-			},
-			
-			
-			"StartServiceResponse": {
-				"type": "object",
-				"properties": {
-					"fileId": {
-						"type": "string",
-            "description": " Application file identifier 81c4445c-bff6-11ed-afa1-0242ac120002",
-            "example": "81c4445c-bff6-11ed-afa1-0242ac120002"
-					},
-					"serviceKey": {
-						"type": "string",
-						"example": "P2c9280957e579ad7017e58a3399f0068"
-					},
-					"name": {
-						"type": "string",
-						"description": "Free text application name",
-						"example": "Amya Yuko"
-					},
-					
-					"applicantId": {
-						"type": "string",
-						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
-					},
-					"created": {
-						"type": "string",
-						"format": "date-time",
-						"example": "2000-10-23T00:00:00.000Z",
-						"description": "Time when the application file was created by the user- Draft"
-					},
-					"registered": {
-						"type": "string",
-						"format": "date-time",
-						"example": "2000-10-23T00:00:00.000Z",
-						"description": "Time when the application file was registered in the Registration BB system"
-					},
-
-					"description": {
-						"type": "string",
-						"example": "Any text."
-					},
-					"serviceName": {
-						"type": "string",
-						"example": "Post partum registration service"
-					},
-				
-					"serviceVersionId": {
-						"type": "string",
-						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
-					},
-					"eFormId": {
-						"type": "string",
-						"example": "42962de0-bdb2-11ed-9397-0242ac120004",
-						"description": "Form ID used in the data capturing"
-					},
-					
-					"status": {
-						"$ref": "#/components/schemas/StatusModel"
-					},
-					"ended": {
-						"type": "boolean",
-						"example": "false",
-						"description": "True, if application file processing has ended"
-					}
-				}
-			},
-			"FormData": {
-				"type": "object",
-				"properties": {
-					"data": {
-						"type": "object",
-						"additionalProperties": {
-							"type": "object"
+			}
+		},
+		"requestBodies": {
+			"applicationFile": {
+				"content": {
+					"application/json": {
+						"schema": {
+							"$ref": "#/components/schemas/applicationFileSubmit"
 						}
-					},
-					"eFormId": {
-						"type": "string"
 					}
-				}
-			},
-		
-
-			
-			"StatusModel": {
-				"type": "object",
-				"properties": {
-					"code": {
-						"type": "string",
-						"enum": ["PENDING", "APPROVED", "SENDBACK", "REJECTED"]
-					},
-					"title": {
-						"type": "string"
-					}
-				}
+				},
+				"description": "Application file object that needs to be added to the system"
 			}
 		}
 	}
