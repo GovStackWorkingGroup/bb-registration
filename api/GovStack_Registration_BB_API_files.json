@@ -299,18 +299,18 @@
 							"type": "object"
 						}
 					},
-					"requirementUrls": {
-            "type": "array",
-            "xml": {
-              "wrapped": true
-            },
-            "items": {
-              "type": "string",
-              "xml": {
-                "name": "requirementUrl"
-              }
-            }
-          },
+					"documentUrls": {
+						"type": "array",
+						"xml": {
+							"wrapped": true
+						},
+						"items": {
+							"type": "string",
+							"xml": {
+								"name": "documentUrl"
+							}
+						}
+					},
 					"status": {
 						"uniqueItems": true,
 						"type": "array",
