@@ -3,7 +3,7 @@ sequenceDiagram
 
 
     App->>+Registration BB: GET /api/service/operatorFileList
-    Registration BB-->>-App: array of application files (fileId, taskId)
+    Registration BB-->>-App: array of application files (fileId)
     
     App->>+Registration BB: GET /api/service/applicationFile/{fileId}
     Registration BB-->>-App: File data and properties
