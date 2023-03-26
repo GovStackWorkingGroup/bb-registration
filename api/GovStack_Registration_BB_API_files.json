@@ -11,7 +11,7 @@
 			"name": "MIT",
 			"url": "https://opensource.org/license/mit/"
 		},
-		"version": "0.0.2"
+		"version": "0.0.3"
 	},
 	"servers": [{
 		"url": "http://ss2.egovstack.net/r1/eGovStack/COM/11222456/RegistrationBB/creg/",
@@ -32,7 +32,7 @@
 						"$ref": "#/components/parameters/Information-Mediator-Client"
 					},
 					{
-						"name": "service-key",
+						"name": "serviceKey",
 						"description": "Service Key",
 						"in": "query",
 						"required": false,
@@ -299,6 +299,18 @@
 							"type": "object"
 						}
 					},
+					"requirementUrls": {
+            "type": "array",
+            "xml": {
+              "wrapped": true
+            },
+            "items": {
+              "type": "string",
+              "xml": {
+                "name": "requirementUrl"
+              }
+            }
+          },
 					"status": {
 						"uniqueItems": true,
 						"type": "array",
