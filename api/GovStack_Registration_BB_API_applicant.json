@@ -444,6 +444,164 @@
 					}
 				}
 			}
+		},
+
+		"/api/task": {
+			"get": {
+				"tags": ["Operators services"],
+				"summary": "Retrieve all tasks",
+				"description": "Returns task list",
+				"operationId": "getTasks",
+				"parameters": [{
+					"name": "fileId",
+					"in": "query",
+					"required": false,
+					"schema": {
+						"type": "string"
+					}
+				}, {
+					"name": "firstResult",
+					"in": "query",
+					"description": "Pagination of results. Specifies the index of the first result to return.",
+					"schema": {
+						"type": "integer"
+					}
+				}, {
+					"name": "maxResult",
+					"in": "query",
+					"description": "Pagination of results. Specifies the maximum number of results to return. Will return less results if there are no more results left.",
+					"schema": {
+						"type": "integer"
+					}
+				}, {
+					"name": "sortBy",
+					"in": "query",
+					"description": "Sort the results lexicographically by a given criterion. Valid values are instanceId, caseInstanceId, dueDate, executionId, caseExecutionId,assignee, created, description, id, name, nameCaseInsensitive and priority. Must be used in conjunction with the sortOrder parameter.",
+					"schema": {
+						"type": "string"
+					}
+				}, {
+					"name": "sortOrder",
+					"in": "query",
+					"description": "Sort the results in a given order. Values may be asc for ascending order or desc for descending order. Must be used in conjunction with the sortBy parameter.",
+					"schema": {
+						"type": "string"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/userTaskResponse"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+
+		"/api/task/{id}": {
+			"get": {
+				"tags": ["Operators services"],
+				"summary": "Get task by id",
+				"description": "Returns task by id",
+				"operationId": "getTaskById",
+				"parameters": [{
+					"name": "id",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "Returns task by id",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/signableDataUserTaskResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Task hasn't found",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/systemError"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+
+
+		"/api/task/{id}/complete": {
+			"post": {
+				"tags": ["Operators services"],
+				"summary": "Complete task by id",
+				"operationId": "completeTaskById",
+				"parameters": [{
+					"name": "id",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
+					}
+				}],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/additionalData"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "Task successfully completed",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/completedTaskResponse"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal system error",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/systemError"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Task was not found",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/systemError"
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 
 
@@ -612,7 +770,7 @@
 						"description": " Application file identifier 81c4445c-bff6-11ed-afa1-0242ac120002",
 						"example": "81c4445c-bff6-11ed-afa1-0242ac120002"
 					},
-					"taskDefinitionKey": {
+					"taskId": {
 						"type": "string",
 						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
@@ -695,7 +853,118 @@
 				"xml": {
 					"name": "##default"
 				}
+			},
+			"completedTaskResponse": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"fileId": {
+						"type": "string"
+					},
+					"serviceKey": {
+						"type": "string"
+					},
+					"status": {
+						"$ref": "#/components/schemas/statusModel"
+					},
+					"variables": {
+						"type": "object",
+						"additionalProperties": {
+							"$ref": "#/components/schemas/additionalData"
+						}
+					}
+				}
+			},
+			"userTaskResponse": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"assigneeId": {
+						"type": "string"
+					},
+					"created": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"description": {
+						"type": "string"
+					},
+					"serviceName": {
+						"type": "string"
+					},
+					"fileId": {
+						"type": "string"
+					},
+					"serviceKey": {
+						"type": "string"
+					},
+					"eFormId": {
+						"type": "string"
+					},
+					"status": {
+						"$ref": "#/components/schemas/statusModel"
+					}
+				}
+			},
+			"signableDataUserTaskResponse": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"assigneeId": {
+						"type": "string"
+					},
+					"created": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"description": {
+						"type": "string"
+					},
+					"fileId": {
+						"type": "string"
+					},
+					"serviceKey": {
+						"type": "string"
+					},
+					"serviceName": {
+						"type": "string"
+					},
+					"eFormId": {
+						"type": "string"
+					},
+
+					"formVariables": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "object"
+						}
+					},
+
+					"status": {
+						"$ref": "#/components/schemas/statusModel"
+					},
+					"data": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "object"
+						}
+					}
+				}
 			}
+
+
 		},
 		"requestBodies": {
 			"applicationFile": {
