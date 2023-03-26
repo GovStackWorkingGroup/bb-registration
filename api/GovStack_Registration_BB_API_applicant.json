@@ -84,7 +84,7 @@
 			}
 		},
 
-		"/api/applicant/{fileId}/documentUpload": {
+		"/api/service/{fileId}/documentUpload": {
 			"post": {
 				"summary": "Upload a requirement document",
 				"operationId": "uploadFile",
@@ -165,7 +165,7 @@
 			}
 		},
 
-		"/api/applicant/applicationFileList": {
+		"/api/service/applicationFileList": {
 			"get": {
 				"tags": ["Application file"],
 				"summary": "Retrieve all applicant's application files",
@@ -246,7 +246,7 @@
 			}
 		},
 
-		"/api/applicant/applicationFile/{fileId}": {
+		"/api/service/applicationFile/{fileId}": {
 			"get": {
 				"tags": ["Application file"],
 				"summary": "Get application file by  ID",
