@@ -7,10 +7,12 @@ This specification was prepared by a team comprising Frank Grozel (UNCTAD), Ingm
 Status: Draft
 
 Definitions:
+**Service** = specific registration process (there can be multiple different services for different registration processes/forms)
 serviceKey =  ProcessDefinitionKey = Service unique ID
+Applicant = a user who submits data to Registration BB. 
+**Application** = individual applicant's file, filling the forms of a service
 applicationFileId = ProcessInstanceId - Apllication file id
 eFormId = form schema
-Applicant= a user who submits data to Registration BB. 
 
 Reference systems: 
 
