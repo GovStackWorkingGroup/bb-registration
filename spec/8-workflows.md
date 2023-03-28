@@ -151,14 +151,14 @@ Registration BB-> Information Mediator BB: Get list of registered data providers
 Information Mediator BB -> Registration BB: return
 note left of Registration BB: Select registered provider
 Registration BB-> Information Mediator BB: Get list of registered API-s
-Information Mediator BB -> Registration BB: return, URL for service descriptions/swagger
+Information Mediator BB -> Registration BB: return, URL for service descriptions/OpenAPI
 note left of Registration BB: Import API descriptions
 note left of Registration BB: Map information to screens
 
 
 ```
 
-Illustration 10- IM API description.
+Illustration 10- Information Mediator API description.
 
 **Data structures:**
 
@@ -192,7 +192,7 @@ Illustration 11- Request payment options.&#x20;
 
 **Data structures:**
 
-| **Name**                               | **Required Data**                                                                      | **Notes**                                                                                                                                              |
+| **Name**                               | **Response**                                                                           | **Notes**                                                                                                                                              |
 | -------------------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | <p><br>Get list of payment options</p> | <p><br>Payment API descriptions,</p><p>List of payment options, details, data, url</p> | <p><br>Before the Registration BB can use the Payment BB information for screen populating the system must import API service descriptions<br><br></p> |
 
