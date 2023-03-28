@@ -1,4 +1,6 @@
- {
+# can be used as an example payload in the following element: formData . 
+
+{
  	"numberOfRegistrations": 1,
  	"validateMctsApplicationMothersFirstName": "asdfasdf",
  	"userlastname": "Vali",
