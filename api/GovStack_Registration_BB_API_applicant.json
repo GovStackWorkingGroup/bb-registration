@@ -453,7 +453,7 @@
 				"description": "Returns task list",
 				"operationId": "getTasks",
 				"parameters": [{
-					"name": "fileId",
+					"name": "mainTaskId",
 					"in": "query",
 					"required": false,
 					"schema": {
@@ -770,7 +770,7 @@
 						"description": " Application file identifier 81c4445c-bff6-11ed-afa1-0242ac120002",
 						"example": "81c4445c-bff6-11ed-afa1-0242ac120002"
 					},
-					"taskId": {
+					"mainTaskId": {
 						"type": "string",
 						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
