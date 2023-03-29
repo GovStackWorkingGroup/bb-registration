@@ -4,7 +4,7 @@ sequenceDiagram
     App->>+Registration BB: GET /services
     Registration BB-->>-App: array of services (serviceKey)
     
-    App->>+Registration BB: GET /processes/{serviceKey}
+    App->>+Registration BB: GET /service/{serviceKey}
     Registration BB-->>-App: Service properties
     
     end
