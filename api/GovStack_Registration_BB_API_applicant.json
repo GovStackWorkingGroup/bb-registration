@@ -84,7 +84,7 @@
 			}
 		},
 
-		"/api/service/{fileId}/documentUpload": {
+		"/api/service/documentUpload": {
 			"post": {
 				"summary": "Upload a requirement document",
 				"operationId": "uploadFile",
@@ -93,25 +93,14 @@
 					"Operators services"
 				],
 				"parameters": [{
-						"name": "fileId",
-						"in": "path",
-						"description": "Application file ID to update",
-						"required": true,
-						"schema": {
-							"type": "string",
-							"example": "8a70cd6d-bdb2-11ed-9397-0242ac120004"
-						}
-					},
-					{
-						"name": "additionalMetadata",
-						"in": "query",
-						"description": "Additional Metadata",
-						"required": false,
-						"schema": {
-							"type": "string"
-						}
+					"name": "additionalMetadata",
+					"in": "query",
+					"description": "Additional Metadata",
+					"required": false,
+					"schema": {
+						"type": "string"
 					}
-				],
+				}],
 				"requestBody": {
 					"required": true,
 					"content": {
@@ -848,10 +837,12 @@
 					},
 					"message": {
 						"type": "string"
+
+					},
+					"url": {
+						"type": "string"
+
 					}
-				},
-				"xml": {
-					"name": "##default"
 				}
 			},
 			"completedTaskResponse": {
