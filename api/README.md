@@ -1,4 +1,4 @@
-Registration Building Block API Definitions
+# Registration Building Block API Definitions
 This repository holds OpenAPI definitions for the Registration Building Block.
 
 Acknowledgement
