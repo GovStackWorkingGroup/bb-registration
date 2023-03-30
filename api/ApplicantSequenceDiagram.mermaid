@@ -18,12 +18,14 @@ sequenceDiagram
     end
 
     rect rgba(0, 0, 255, .1)
-    App->>+Registration BB: POST /api/service/{serviceKey}/startWithForm
-    Registration BB-->>-App: applicationFileId
-    
     App->>+Registration BB: POST /api/service/{fileId}/documentUpload
     Registration BB-->>-App: documentId, url
     
+    
+    App->>+Registration BB: POST /api/service/{serviceKey}/startWithForm
+    Registration BB-->>-App: applicationFileId
+    
+
     end
 
     rect rgba(204, 204, 255, .2)
