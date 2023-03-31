@@ -1,8 +1,8 @@
 {
 	"openapi": "3.0.0",
 	"info": {
-		"title": "Registration Building Block API for Applicant user services",
-		"description": "User/applicant can register new applications",
+		"title": "Registration Building Block API",
+		"description": "Applicants can access and submit registration applications and operators can access applications through this API.",
 		"termsOfService": "#",
 		"contact": {
 			"email": "ingmar.vali@gmail.com"
@@ -14,21 +14,156 @@
 		"version": "0.0.2"
 	},
 	"servers": [{
-		"url": "http://ss2.egovstack.net/r1/eGovStack/COM/11222456/RegistrationBB/creg/",
+		"url": "http://ss2.egovstack.net/r1/eGovStack/COM/11222456/RegistrationBB/creg/api/",
 		"description": "Information Mediator BB Security server"
 	}],
 
 	"paths": {
+		"/services": {
+			"get": {
+				"tags": [
+					"Applicant"
+				],
+				"summary": "returns a list of services (Services available to use)",
+				"description": "Listing of all services with basic information",
+				"operationId": "getServiceList",
+				"parameters": [{
+					"name": "name",
+					"in": "query",
+					"schema": {
+						"type": "string"
+					},
+					"required": false,
+					"example": "Register Mother and Child"
+				}
 
-		"/api/service/{serviceKey}/startWithForm": {
+				],
+				"responses": {
+					"200": {
+						"description": "list of services",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/service"
+									}
+								}
+							}
+						}
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				}
+			}
+		},
+		"/services/{serviceKey}": {
+			"get": {
+				"tags": [
+					"Applicant"
+				],
+				"summary": "returns detailed information about a service",
+				"description": "Pass in the ID of the service and it will return all information about that service\n",
+				"operationId": "getService",
+				"parameters": [{
+					"$ref": "#/components/parameters/serviceIdParam"
+				}],
+				"responses": {
+					"200": {
+						"description": "Service found and representation returned",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/service"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "service not found"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				}
+			}
+		},
+
+		"/eForms/{serviceKey}": {
+			"get": {
+				"tags": ["Applicant"],
+				"summary": "Retrieve a list of all available e-forms",
+				"description": "Returns e-service forms with schema",
+				"operationId": "getServiceSchemaByServiceKey",
+				"parameters": [{
+					"name": "serviceKey",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string",
+						"example": "P2c9280957e579ad7017e58a3399f0068"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/EFormListItem"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/eFormSchema/{eFormId}": {
+			"get": {
+				"tags": ["Applicant"],
+				"summary": "Retrieve a specific e-form by ID",
+				"parameters": [
+					{
+						"name": "eFormId",
+						"in": "path",
+						"description": "The ID of the e-form to retrieve",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/EForm"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+
+		"/service/{serviceKey}/startWithForm": {
 			"post": {
 				"tags": ["Application file"],
 				"summary": "Start service application file with form",
 				"description": "Returns started service application file ID",
 				"operationId": "startApplicationFileForm",
 				"parameters": [{
-						"$ref": "#/components/parameters/Information-Mediator-Client"
-					},
+					"$ref": "#/components/parameters/Information-Mediator-Client"
+				},
 					{
 						"name": "serviceKey",
 						"in": "path",
@@ -51,14 +186,7 @@
 				},
 				"responses": {
 					"500": {
-						"description": "Internal server error",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/systemError"
-								}
-							}
-						}
+						"$ref": "#/components/responses/InternalServerError"
 					},
 					"200": {
 						"description": "Returns started application file ID",
@@ -71,20 +199,13 @@
 						}
 					},
 					"404": {
-						"description": "Service was not found",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/systemError"
-								}
-							}
-						}
+						"description": "Service was not found"
 					}
 				}
 			}
 		},
 
-		"/api/service/documentUpload": {
+		"/service/documentUpload": {
 			"post": {
 				"summary": "Upload a requirement document",
 				"operationId": "uploadFile",
@@ -142,28 +263,21 @@
 						}
 					},
 					"500": {
-						"description": "Internal server error",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/systemError"
-								}
-							}
-						}
+						"$ref": "#/components/responses/InternalServerError"
 					}
 				}
 			}
 		},
 
-		"/api/service/applicationFileList": {
+		"/service/applicationFileList": {
 			"get": {
 				"tags": ["Application file"],
 				"summary": "Retrieve all applicant's application files",
 				"description": "Returns application list",
 				"operationId": "getApplicantFileList",
 				"parameters": [{
-						"$ref": "#/components/parameters/Information-Mediator-Client"
-					},
+					"$ref": "#/components/parameters/Information-Mediator-Client"
+				},
 					{
 						"name": "serviceKey",
 						"description": "Service Key",
@@ -236,15 +350,15 @@
 			}
 		},
 
-		"/api/service/applicationFile/{fileId}": {
+		"/service/applicationFile/{fileId}": {
 			"get": {
 				"tags": ["Application file", "Operators services"],
 				"summary": "Get application file by  ID",
 				"description": "Returns application file",
 				"operationId": "getApplicationFileById",
 				"parameters": [{
-						"$ref": "#/components/parameters/Information-Mediator-Client"
-					},
+					"$ref": "#/components/parameters/Information-Mediator-Client"
+				},
 					{
 						"name": "fileId",
 						"in": "path",
@@ -267,28 +381,21 @@
 						}
 					},
 					"404": {
-						"description": "Application file was not found",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/systemError"
-								}
-							}
-						}
+						"description": "Application file was not found"
 					}
 				}
 			}
 		},
 
-		"/api/service/{fileId}/updateWithForm": {
+		"/service/{fileId}/updateWithForm": {
 			"put": {
 				"tags": ["Operators services"],
 				"summary": "Update service application file with operator's form data",
 				"description": "Returns updated service application file ID",
 				"operationId": "updateApplicationFileForm",
 				"parameters": [{
-						"$ref": "#/components/parameters/Information-Mediator-Client"
-					},
+					"$ref": "#/components/parameters/Information-Mediator-Client"
+				},
 					{
 						"name": "fileId",
 						"in": "path",
@@ -310,16 +417,6 @@
 					"required": true
 				},
 				"responses": {
-					"500": {
-						"description": "Internal server error",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/systemError"
-								}
-							}
-						}
-					},
 					"200": {
 						"description": "Returns updated application file",
 						"content": {
@@ -331,28 +428,24 @@
 						}
 					},
 					"404": {
-						"description": "Application file was not found",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/systemError"
-								}
-							}
-						}
+						"description": "Application file was not found"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
 					}
 				}
 			}
 		},
 
-		"/api/service/operatorFileList": {
+		"/service/operatorFileList": {
 			"get": {
 				"tags": ["Operators services"],
 				"summary": "Retrieve all applicant's application files",
 				"description": "Returns application list",
 				"operationId": "getOperatorFileList",
 				"parameters": [{
-						"$ref": "#/components/parameters/Information-Mediator-Client"
-					},
+					"$ref": "#/components/parameters/Information-Mediator-Client"
+				},
 					{
 						"name": "serviceKey",
 						"description": "Service Key",
@@ -435,7 +528,7 @@
 			}
 		},
 
-		"/api/task": {
+		"/task": {
 			"get": {
 				"tags": ["Operators services"],
 				"summary": "Retrieve all tasks",
@@ -495,7 +588,7 @@
 			}
 		},
 
-		"/api/task/{id}": {
+		"/task/{id}": {
 			"get": {
 				"tags": ["Operators services"],
 				"summary": "Get task by id",
@@ -521,21 +614,14 @@
 						}
 					},
 					"404": {
-						"description": "Task hasn't found",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/systemError"
-								}
-							}
-						}
+						"description": "Task hasn't found"
 					}
 				}
 			}
 		},
 
 
-		"/api/task/{id}/complete": {
+		"/task/{id}/complete": {
 			"post": {
 				"tags": ["Operators services"],
 				"summary": "Complete task by id",
@@ -569,25 +655,11 @@
 							}
 						}
 					},
-					"500": {
-						"description": "Internal system error",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/systemError"
-								}
-							}
-						}
-					},
 					"404": {
-						"description": "Task was not found",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/systemError"
-								}
-							}
-						}
+						"description": "Task was not found"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
 					}
 				}
 			}
@@ -606,9 +678,164 @@
 					"type": "string"
 				},
 				"required": true
+			},
+			"serviceIdParam": {
+				"in": "path",
+				"name": "serviceKey",
+				"required": true,
+				"schema": {
+					"type": "string",
+					"example": "P2c9280957e579ad7017e58a3399f0068"
+				},
+				"description": "The id for a defined service in the registration BB workflow engine."
 			}
 		},
 		"schemas": {
+			"serviceDefinition": {
+				"type": "object",
+				"required": [
+					"name",
+					"serviceKey",
+					"type",
+					"version"
+				],
+				"properties": {
+					"name": {
+						"type": "string",
+						"description": "name of a service",
+						"example": "Mother and Child Registration"
+					},
+					"serviceKey": {
+						"type": "string",
+						"description": "service Key",
+						"example": "P2c9280957e579ad7017e58a3399f0068"
+					},
+					"version": {
+						"type": "string",
+						"description": "service version number",
+						"example": "123"
+					},
+					"type": {
+						"type": "string",
+						"enum": [
+							"None",
+							"Private",
+							"Public"
+						]
+					},
+					"isExecutable": {
+						"type": "boolean",
+						"description": "Specifies whether the service is executable"
+					},
+					"isClosed": {
+						"type": "boolean",
+						"description": "whether Messages and Events, not modeled in Service, can occur when the service is executed or performed"
+					},
+					"description": {
+						"type": "string"
+					},
+					"serviceBody": {
+						"$ref": "#/components/schemas/ListOfProperties"
+					}
+				}
+			},
+			"service": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer",
+						"description": "generated by a system surrogate primary key"
+					},
+					"serviceDefinition": {
+						"$ref": "#/components/schemas/serviceDefinition"
+					}
+				}
+			},
+
+			"ListOfProperties": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"code": {
+							"type": "string"
+						},
+						"value": {
+							"type": "string"
+						}
+					}
+				}
+			},
+
+			"EFormListItem": {
+				"type": "object",
+				"properties": {
+					"eFormId": {
+						"type": "string",
+						"description": "The unique identifier of the e-form",
+						"example": "d98a205a-679b-485b-823d-7a32a391e744"
+
+					},
+					"name": {
+						"type": "string",
+						"description": "The name of the e-form",
+						"example": "FORM"
+					},
+					"description": {
+						"type": "string",
+						"description": "A description of the e-form"
+					},
+					"version": {
+						"type": "string",
+						"description": "Version of the e-form",
+						"example": "1"
+					},
+					"latest": {
+						"type": "boolean",
+						"description": "True if the last version"
+					}
+
+				}
+			},
+			"EForm": {
+				"type": "object",
+				"properties": {
+					"eFormId": {
+						"type": "string",
+						"description": "The unique identifier of the e-form",
+						"example": "d98a205a-679b-485b-823d-7a32a391e744"
+
+					},
+					"name": {
+						"type": "string",
+						"description": "The name of the e-form",
+						"example": "A1"
+					},
+					"description": {
+						"type": "string",
+						"description": "A description of the e-form"
+					},
+					"version": {
+						"type": "string",
+						"description": "Version of the e-form",
+						"example": "1"
+					},
+					"latest": {
+						"type": "boolean",
+						"description": "True if the last version"
+					},
+
+					"schema": {
+						"description": "The schema of the e-form",
+						"$ref": "#/components/schemas/EFormSchema"
+					}
+				}
+			},
+			"EFormSchema": {
+				"type": "object",
+				"additionalProperties": true,
+				"description": "The JSON schema of the e-form"
+			},
 			"applicationFileSubmit": {
 				"required": [
 					"applicantId"
@@ -734,23 +961,7 @@
 					}
 				}
 			},
-			"systemError": {
-				"type": "object",
-				"properties": {
-					"traceId": {
-						"type": "string"
-					},
-					"code": {
-						"type": "string"
-					},
-					"message": {
-						"type": "string"
-					},
-					"localizedMessage": {
-						"type": "string"
-					}
-				}
-			},
+
 			"applicantApplicationFileListResponse": {
 				"type": "object",
 				"properties": {
@@ -953,10 +1164,27 @@
 						}
 					}
 				}
+			},
+
+			"systemError": {
+				"type": "object",
+				"properties": {
+					"traceId": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					},
+					"message": {
+						"type": "string"
+					},
+					"localizedMessage": {
+						"type": "string"
+					}
+				}
 			}
-
-
 		},
+
 		"requestBodies": {
 			"applicationFile": {
 				"content": {
@@ -967,6 +1195,19 @@
 					}
 				},
 				"description": "Application file object that needs to be added to the system"
+			}
+		},
+
+		"responses": {
+			"InternalServerError": {
+				"description": "Internal server error, please contact administrator",
+				"content": {
+					"*/*": {
+						"schema": {
+							"$ref": "#/components/schemas/systemError"
+						}
+					}
+				}
 			}
 		}
 	}
