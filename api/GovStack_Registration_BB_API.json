@@ -11,7 +11,7 @@
 			"name": "MIT",
 			"url": "https://opensource.org/license/mit/"
 		},
-		"version": "0.0.2"
+		"version": "0.1.0"
 	},
 	"servers": [{
 		"url": "http://ss2.egovstack.net/r1/eGovStack/COM/11222456/RegistrationBB/creg/api/",
@@ -28,14 +28,14 @@
 				"description": "Listing of all services with basic information",
 				"operationId": "getServiceList",
 				"parameters": [{
-					"name": "name",
-					"in": "query",
-					"schema": {
-						"type": "string"
-					},
-					"required": false,
-					"example": "Register Mother and Child"
-				}
+						"name": "name",
+						"in": "query",
+						"schema": {
+							"type": "string"
+						},
+						"required": false,
+						"example": "Register Mother and Child"
+					}
 
 				],
 				"responses": {
@@ -126,17 +126,15 @@
 			"get": {
 				"tags": ["Applicant"],
 				"summary": "Retrieve a specific e-form by ID",
-				"parameters": [
-					{
-						"name": "eFormId",
-						"in": "path",
-						"description": "The ID of the e-form to retrieve",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
+				"parameters": [{
+					"name": "eFormId",
+					"in": "path",
+					"description": "The ID of the e-form to retrieve",
+					"required": true,
+					"schema": {
+						"type": "string"
 					}
-				],
+				}],
 				"responses": {
 					"200": {
 						"description": "OK",
@@ -157,13 +155,13 @@
 
 		"/service/{serviceKey}/startWithForm": {
 			"post": {
-				"tags": ["Application file"],
+				"tags": ["Applicant"],
 				"summary": "Start service application file with form",
 				"description": "Returns started service application file ID",
 				"operationId": "startApplicationFileForm",
 				"parameters": [{
-					"$ref": "#/components/parameters/Information-Mediator-Client"
-				},
+						"$ref": "#/components/parameters/Information-Mediator-Client"
+					},
 					{
 						"name": "serviceKey",
 						"in": "path",
@@ -207,10 +205,10 @@
 
 		"/service/documentUpload": {
 			"post": {
-				"summary": "Upload a requirement document",
+				"summary": "Upload a required document",
 				"operationId": "uploadFile",
 				"tags": [
-					"Application file",
+					"Applicant",
 					"Operators services"
 				],
 				"parameters": [{
@@ -271,13 +269,13 @@
 
 		"/service/applicationFileList": {
 			"get": {
-				"tags": ["Application file"],
+				"tags": ["Applicant"],
 				"summary": "Retrieve all applicant's application files",
 				"description": "Returns application list",
 				"operationId": "getApplicantFileList",
 				"parameters": [{
-					"$ref": "#/components/parameters/Information-Mediator-Client"
-				},
+						"$ref": "#/components/parameters/Information-Mediator-Client"
+					},
 					{
 						"name": "serviceKey",
 						"description": "Service Key",
@@ -352,13 +350,13 @@
 
 		"/service/applicationFile/{fileId}": {
 			"get": {
-				"tags": ["Application file", "Operators services"],
+				"tags": ["Applicant", "Operators services"],
 				"summary": "Get application file by  ID",
 				"description": "Returns application file",
 				"operationId": "getApplicationFileById",
 				"parameters": [{
-					"$ref": "#/components/parameters/Information-Mediator-Client"
-				},
+						"$ref": "#/components/parameters/Information-Mediator-Client"
+					},
 					{
 						"name": "fileId",
 						"in": "path",
@@ -394,8 +392,8 @@
 				"description": "Returns updated service application file ID",
 				"operationId": "updateApplicationFileForm",
 				"parameters": [{
-					"$ref": "#/components/parameters/Information-Mediator-Client"
-				},
+						"$ref": "#/components/parameters/Information-Mediator-Client"
+					},
 					{
 						"name": "fileId",
 						"in": "path",
@@ -444,8 +442,8 @@
 				"description": "Returns application list",
 				"operationId": "getOperatorFileList",
 				"parameters": [{
-					"$ref": "#/components/parameters/Information-Mediator-Client"
-				},
+						"$ref": "#/components/parameters/Information-Mediator-Client"
+					},
 					{
 						"name": "serviceKey",
 						"description": "Service Key",
@@ -457,8 +455,8 @@
 						}
 					},
 					{
-						"name": "operatorId",
-						"description": "Operator's user ID",
+						"name": "assigneeId",
+						"description": "Assignees's user ID",
 						"in": "query",
 						"required": false,
 						"schema": {
@@ -588,14 +586,14 @@
 			}
 		},
 
-		"/task/{id}": {
+		"/task/{taskId}": {
 			"get": {
 				"tags": ["Operators services"],
 				"summary": "Get task by id",
 				"description": "Returns task by id",
 				"operationId": "getTaskById",
 				"parameters": [{
-					"name": "id",
+					"name": "taskId",
 					"in": "path",
 					"required": true,
 					"schema": {
@@ -608,7 +606,7 @@
 						"content": {
 							"*/*": {
 								"schema": {
-									"$ref": "#/components/schemas/signableDataUserTaskResponse"
+									"$ref": "#/components/schemas/dataUserTaskResponse"
 								}
 							}
 						}
@@ -621,13 +619,13 @@
 		},
 
 
-		"/task/{id}/complete": {
+		"/task/{taskId}/complete": {
 			"post": {
 				"tags": ["Operators services"],
 				"summary": "Complete task by id",
 				"operationId": "completeTaskById",
 				"parameters": [{
-					"name": "id",
+					"name": "taskId",
 					"in": "path",
 					"required": true,
 					"schema": {
@@ -974,16 +972,24 @@
 						"type": "string",
 						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
-					"name": {
+					"taskTitle": {
 						"type": "string",
 						"example": "Application xyz"
 					},
-					"assignee": {
+					"roleId": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
+					},
+					"roleName": {
+						"type": "string",
+						"example": "Registrar"
+					},
+					"assigneeId": {
 						"type": "string",
 						"example": "42962de0-bdb2-11ed-9397-0242ac120004",
 						"description": "operator ID who is processing the applicant file"
 					},
-					"assigneeName": {
+					"operatorName": {
 						"type": "string",
 						"example": "John Smith",
 						"description": "operator ID who has the task of processing the application file"
@@ -1022,7 +1028,7 @@
 						"type": "string",
 						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
-					"formKey": {
+					"eformId": {
 						"type": "string",
 						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
@@ -1059,14 +1065,15 @@
 			"completedTaskResponse": {
 				"type": "object",
 				"properties": {
-					"id": {
+					"taskId": {
 						"type": "string"
 					},
 					"fileId": {
 						"type": "string"
 					},
 					"serviceKey": {
-						"type": "string"
+						"type": "string",
+						"example": "P2c9280957e579ad7017e58a3399f0068"
 					},
 					"status": {
 						"$ref": "#/components/schemas/statusModel"
@@ -1082,7 +1089,7 @@
 			"userTaskResponse": {
 				"type": "object",
 				"properties": {
-					"id": {
+					"taskId": {
 						"type": "string"
 					},
 					"name": {
@@ -1098,15 +1105,16 @@
 					"description": {
 						"type": "string"
 					},
+					"serviceKey": {
+						"type": "string"
+					},
 					"serviceName": {
 						"type": "string"
 					},
 					"fileId": {
 						"type": "string"
 					},
-					"serviceKey": {
-						"type": "string"
-					},
+
 					"eFormId": {
 						"type": "string"
 					},
@@ -1115,17 +1123,22 @@
 					}
 				}
 			},
-			"signableDataUserTaskResponse": {
+
+			"dataUserTaskResponse": {
 				"type": "object",
 				"properties": {
-					"id": {
+					"taskId": {
 						"type": "string"
 					},
-					"name": {
+					"taskName": {
 						"type": "string"
 					},
 					"assigneeId": {
 						"type": "string"
+					},
+					"roleId": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
 					"created": {
 						"type": "string",
