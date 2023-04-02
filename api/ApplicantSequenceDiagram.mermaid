@@ -1,0 +1,48 @@
+sequenceDiagram
+    rect rgba(0, 0, 255, .1)
+
+    App->>+Registration BB: GET /services
+    Registration BB-->>-App: array of services (serviceKey)
+    
+    App->>+Registration BB: GET /service/{serviceKey}
+    Registration BB-->>-App: Service properties
+    
+    end
+    rect rgba(204, 204, 255, .2)
+    App->>+Registration BB: GET /eForms/{serviceKey}
+    Registration BB-->>-App: Array of form schemas (eFormId)
+
+    App->>+Registration BB: GET /eFormSchema/{eFormId}
+    Registration BB-->>-App: Form schema 
+
+    end
+
+    rect rgba(0, 0, 255, .1)
+    App->>+Registration BB: POST /api/service/{fileId}/documentUpload
+    Registration BB-->>-App: documentId, url
+    
+    
+    App->>+Registration BB: POST /api/service/{serviceKey}/startWithForm
+    Registration BB-->>-App: fileId
+    
+
+    end
+
+    rect rgba(204, 204, 255, .2)
+
+    App->>+Registration BB: GET /api/service/applicationFileList
+    Registration BB-->>-App: List of applications, fileId
+
+    App->>+Registration BB: GET /api/service/applicationFile/{fileId}
+    Registration BB-->>-App: Application file 
+
+    end
+    rect rgba(0, 0, 255, .1)
+    App->>+Registration BB: GET /task,  assignee ID
+    Registration BB-->>-App: Return taskId, status 
+    end
+
+    rect rgba(204, 204, 255, .2)
+    App->>+Registration BB: GET /data/statistics/1.0
+    Registration BB-->>-App: statistics data
+    end
