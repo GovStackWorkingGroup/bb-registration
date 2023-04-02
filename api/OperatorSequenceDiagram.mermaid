@@ -14,11 +14,11 @@ sequenceDiagram
     App->>+Registration BB: GET /api/task
     Registration BB-->>-App: List of operators tasks
 
-    App->>+Registration BB: GET /api/task/{id}
+    App->>+Registration BB: GET /api/task/{taskid}
     Registration BB-->>-App: Response
 
 
-    App->>+Registration BB: POST /api/task/{id}/complete
+    App->>+Registration BB: POST /api/task/{taskId}/complete
     Registration BB-->>-App: Response
 
     
