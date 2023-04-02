@@ -38,6 +38,11 @@ sequenceDiagram
 
     end
     rect rgba(0, 0, 255, .1)
+    App->>+Registration BB: GET /task,  assignee ID
+    Registration BB-->>-App: Return taskId, status 
+    end
+
+    rect rgba(204, 204, 255, .2)
     App->>+Registration BB: GET /data/statistics/1.0
     Registration BB-->>-App: statistics data
     end
