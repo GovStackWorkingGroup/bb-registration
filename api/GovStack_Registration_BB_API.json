@@ -528,64 +528,63 @@
 
 		"/task": {
 			"get": {
-				"tags": ["Operators services"],
+				"tags": ["Operators services", "Applicant"],
 				"summary": "Retrieve all tasks",
 				"description": "Returns task list",
 				"operationId": "getTasks",
 				"parameters": [{
-						"name": "mainTaskId",
-						"in": "query",
-						"required": false,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"name": "fileId",
-						"in": "query",
-						"required": false,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"name": "assigneeId",
-						"in": "query",
-						"required": false,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"name": "firstResult",
-						"in": "query",
-						"description": "Pagination of results. Specifies the index of the first result to return.",
-						"schema": {
-							"type": "integer"
-						}
-					}, {
-						"name": "maxResult",
-						"in": "query",
-						"description": "Pagination of results. Specifies the maximum number of results to return. Will return less results if there are no more results left.",
-						"schema": {
-							"type": "integer"
-						}
-					}, {
-						"name": "sortBy",
-						"in": "query",
-						"description": "Sort the results lexicographically by a given criterion. Valid values are instanceId, caseInstanceId, dueDate, executionId, caseExecutionId,assignee, created, description, id, name, nameCaseInsensitive and priority. Must be used in conjunction with the sortOrder parameter.",
-						"schema": {
-							"type": "string"
-						}
-					}, {
-						"name": "sortOrder",
-						"in": "query",
-						"description": "Sort the results in a given order. Values may be asc for ascending order or desc for descending order. Must be used in conjunction with the sortBy parameter.",
-						"schema": {
-							"type": "string"
-						}
+					"name": "mainTaskId",
+					"in": "query",
+					"required": false,
+					"schema": {
+						"type": "string"
 					}
-				],
+				}, 
+				{
+					"name": "fileId",
+					"in": "query",
+					"required": false,
+					"schema": {
+						"type": "string"
+					}
+				},
+				{
+					"name": "assigneeId",
+					"in": "query",
+					"required": false,
+					"schema": {
+						"type": "string"
+					}
+				},
+				{
+					"name": "firstResult",
+					"in": "query",
+					"description": "Pagination of results. Specifies the index of the first result to return.",
+					"schema": {
+						"type": "integer"
+					}
+				}, {
+					"name": "maxResult",
+					"in": "query",
+					"description": "Pagination of results. Specifies the maximum number of results to return. Will return less results if there are no more results left.",
+					"schema": {
+						"type": "integer"
+					}
+				}, {
+					"name": "sortBy",
+					"in": "query",
+					"description": "Sort the results lexicographically by a given criterion. Valid values are instanceId, caseInstanceId, dueDate, executionId, caseExecutionId,assignee, created, description, id, name, nameCaseInsensitive and priority. Must be used in conjunction with the sortOrder parameter.",
+					"schema": {
+						"type": "string"
+					}
+				}, {
+					"name": "sortOrder",
+					"in": "query",
+					"description": "Sort the results in a given order. Values may be asc for ascending order or desc for descending order. Must be used in conjunction with the sortBy parameter.",
+					"schema": {
+						"type": "string"
+					}
+				}],
 				"responses": {
 					"200": {
 						"description": "OK",
@@ -1110,6 +1109,9 @@
 					"taskId": {
 						"type": "string"
 					},
+					"mainTaskId": {
+						"type": "string"
+					},
 					"name": {
 						"type": "string"
 					},
@@ -1135,7 +1137,7 @@
 					"fileId": {
 						"type": "string"
 					},
-
+					
 					"eFormId": {
 						"type": "string"
 					},
@@ -1144,7 +1146,7 @@
 					}
 				}
 			},
-
+			
 			"dataUserTaskResponse": {
 				"type": "object",
 				"properties": {
