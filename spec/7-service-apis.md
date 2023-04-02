@@ -6,57 +6,29 @@ description: >-
 
 # 8 Service APIs
 
-This section provides a reference for APIs that should be implemented by this Building Block. The APIs defined here establish a blueprint for how the Building Block will interact with other Building Blocks. Additional APIs may be implemented by the Building Block, but the listed APIs define a minimal set of functionality that should be provided by any implementation of this Building Block.&#x20;
+The APIs defined here establish a blueprint for how the Building Block will interact with other Building Blocks. Additional APIs may be implemented by the Building Block, but the listed APIs define a minimal set of functionality that should be provided by any implementation of this Building Block.&#x20;
 
-The [GovStack non-functional requirements document](https://govstack.gitbook.io/specification/architecture-and-nonfunctional-requirements/6-onboarding) provides additional information on how 'adaptors' may be used to translate an existing API to the patterns described here.
+The [GovStack non-functional requirements document](https://govstack.gitbook.io/specification/architecture-and-nonfunctional-requirements/6-onboarding) provides additional information on how 'adapters' may be used to translate an existing API to the patterns described here.
 
-Registration Building Block is expected to host the following API services.
+## 8.x Accessing Services & Forms
 
-****
+The available services (i.e. registration processes) and form definitions within such a service can be accessed:
 
-## 8.1 Statistics API
-
-The statistics API gives Building Block operational statistics, that reference the number of processed applications (per operator, registration, service, date).
-
-API specifications are described in the Github [file](../api/GovStack\_Registration\_BB\_API\_template-1.1.0-resolved.json) and displayed here:
-
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API_template-1.1.0-resolved.json" path="/data/statistics/1.0" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API_template-1.1.0-resolved.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API_template-1.1.0-resolved.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/f3ca233de70279c7af0f028664520ead3f9f1c55/api/GovStack_Registration_BB_API_workflow.json" path="/services" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/f3ca233de70279c7af0f028664520ead3f9f1c55/api/GovStack_Registration_BB_API_workflow.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/f3ca233de70279c7af0f028664520ead3f9f1c55/api/GovStack_Registration_BB_API_workflow.json)
 {% endswagger %}
 
-
-
-### 8.2 List all assignments API
-
-Description: Lists registered application files as assignments.&#x20;
-
-Request endpoint: GET/api/task&#x20;
-
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/ingmarvali-API-1/api/GovStack_Registration_BB_API_workflow-0.0.1-resolved.json" path="/api/task" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/ingmarvali-API-1/api/GovStack_Registration_BB_API_workflow-0.0.1-resolved.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/ingmarvali-API-1/api/GovStack_Registration_BB_API_workflow-0.0.1-resolved.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/f3ca233de70279c7af0f028664520ead3f9f1c55/api/GovStack_Registration_BB_API_workflow.json" path="/services/{serviceKey}" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/f3ca233de70279c7af0f028664520ead3f9f1c55/api/GovStack_Registration_BB_API_workflow.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/f3ca233de70279c7af0f028664520ead3f9f1c55/api/GovStack_Registration_BB_API_workflow.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/ingmarvali-API-1/api/GovStack_Registration_BB_API_workflow-0.0.1-resolved.json" path="/api/task/{id}" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/ingmarvali-API-1/api/GovStack_Registration_BB_API_workflow-0.0.1-resolved.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/ingmarvali-API-1/api/GovStack_Registration_BB_API_workflow-0.0.1-resolved.json)
-{% endswagger %}
+## 8.x Submitting application file for a registration service
 
-{% embed url="https://github.com/GovStackWorkingGroup/bb-registration/blob/ingmarvali-API-1/api/GovStack_Registration_BB_API_workflow-0.0.1-resolved.json" %}
+Description: Create application file in Registration Building Block Request endpoint: &#x20;
 
-### 8.3 New application file registration API
+/api/process-definition/{key}/start-with-form   Definitions: Process: A service that is created to capture users' information.  Instance: Application file created in the service.&#x20;
 
-Description: Create application file in Registration Building Block
-
-Request endpoint:  /api/process-definition/{key}/start-with-form&#x20;
-
-
-
-Definitions:&#x20;
-
-Process: A service that is created to capture users' information.&#x20;
-
-Instance: Application file created in the service.&#x20;
-
-
+submit form data | upload document | submit/sign (?)
 
 {% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/ingmarvali-API-1/api/GovStack_Registration_BB_API-registration-0.0.1-resolved.json" path="/api/process-definition/{key}/start-with-form" method="post" %}
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/ingmarvali-API-1/api/GovStack_Registration_BB_API-registration-0.0.1-resolved.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/ingmarvali-API-1/api/GovStack_Registration_BB_API-registration-0.0.1-resolved.json)
@@ -64,12 +36,24 @@ Instance: Application file created in the service.&#x20;
 
 {% embed url="https://github.com/GovStackWorkingGroup/bb-registration/blob/ingmarvali-API-1/api/GovStack_Registration_BB_API-registration-0.0.1-resolved.json" %}
 
-### 8.4 Workflow processing task API
+## 8.x Processing as an operator
 
-Description: Process and complete applicant task by id.
+Description: Process and complete applicant task by id. Request endpoint:  /api/applicant/task/{id}/sign-form
 
-Request endpoint:  /api/applicant/task/{id}/sign-form
+Description: Lists registered application files as assignments. Request endpoint: GET/api/task&#x20;
+
+get tasks | ...
 
 {% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/ingmarvali-API-1/api/GovStack_Registration_BB_API_workflow-0.0.1-resolved.json" path="/api/applicant/task/{id}/sign-form" method="post" %}
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/ingmarvali-API-1/api/GovStack_Registration_BB_API_workflow-0.0.1-resolved.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/ingmarvali-API-1/api/GovStack_Registration_BB_API_workflow-0.0.1-resolved.json)
+{% endswagger %}
+
+{% embed url="https://github.com/GovStackWorkingGroup/bb-registration/blob/ingmarvali-API-1/api/GovStack_Registration_BB_API_workflow-0.0.1-resolved.json" %}
+
+## 8.x Statistics
+
+The statistics API gives Building Block operational statistics, that reference the number of processed applications (per operator, registration, service, date):
+
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API_template-1.1.0-resolved.json" path="/data/statistics/1.0" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API_template-1.1.0-resolved.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API_template-1.1.0-resolved.json)
 {% endswagger %}
