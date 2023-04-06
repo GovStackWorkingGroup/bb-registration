@@ -21,21 +21,19 @@
 	"paths": {
 		"/services": {
 			"get": {
-				"tags": [
-					"Applicant"
-				],
+				"tags": ["Available Services"],
 				"summary": "returns a list of services (Services available to use)",
 				"description": "Listing of all services with basic information",
 				"operationId": "getServiceList",
 				"parameters": [{
-						"name": "name",
-						"in": "query",
-						"schema": {
-							"type": "string"
-						},
-						"required": false,
-						"example": "Register Mother and Child"
-					}
+					"name": "name",
+					"in": "query",
+					"schema": {
+						"type": "string"
+					},
+					"required": false,
+					"example": "Register Mother and Child"
+				}
 
 				],
 				"responses": {
@@ -60,14 +58,12 @@
 		},
 		"/services/{serviceKey}": {
 			"get": {
-				"tags": [
-					"Applicant"
-				],
+				"tags": ["Available Services"],
 				"summary": "returns detailed information about a service",
 				"description": "Pass in the ID of the service and it will return all information about that service\n",
 				"operationId": "getService",
 				"parameters": [{
-					"$ref": "#/components/parameters/serviceIdParam"
+					"$ref": "#/components/parameters/serviceKeyParam"
 				}],
 				"responses": {
 					"200": {
@@ -92,7 +88,7 @@
 
 		"/eForms/{serviceKey}": {
 			"get": {
-				"tags": ["Applicant"],
+				"tags": ["Available Services"],
 				"summary": "Retrieve a list of all available e-forms",
 				"description": "Returns e-service forms with schema",
 				"operationId": "getServiceSchemaByServiceKey",
@@ -122,9 +118,9 @@
 				}
 			}
 		},
-		"/eFormSchema/{eFormId}": {
+		"/eForms/{eFormId}": {
 			"get": {
-				"tags": ["Applicant"],
+				"tags": ["Available Services"],
 				"summary": "Retrieve a specific e-form by ID",
 				"parameters": [{
 					"name": "eFormId",
@@ -153,17 +149,17 @@
 			}
 		},
 
-		"/service/{serviceKey}/startWithForm": {
+		"/services/{serviceKey}/applications": {
 			"post": {
 				"tags": ["Applicant"],
-				"summary": "Start service application file with form",
-				"description": "Returns started service application file ID",
-				"operationId": "startApplicationFileForm",
+				"summary": "Submit an application file as an applicant",
+				"description": "Send an application file including all documents and form data to submit a registration request to be processed by operators.",
 				"parameters": [{
-						"$ref": "#/components/parameters/Information-Mediator-Client"
-					},
+					"$ref": "#/components/parameters/Information-Mediator-Client"
+				},
 					{
 						"name": "serviceKey",
+						"description": "the id of the service for which this is an application",
 						"in": "path",
 						"required": true,
 						"schema": {
@@ -203,13 +199,14 @@
 			}
 		},
 
-		"/service/documentUpload": {
+		"/documents": {
 			"post": {
 				"summary": "Upload a required document",
+				"description": "Upload a document/attachment to receive a documentId that can be linked to applications when submitting a new registration",
 				"operationId": "uploadFile",
 				"tags": [
 					"Applicant",
-					"Operators services"
+					"Operator"
 				],
 				"parameters": [{
 					"name": "additionalMetadata",
@@ -267,15 +264,15 @@
 			}
 		},
 
-		"/service/applicationFileList": {
+		"/applications": {
 			"get": {
-				"tags": ["Applicant"],
-				"summary": "Retrieve all applicant's application files",
-				"description": "Returns application list",
+				"tags": ["Applicant", "Operator"],
+				"summary": "Retrieve all application files",
+				"description": "Returns a list of application files the user has permission to access (i.e. either only the applicant's own applications or all applications for an operator to process)",
 				"operationId": "getApplicantFileList",
 				"parameters": [{
-						"$ref": "#/components/parameters/Information-Mediator-Client"
-					},
+					"$ref": "#/components/parameters/Information-Mediator-Client"
+				},
 					{
 						"name": "serviceKey",
 						"description": "Service Key",
@@ -348,15 +345,15 @@
 			}
 		},
 
-		"/service/applicationFile/{fileId}": {
+		"/applications/{fileId}": {
 			"get": {
-				"tags": ["Applicant", "Operators services"],
-				"summary": "Get application file by  ID",
+				"tags": ["Applicant", "Operator"],
+				"summary": "Get application file by	ID",
 				"description": "Returns application file",
 				"operationId": "getApplicationFileById",
 				"parameters": [{
-						"$ref": "#/components/parameters/Information-Mediator-Client"
-					},
+					"$ref": "#/components/parameters/Information-Mediator-Client"
+				},
 					{
 						"name": "fileId",
 						"in": "path",
@@ -382,18 +379,16 @@
 						"description": "Application file was not found"
 					}
 				}
-			}
-		},
+			},
 
-		"/service/{fileId}/updateWithForm": {
 			"put": {
-				"tags": ["Operators services"],
+				"tags": ["Operator"],
 				"summary": "Update service application file with operator's form data",
 				"description": "Returns updated service application file ID",
 				"operationId": "updateApplicationFileForm",
 				"parameters": [{
-						"$ref": "#/components/parameters/Information-Mediator-Client"
-					},
+					"$ref": "#/components/parameters/Information-Mediator-Client"
+				},
 					{
 						"name": "fileId",
 						"in": "path",
@@ -435,100 +430,9 @@
 			}
 		},
 
-		"/service/operatorFileList": {
+		"/tasks": {
 			"get": {
-				"tags": ["Operators services"],
-				"summary": "Retrieve all applicant's application files",
-				"description": "Returns application list",
-				"operationId": "getOperatorFileList",
-				"parameters": [{
-						"$ref": "#/components/parameters/Information-Mediator-Client"
-					},
-					{
-						"name": "serviceKey",
-						"description": "Service Key",
-						"in": "query",
-						"required": false,
-						"schema": {
-							"type": "string",
-							"example": "P2c9280907f23fa95017f27efd0b20074"
-						}
-					},
-					{
-						"name": "assigneeId",
-						"description": "Assignees's user ID",
-						"in": "query",
-						"required": false,
-						"schema": {
-							"type": "string",
-							"example": "42962de0-bdb2-11ed-9397-0242ac120004"
-						}
-					},
-					{
-						"name": "roleId",
-						"description": "Operator's role ID",
-						"in": "query",
-						"required": false,
-						"schema": {
-							"type": "string",
-							"example": "42962de0-bdb2-11ed-9397-0242ac120004"
-						}
-					},
-					{
-						"name": "firstResult",
-						"in": "query",
-						"description": "Pagination of results. Specifies the index of the first result to return.",
-						"schema": {
-							"type": "integer",
-							"example": 1
-						}
-					}, {
-						"name": "maxResult",
-						"in": "query",
-						"description": "Pagination of results. Specifies the maximum number of results to return. Will return less results if there are no more results left.",
-						"schema": {
-							"type": "integer",
-							"example": 10
-						}
-					}, {
-						"name": "sortBy",
-						"in": "query",
-						"description": "Sort the results lexicographically by a given criterion. Valid values are instanceId, caseInstanceId, dueDate, executionId, caseExecutionId,assignee, created, description, id, name, nameCaseInsensitive and priority. Must be used in conjunction with the sortOrder parameter.",
-						"schema": {
-							"type": "string",
-							"example": "created"
-						}
-					}, {
-						"name": "sortOrder",
-						"in": "query",
-						"description": "Sort the results in a given order. Values may be asc for ascending order or desc for descending order. Must be used in conjunction with the sortBy parameter.",
-						"schema": {
-							"type": "string",
-							"example": "asc"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"content": {
-							"*/*": {
-								"schema": {
-									"type": "array",
-									"items": {
-										"$ref": "#/components/schemas/applicantApplicationFileListResponse"
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-
-		"/task": {
-			"get": {
-				"tags": ["Operators services", "Applicant"],
+				"tags": ["Operator", "Applicant"],
 				"summary": "Retrieve all tasks",
 				"description": "Returns task list",
 				"operationId": "getTasks",
@@ -539,52 +443,52 @@
 					"schema": {
 						"type": "string"
 					}
-				}, 
-				{
-					"name": "fileId",
-					"in": "query",
-					"required": false,
-					"schema": {
-						"type": "string"
-					}
 				},
-				{
-					"name": "assigneeId",
-					"in": "query",
-					"required": false,
-					"schema": {
-						"type": "string"
-					}
-				},
-				{
-					"name": "firstResult",
-					"in": "query",
-					"description": "Pagination of results. Specifies the index of the first result to return.",
-					"schema": {
-						"type": "integer"
-					}
-				}, {
-					"name": "maxResult",
-					"in": "query",
-					"description": "Pagination of results. Specifies the maximum number of results to return. Will return less results if there are no more results left.",
-					"schema": {
-						"type": "integer"
-					}
-				}, {
-					"name": "sortBy",
-					"in": "query",
-					"description": "Sort the results lexicographically by a given criterion. Valid values are instanceId, caseInstanceId, dueDate, executionId, caseExecutionId,assignee, created, description, id, name, nameCaseInsensitive and priority. Must be used in conjunction with the sortOrder parameter.",
-					"schema": {
-						"type": "string"
-					}
-				}, {
-					"name": "sortOrder",
-					"in": "query",
-					"description": "Sort the results in a given order. Values may be asc for ascending order or desc for descending order. Must be used in conjunction with the sortBy parameter.",
-					"schema": {
-						"type": "string"
-					}
-				}],
+					{
+						"name": "fileId",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "assigneeId",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "firstResult",
+						"in": "query",
+						"description": "Pagination of results. Specifies the index of the first result to return.",
+						"schema": {
+							"type": "integer"
+						}
+					}, {
+						"name": "maxResult",
+						"in": "query",
+						"description": "Pagination of results. Specifies the maximum number of results to return. Will return less results if there are no more results left.",
+						"schema": {
+							"type": "integer"
+						}
+					}, {
+						"name": "sortBy",
+						"in": "query",
+						"description": "Sort the results lexicographically by a given criterion. Valid values are instanceId, caseInstanceId, dueDate, executionId, caseExecutionId,assignee, created, description, id, name, nameCaseInsensitive and priority. Must be used in conjunction with the sortOrder parameter.",
+						"schema": {
+							"type": "string"
+						}
+					}, {
+						"name": "sortOrder",
+						"in": "query",
+						"description": "Sort the results in a given order. Values may be asc for ascending order or desc for descending order. Must be used in conjunction with the sortBy parameter.",
+						"schema": {
+							"type": "string"
+						}
+					}],
 				"responses": {
 					"200": {
 						"description": "OK",
@@ -603,9 +507,9 @@
 			}
 		},
 
-		"/task/{taskId}": {
+		"/tasks/{taskId}": {
 			"get": {
-				"tags": ["Operators services"],
+				"tags": ["Operator", "Applicant"],
 				"summary": "Get task by id",
 				"description": "Returns task by id",
 				"operationId": "getTaskById",
@@ -636,9 +540,9 @@
 		},
 
 
-		"/task/{taskId}/complete": {
+		"/tasks/{taskId}/complete": {
 			"post": {
-				"tags": ["Operators services"],
+				"tags": ["Operator", "Applicant"],
 				"summary": "Complete task by id",
 				"operationId": "completeTaskById",
 				"parameters": [{
@@ -694,7 +598,7 @@
 				},
 				"required": true
 			},
-			"serviceIdParam": {
+			"serviceKeyParam": {
 				"in": "path",
 				"name": "serviceKey",
 				"required": true,
@@ -706,7 +610,7 @@
 			}
 		},
 		"schemas": {
-			"serviceDefinition": {
+			"service": {
 				"type": "object",
 				"required": [
 					"name",
@@ -715,15 +619,15 @@
 					"version"
 				],
 				"properties": {
+					"id": {
+						"type": "string",
+						"description": "Service Key (unique identifier)",
+						"example": "P2c9280957e579ad7017e58a3399f0068"
+					},
 					"name": {
 						"type": "string",
 						"description": "name of a service",
 						"example": "Mother and Child Registration"
-					},
-					"serviceKey": {
-						"type": "string",
-						"description": "service Key",
-						"example": "P2c9280957e579ad7017e58a3399f0068"
 					},
 					"version": {
 						"type": "string",
@@ -751,18 +655,6 @@
 					},
 					"serviceBody": {
 						"$ref": "#/components/schemas/ListOfProperties"
-					}
-				}
-			},
-			"service": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer",
-						"description": "generated by a system surrogate primary key"
-					},
-					"serviceDefinition": {
-						"$ref": "#/components/schemas/serviceDefinition"
 					}
 				}
 			},
@@ -1137,7 +1029,7 @@
 					"fileId": {
 						"type": "string"
 					},
-					
+
 					"eFormId": {
 						"type": "string"
 					},
@@ -1146,7 +1038,7 @@
 					}
 				}
 			},
-			
+
 			"dataUserTaskResponse": {
 				"type": "object",
 				"properties": {
