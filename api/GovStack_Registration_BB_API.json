@@ -86,11 +86,11 @@
 			}
 		},
 
-		"/eForms/{serviceKey}": {
+		"/services/{serviceKey}/eForms": {
 			"get": {
 				"tags": ["Available Services"],
-				"summary": "Retrieve a list of all available e-forms",
-				"description": "Returns e-service forms with schema",
+				"summary": "Retrieve all available e-forms",
+				"description": "Get the list of all e-service forms with schema related to the given service",
 				"operationId": "getServiceSchemaByServiceKey",
 				"parameters": [{
 					"name": "serviceKey",
