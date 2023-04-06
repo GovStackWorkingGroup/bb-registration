@@ -10,6 +10,57 @@ The APIs defined here establish a blueprint for how the Building Block will inte
 
 The [GovStack non-functional requirements document](https://govstack.gitbook.io/specification/architecture-and-nonfunctional-requirements/6-onboarding) provides additional information on how 'adapters' may be used to translate an existing API to the patterns described here.
 
+```mermaid
+sequenceDiagram
+    rect rgba(0, 0, 255, .1)
+
+    App->>+Registration BB: GET /services
+    Registration BB-->>-App: array of services (serviceKey)
+    
+    App->>+Registration BB: GET /service/{serviceKey}
+    Registration BB-->>-App: Service properties
+    
+    end
+    rect rgba(204, 204, 255, .2)
+    App->>+Registration BB: GET /eForms/{serviceKey}
+    Registration BB-->>-App: Array of form schemas (eFormId)
+
+    App->>+Registration BB: GET /eFormSchema/{eFormId}
+    Registration BB-->>-App: Form schema 
+
+    end
+
+    rect rgba(0, 0, 255, .1)
+    App->>+Registration BB: POST /api/service/{fileId}/documentUpload
+    Registration BB-->>-App: documentId, url
+    
+    
+    App->>+Registration BB: POST /api/service/{serviceKey}/startWithForm
+    Registration BB-->>-App: fileId
+    
+
+    end
+
+    rect rgba(204, 204, 255, .2)
+
+    App->>+Registration BB: GET /api/service/applicationFileList
+    Registration BB-->>-App: List of applications, fileId
+
+    App->>+Registration BB: GET /api/service/applicationFile/{fileId}
+    Registration BB-->>-App: Application file 
+
+    end
+    rect rgba(0, 0, 255, .1)
+    App->>+Registration BB: GET /task,  assignee ID
+    Registration BB-->>-App: Return taskId, status 
+    end
+
+    rect rgba(204, 204, 255, .2)
+    App->>+Registration BB: GET /data/statistics/1.0
+    Registration BB-->>-App: statistics data
+    end
+```
+
 ## 8.1 Accessing Services & Forms
 
 The available services (i.e. registration processes) and form definitions within such a service can be accessed:
@@ -22,27 +73,73 @@ The available services (i.e. registration processes) and form definitions within
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json)
 {% endswagger %}
 
-## 8.2 Submitting application file for a registration service
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json" path="/eForms/{serviceKey}" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json)
+{% endswagger %}
 
-Description: Create application file in Registration Building Block Request endpoint: &#x20;
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json" path="/eFormSchema/{eFormId}" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json)
+{% endswagger %}
 
-/api/process-definition/{key}/start-with-form   Definitions: Process: A service that is created to capture users' information.  Instance: Application file created in the service.&#x20;
+## 8.2 Applicant user services
 
-submit form data | upload document | submit/sign (?)
+Going through the registration process as an applicant requires multiple steps available via API endpoints:
+
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json" path="/service/documentUpload" method="post" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json)
+{% endswagger %}
 
 {% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json" path="/service/{serviceKey}/startWithForm" method="post" %}
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json)
 {% endswagger %}
 
-## 8.3 Processing as an operator
+Existing applications can be accessed after submission:
 
-Description: Process and complete applicant task by id. Request endpoint:  /api/applicant/task/{id}/sign-form
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json" path="/service/applicationFileList" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json)
+{% endswagger %}
 
-Description: Lists registered application files as assignments. Request endpoint: GET/api/task&#x20;
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json" path="/service/applicationFile/{fileId}" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json)
+{% endswagger %}
 
-get tasks | ...
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json" path="/task" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json)
+{% endswagger %}
+
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json" path="/task/{taskId}" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json)
+{% endswagger %}
+
+## 8.3 Operator user services
+
+Operators can access and process existing application files
 
 {% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json" path="/service/operatorFileList" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json)
+{% endswagger %}
+
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json" path="/service/applicationFile/{fileId}" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json)
+{% endswagger %}
+
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json" path="/service/{fileId}/updateWithForm" method="put" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json)
+{% endswagger %}
+
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json" path="/service/documentUpload" method="post" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json)
+{% endswagger %}
+
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json" path="/task" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json)
+{% endswagger %}
+
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json" path="/task/{taskId}" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json)
+{% endswagger %}
+
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json" path="/task/{taskId}/complete" method="post" %}
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/main/api/GovStack_Registration_BB_API.json)
 {% endswagger %}
 
