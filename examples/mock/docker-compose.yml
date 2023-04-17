@@ -4,7 +4,7 @@ services:
   app:
     image: bb-registration-api-image
     ports:
-      - 3355:3003
+      - 3333:3003
     networks:
       - web
     build:
