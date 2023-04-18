@@ -1,6 +1,6 @@
 const chai = require('chai');
 const { spec } = require('pactum');
-const { Given, When, Then, Before } = require('@cucumber/cucumber');
+const { Given, When, Then, Before, After } = require('@cucumber/cucumber');
 const {
   servicesEndpoint,
   defaultExpectedResponseTime,
@@ -23,8 +23,8 @@ Given(
   () => 'User wants to retrieve the list of services'
 );
 
-When('User sends GET request with given {string} as name', name =>
-  specServices.withPath(baseUrl).withQueryParams('name', name)
+When('User sends GET \\/statistics request with no optional parameter', () =>
+  specServices.withPath(baseUrl)
 );
 
 Then(
@@ -44,11 +44,27 @@ Then('The \\/statistics response should have status 200', () =>
   specServices.response().to.have.status(200)
 );
 
+Then('The \\/statistics response should match empty array', () =>
+  chai.expect(specServices._response.json).to.be.jsonSchema([])
+);
+
+// Scenario Outline: Retrieve the list of services that match the name provided in optional parameter
+// Given and others Then for this scenario are written in the aforementioned example
+When('User sends GET \\/statistics request with given {string} as name', name =>
+  specServices.withPath(baseUrl).withQueryParams('name', name)
+);
+
 Then('The \\/statistics response should match json schema', () =>
   chai
     .expect(specServices._response.json)
     .to.be.jsonSchema(servicesResponseSchema)
 );
 
-// Scenario Outline: Retrieve the list of services
-// Given, When and others Then for this scenario are written in the aforementioned example
+Then(
+  'The service name in response match provided {string} as name parameter',
+  name => specServices.response().should.have.bodyContains('name', name)
+);
+
+After(endpointTag, () => {
+  specServices.end();
+});

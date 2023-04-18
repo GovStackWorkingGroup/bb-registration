@@ -128,7 +128,7 @@
       "responses": [
         {
           "uuid": "e65054b7-ad66-498c-974c-f35ad0e65de0",
-          "body": "[\n  {\n    \"id\": \"P2c9280957e579ad7017e58a3399f0068\",\n    \"name\": \"Mother and Child Registration\",\n    \"version\": \"123\",\n    \"type\": \"None\",\n    \"isExecutable\": true,\n    \"isClosed\": true,\n    \"description\": \"string\",\n    \"serviceBody\": [\n      {\n        \"code\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  }\n]",
+          "body": "[\n  {\n    \"id\": \"P2c9280957e579ad7017e58a3399f0068\",\n    \"name\": \"{{queryParam 'name'}}\",\n    \"version\": \"123\",\n    \"type\": \"None\",\n    \"isExecutable\": true,\n    \"isClosed\": true,\n    \"description\": \"string\",\n    \"serviceBody\": [\n      {\n        \"code\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  }\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "",
