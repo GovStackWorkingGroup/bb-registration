@@ -13,21 +13,20 @@ description: >-
 
 ### 10.2 Future Considerations <a href="#10.2-future-considerations" id="10.2-future-considerations"></a>
 
-[A list of topics that may be relevant to future versions of this Building Block](https://govstack-global.atlassian.net/l/cp/19LihiQq).&#x20;
+[A list of topics that may be relevant to future versions of this Building Block](https://govstack-global.atlassian.net/l/cp/19LihiQq).
 
 ### 10.3 API Descriptions
 
-[API descriptions in GitHub](https://github.com/GovStackWorkingGroup/bb-registration).
+[API descriptions in GitHub](https://github.com/GovStackWorkingGroup/bb-registration/tree/1.0-QA/api).
 
 ### 10.4 Security Requirements
 
-[The reference document for the security requirements.](https://govstack.gitbook.io/specification/security-requirements)
+[The reference document for the security requirements](https://govstack.gitbook.io/specification/v/1-0/security-requirements).
 
 ### **10.5 Architecture Requirements**
 
-[The Architecture requirements guidance](https://govstack.gitbook.io/specification/architecture-and-nonfunctional-requirements/introduction).
+[The Architecture requirements guidance](https://govstack.gitbook.io/specification/v/1-0/architecture-and-nonfunctional-requirements/introduction).
 
 ### 10.6 Interoperability Requirements
 
-[The Information Mediator requirements](https://govstack.gitbook.io/specification/building-blocks/information-mediation).
-
+[The Information Mediator Requirements](https://govstack.gitbook.io/specification/v/1-0/building-blocks/information-mediation).

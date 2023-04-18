@@ -71,7 +71,7 @@ Illustration 7 - Authentication and authorization.
 
 **Notes:**\
 Pre-requirements: user has passed the provisioning of user credentials and this can authenticate/login to GovStack (sandbox) system. User roles are also added by an Identity and Access Management (IAM) Security system when the token is sent to the Building Block. Registration Building Block in this case is operating as Building Block.\
-See the full description of the user authentication in the [Security Building Block documentation](https://govstack.gitbook.io/specification/security-requirements/5-cross-cutting-requirements#docs-internal-guid-95b38c92-7fff-abfc-b395-b64d56ed6c74).
+See the full description of the user authentication in the [Security Building Block documentation](https://govstack.gitbook.io/specification/v/1-0/security-requirements/5-cross-cutting-requirements#5.27.3-example-rest-authentication-api).
 
 Data structures:
 
@@ -107,7 +107,7 @@ Illustration 8- Self registration
 
 Pre-requirements: user does not have user credentials to authenticate/login to GovStack (sandbox) system.\
 Registration Building Block in this case is operating as a Building Block user interface.\
-See the full description of the User registration in [Security Building Block documentation](https://govstack.gitbook.io/specification/security-requirements).
+See the full description of the User registration in [Security Building Block documentation](https://govstack.gitbook.io/specification/v/1-0/security-requirements).
 
 **Sequence Diagram for User Self Registration via Foundational ID:**
 
@@ -131,7 +131,7 @@ User->Security(IAM): User clicks validation link in SMS or email
 Illustration 9: Self-registration via foundational ID.
 
 **Notes**:\
-Pre-requirements: user does not have user credentials to authenticate/login to Govstack (sandbox) system. Registration Building Block in this case is operating as Building Block UI. See the full description of the User registration in the [Security Building Block documentation](https://govstack.gitbook.io/specification/security-requirements/5-cross-cutting-requirements#docs-internal-guid-95b38c92-7fff-abfc-b395-b64d56ed6c74).
+Pre-requirements: user does not have user credentials to authenticate/login to Govstack (sandbox) system. Registration Building Block in this case is operating as Building Block UI. See the full description of the User registration in the [Security Building Block documentation](https://govstack.gitbook.io/specification/v/1-0/security-requirements/5-cross-cutting-requirements#docs-internal-guid-95b38c92-7fff-abfc-b395-b64d56ed6c74).
 
 **Interaction 3: Information Mediator Building Block**
 
@@ -190,7 +190,7 @@ Illustration 11- Request payment options.
 | -------------------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | <p><br>Get list of payment options</p> | <p><br>Payment API descriptions,</p><p>List of payment options, details, data, url</p> | <p><br>Before the Registration BB can use the Payment BB information for screen populating the system must import API service descriptions<br><br></p> |
 
-**Interaction 5: Setup for Multiple Registration BBs**
+**Interaction 5: Setup for Multiple Registration Building Blocks**
 
 **Name**: Setup for multiple Registration Building Blocks
 
@@ -212,7 +212,7 @@ The citizen/applicant, as the main actor in the process, will open a web URL add
 
 The back office system registers all applications submitted. If configured so, the process flow may have bot(s) and human(s) in the flow. Bot roles process applications by validating information against external API information. When processed the BOT role will pass the processing task to the next role.
 
-The back office operator as the main actor in the second part of the process receives a task notification message and authenticates to the web system. The system shows a list of applications assigned for the operator to process. The operator will then open the application and verify the application content and make a decision (approve, reject, or send back for correction). If an application has discrepancies then the operator will mark the errors and/or explain the reasons for rejections. When the application file is positively processed by the back office operators, then the applicant will receive the credential/result of the application. If the back office processing flow has multiple roles then the approval by the first processing role operator will take the application processing task to the next role.
+The back office operator as the main actor in the second part of the process receives a task notification message and authenticates to the web system. The system shows a list of applications assigned for the operator to process. The operator will then open the application and verify the application content and make a decision (approve, reject, or send it back for correction). If an application has discrepancies then the operator will mark the errors and/or explain the reasons for rejections. When the application file is positively processed by the back office operators, then the applicant will receive the credential/result of the application. If the back office processing flow has multiple roles then the approval by the first processing role operator will take the application processing task to the next role.
 
 **Preconditions**:\
 As a pre-condition, the web system is accessible from the internet, and the service is published, the user/applicant has user credentials for authentication. No authorization is needed for applicants if the service is usable by all users.\
@@ -261,7 +261,7 @@ Illustration 13 - Voucher issuing diagram.
 
 **Data structures**:
 
-| **Name**           | **Required Data** | **Notes**                                                                                                                              |
-| ------------------ | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| Voucher activation | Voucher ID        | <p>See more in <a href="https://govstack.gitbook.io/specification/building-blocks/payments">Payments Building Block</a></p><p><br></p> |
-| Response           | Status            | The response is stored in Registration Building Block                                                                                  |
+| **Name**           | **Required Data** | **Notes**                                                                                                                                    |
+| ------------------ | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Voucher activation | Voucher ID        | <p>See more in <a href="https://govstack.gitbook.io/specification/v/1-0/building-blocks/payments">Payments Building Block</a></p><p><br></p> |
+| Response           | Status            | The response is stored in Registration Building Block                                                                                        |
