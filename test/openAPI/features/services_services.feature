@@ -7,7 +7,7 @@ Feature: API endpoint that returns a list of services (Services available to use
   Scenario: Retrieve the list of services smoke type test
 
     Given User wants to retrieve the list of services
-    When User sends GET /statistics request with no optional parameter
+    When GET request to retrieve a list of services is sent
     Then The response from the /statistics endpoint is received
     And The /statistics response should be returned in a timely manner 15000ms
     And The /statistics response should have status 200
@@ -22,7 +22,7 @@ Feature: API endpoint that returns a list of services (Services available to use
     And The /statistics response should be returned in a timely manner 15000ms
     And The /statistics response should have status 200
     And The /statistics response should match json schema
-    And The service name in response match provided "<name>" as name parameter
+    And The name field in the response matches with "<name>" provided as name in the query parameter
 
     Examples:
     | name                        |

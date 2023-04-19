@@ -23,8 +23,8 @@ Given(
   () => 'User wants to retrieve the list of services'
 );
 
-When('User sends GET \\/statistics request with no optional parameter', () =>
-  specServices.withPath(baseUrl)
+When('GET request to retrieve a list of services is sent', () =>
+  specServices.get(baseUrl)
 );
 
 Then(
@@ -51,7 +51,7 @@ Then('The \\/statistics response should match empty array', () =>
 // Scenario Outline: Retrieve the list of services that match the name provided in optional parameter
 // Given and others Then for this scenario are written in the aforementioned example
 When('User sends GET \\/statistics request with given {string} as name', name =>
-  specServices.withPath(baseUrl).withQueryParams('name', name)
+  specServices.get(baseUrl).withQueryParams('name', name)
 );
 
 Then('The \\/statistics response should match json schema', () =>
@@ -61,8 +61,13 @@ Then('The \\/statistics response should match json schema', () =>
 );
 
 Then(
-  'The service name in response match provided {string} as name parameter',
-  name => specServices.response().should.have.bodyContains('name', name)
+  'The name field in the response matches with {string} provided as name in the query parameter',
+  name => {
+    const nameFieldsArray = specServices._response.json.map(
+      object => object.name
+    );
+    nameFieldsArray.map(nameField => chai.expect(nameField).includes(name));
+  }
 );
 
 After(endpointTag, () => {
