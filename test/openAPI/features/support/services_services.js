@@ -50,8 +50,11 @@ Then('The \\/statistics response should match empty array', () =>
 
 // Scenario Outline: Retrieve the list of services that match the name provided in optional parameter
 // Given and others Then for this scenario are written in the aforementioned example
-When('User sends GET \\/statistics request with given {string} as name', name =>
-  specServices.get(baseUrl).withQueryParams('name', name)
+When(
+  'User sends GET \\/statistics request with given {string} as name',
+  name => {
+    specServices.get(baseUrl).withQueryParams('name', name);
+  }
 );
 
 Then('The \\/statistics response should match json schema', () =>
@@ -66,7 +69,7 @@ Then(
     const nameFieldsArray = specServices._response.json.map(
       object => object.name
     );
-    nameFieldsArray.map(nameField => chai.expect(nameField).includes(name));
+    nameFieldsArray.map(nameField => chai.expect(nameField).equal(name));
   }
 );
 
