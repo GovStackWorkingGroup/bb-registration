@@ -11,7 +11,7 @@ Feature: API endpoint that returns a list of services (Services available to use
     Then The response from the /statistics endpoint is received
     And The /statistics response should be returned in a timely manner 15000ms
     And The /statistics response should have status 200
-    And The /statistics response should match empty array
+    And The /statistics response should match json schema
 
   @unit @positive
   Scenario Outline: Retrieve the list of services that match the name provided in optional parameter

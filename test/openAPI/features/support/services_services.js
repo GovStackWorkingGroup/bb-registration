@@ -44,8 +44,10 @@ Then('The \\/statistics response should have status 200', () =>
   specServices.response().to.have.status(200)
 );
 
-Then('The \\/statistics response should match empty array', () =>
-  chai.expect(specServices._response.json).to.be.jsonSchema([])
+Then('The \\/statistics response should match json schema', () =>
+  chai
+    .expect(specServices._response.json)
+    .to.be.jsonSchema(servicesResponseSchema)
 );
 
 // Scenario Outline: Retrieve the list of services that match the name provided in optional parameter
@@ -55,12 +57,6 @@ When(
   name => {
     specServices.get(baseUrl).withQueryParams('name', name);
   }
-);
-
-Then('The \\/statistics response should match json schema', () =>
-  chai
-    .expect(specServices._response.json)
-    .to.be.jsonSchema(servicesResponseSchema)
 );
 
 Then(
