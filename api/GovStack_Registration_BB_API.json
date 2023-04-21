@@ -38,7 +38,7 @@
 				],
 				"responses": {
 					"200": {
-						"description": "list of services",
+						"description": "list of services or an empty array if none are available",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -56,14 +56,14 @@
 				}
 			}
 		},
-		"/services/{serviceKey}": {
+		"/services/{serviceId}": {
 			"get": {
 				"tags": ["Available Services"],
 				"summary": "returns detailed information about a service",
 				"description": "Pass in the ID of the service and it will return all information about that service\n",
 				"operationId": "getService",
 				"parameters": [{
-					"$ref": "#/components/parameters/serviceKeyParam"
+					"$ref": "#/components/parameters/serviceIdParam"
 				}],
 				"responses": {
 					"200": {
@@ -86,24 +86,18 @@
 			}
 		},
 
-		"/services/{serviceKey}/eForms": {
+		"/services/{serviceId}/eForms": {
 			"get": {
 				"tags": ["Available Services"],
 				"summary": "Retrieve all available e-forms",
 				"description": "Get the list of all e-service forms with schema related to the given service",
 				"operationId": "getServiceSchemaByServiceKey",
 				"parameters": [{
-					"name": "serviceKey",
-					"in": "path",
-					"required": true,
-					"schema": {
-						"type": "string",
-						"example": "P2c9280957e579ad7017e58a3399f0068"
-					}
+					"$ref": "#/components/parameters/serviceIdParam"
 				}],
 				"responses": {
 					"200": {
-						"description": "OK",
+						"description": "list of eForms or an empty array if none are available",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -149,7 +143,7 @@
 			}
 		},
 
-		"/services/{serviceKey}/applications": {
+		"/services/{serviceId}/applications": {
 			"post": {
 				"tags": ["Applicant"],
 				"summary": "Submit an application file as an applicant",
@@ -158,13 +152,7 @@
 					"$ref": "#/components/parameters/Information-Mediator-Client"
 				},
 					{
-						"name": "serviceKey",
-						"description": "the id of the service for which this is an application",
-						"in": "path",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
+						"$ref": "#/components/parameters/serviceIdParam"
 					}
 				],
 				"requestBody": {
@@ -274,13 +262,13 @@
 					"$ref": "#/components/parameters/Information-Mediator-Client"
 				},
 					{
-						"name": "serviceKey",
-						"description": "Service Key",
+						"name": "serviceId",
+						"description": "id of a service to filter for applications of only this service",
 						"in": "query",
 						"required": false,
 						"schema": {
 							"type": "string",
-							"example": "P2c9280907f23fa95017f27efd0b20074"
+							"format": "uuid"
 						}
 					},
 					{
@@ -329,7 +317,7 @@
 				],
 				"responses": {
 					"200": {
-						"description": "OK",
+						"description": "list of applications or an empty array if none are available",
 						"content": {
 							"*/*": {
 								"schema": {
@@ -491,7 +479,7 @@
 					}],
 				"responses": {
 					"200": {
-						"description": "OK",
+						"description": "list of tasks or an empty array if none are available",
 						"content": {
 							"*/*": {
 								"schema": {
@@ -598,13 +586,14 @@
 				},
 				"required": true
 			},
-			"serviceKeyParam": {
+			"serviceIdParam": {
 				"in": "path",
-				"name": "serviceKey",
+				"name": "serviceId",
 				"required": true,
 				"schema": {
 					"type": "string",
-					"example": "P2c9280957e579ad7017e58a3399f0068"
+					"format": "uuid",
+					"example": "f7d33db0-2809-484e-a780-76b7ccd4ecbf"
 				},
 				"description": "The id for a defined service in the registration BB workflow engine."
 			}
@@ -613,16 +602,17 @@
 			"service": {
 				"type": "object",
 				"required": [
+					"id",
 					"name",
-					"serviceKey",
 					"type",
 					"version"
 				],
 				"properties": {
 					"id": {
 						"type": "string",
-						"description": "Service Key (unique identifier)",
-						"example": "P2c9280957e579ad7017e58a3399f0068"
+						"format": "uuid",
+						"description": "unique identifier (serviceId)",
+						"example": "f7d33db0-2809-484e-a780-76b7ccd4ecbf"
 					},
 					"name": {
 						"type": "string",
@@ -757,7 +747,7 @@
 					"applicantId": {
 						"type": "string",
 						"example": "42962de0-bdb2-11ed-9397-0242ac120004",
-						"description": "Applicant is a user who submitted application"
+						"description": "Applicant is a user who submitted application, this id references the user account logged in on the system and submitting this request. The applicantId could also come from OAuth2 and OpenID Connect authentication. New applicant records are created by the system internally if necessary."
 					},
 					"created": {
 						"type": "string",
@@ -779,7 +769,7 @@
 			"applicationFileResponse": {
 				"required": [
 					"applicantId",
-					"serviceKey"
+					"serviceId"
 				],
 				"properties": {
 
@@ -794,9 +784,10 @@
 						"example": "2000-10-23T00:00:00.000Z",
 						"description": "Time when the application file was registered in the Registration BB system"
 					},
-					"serviceKey": {
+					"serviceId": {
 						"type": "string",
-						"example": "P2c9280957e579ad7017e58a3399f0068"
+						"format": "uuid",
+						"description": "id of the service this application relates to"
 					},
 					"serviceName": {
 						"type": "string",
@@ -933,8 +924,9 @@
 						"example": "Post partum registration service"
 					},
 
-					"serviceKey": {
+					"serviceId": {
 						"type": "string",
+						"format": "uuid",
 						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
 					},
 					"eformId": {
@@ -980,9 +972,9 @@
 					"fileId": {
 						"type": "string"
 					},
-					"serviceKey": {
+					"serviceId": {
 						"type": "string",
-						"example": "P2c9280957e579ad7017e58a3399f0068"
+						"format": "uuid"
 					},
 					"status": {
 						"$ref": "#/components/schemas/statusModel"
@@ -1020,8 +1012,9 @@
 					"description": {
 						"type": "string"
 					},
-					"serviceKey": {
-						"type": "string"
+					"serviceId": {
+						"type": "string",
+						"format": "uuid"
 					},
 					"serviceName": {
 						"type": "string"
@@ -1065,8 +1058,9 @@
 					"fileId": {
 						"type": "string"
 					},
-					"serviceKey": {
-						"type": "string"
+					"serviceId": {
+						"type": "string",
+						"format": "uuid"
 					},
 					"serviceName": {
 						"type": "string"
