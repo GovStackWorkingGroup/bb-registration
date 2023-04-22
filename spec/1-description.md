@@ -35,5 +35,3 @@ From the **point of view of the entity in charge (Registrar)** of the registrati
 * When possible, call an external application allowing the applicant to pay the fees online.
 * Record the applicant’s information in a registry.
 * Issue a credential as proof of registration.
-
-N.B. Ensure that there is tracking of all changes to records.

@@ -205,7 +205,7 @@ An external Application may access the Registration Building Block and provide r
 
 #### 6.1.2.1 Register Application Files API (REQUIRED)
 
-System has an API service that enables to register new application files in the Registration Building Block (See chapter 8.3).
+System has an API service that enables to register new application files in the Registration Building Block (See chapter 8).
 
 #### 6.1.2.2 View Schema API (RECOMMENDED)
 
@@ -213,15 +213,15 @@ System has an API that enables to view a schema of an e-service application file
 
 #### 6.1.2.3 View File Processing Tasks API (REQUIRED)
 
-System has an API that enables to view a list of registered application file processing tasks (See chapter 8.2).
+System has an API that enables to view a list of registered application file processing tasks (See chapter 8).
 
 #### 6.1.2.4 Change File Process Status API (REQUIRED)
 
-System has an API that enables to change the status of registered application file process flow- complete application processing task (See chapter 8.4).
+System has an API that enables to change the status of registered application file process flow- complete application processing task (See chapter 8).
 
 #### 6.1.2.5 View Statistics API (REQUIRED)
 
-System has an API that enables to view statistics of processing (See chapter 8.1).
+System has an API that enables to view statistics of processing (See chapter 8).
 
 ### 6.1.3 Generic Registration Functionalities
 
