@@ -30,7 +30,3 @@ description: >-
 ### 10.6 Interoperability Requirements
 
 [The Information Mediator Requirements](https://govstack.gitbook.io/specification/v/1-0/building-blocks/information-mediation).
-
-### 10.7 Out-of-Scope Assumptions <a href="#docs-internal-guid-39459612-7fff-54dd-0f25-ddf61408bb48" id="docs-internal-guid-39459612-7fff-54dd-0f25-ddf61408bb48"></a>
-
-[A list of functions out of the scope of this Building Block](https://govstack-global.atlassian.net/l/cp/zdjTd8F0).
