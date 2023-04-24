@@ -1,5 +1,5 @@
 module.exports = {
-  localhost: 'http://localhost:3355/',
+  localhost: 'http://localhost:3333/',
   header: {
     key: 'Information-Mediator-Client',
     value: 'eGovStack/GOV/90000009/eregistrations-dev',
@@ -27,33 +27,15 @@ module.exports = {
           references: {
             type: 'object',
             properties: {
-              startDate: {
-                type: 'string',
-              },
-              endDate: {
-                type: 'string',
-              },
-              registrationName: {
-                type: 'string',
-              },
-              operator: {
-                type: 'string',
-              },
-              role: {
-                type: 'string',
-              },
-              timeframeDay: {
-                type: 'boolean',
-              },
-              timeframeWeek: {
-                type: 'boolean',
-              },
-              timeframeMonth: {
-                type: 'boolean',
-              },
-              timeframeYear: {
-                type: 'boolean',
-              },
+              startDate: { type: 'string' },
+              endDate: { type: 'string' },
+              registrationName: { type: 'string' },
+              operator: { type: 'string' },
+              role: { type: 'string' },
+              timeframeDay: { type: 'boolean' },
+              timeframeWeek: { type: 'boolean' },
+              timeframeMonth: { type: 'boolean' },
+              timeframeYear: { type: 'boolean' },
             },
             additionalProperties: false,
           },
@@ -61,5 +43,39 @@ module.exports = {
         additionalProperties: false,
       },
     ],
+  },
+  servicesEndpoint: 'services',
+  servicesResponseSchema: {
+    type: 'array',
+    items: this.serviceSchema,
+  },
+  listOfPropertiesSchema: {
+    type: 'array',
+    items: {
+      type: 'object',
+      properties: {
+        code: { type: 'string' },
+        value: { type: 'string' },
+      },
+      additionalProperties: false,
+    },
+  },
+  serviceSchema: {
+    type: 'object',
+    properties: {
+      id: { type: 'string' },
+      name: { type: 'string' },
+      version: { type: 'string' },
+      type: {
+        type: 'string',
+        enum: ['None', 'Private', 'Public'],
+      },
+      isExecutable: { type: 'boolean' },
+      isClosed: { type: 'boolean' },
+      description: { type: 'string' },
+    },
+    serviceBody: this.listOfPropertiesSchema,
+    required: ['id', 'name', 'type', 'version'],
+    additionalProperties: false,
   },
 };

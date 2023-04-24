@@ -1,11 +1,11 @@
 {
   "uuid": "9ea8d795-abc6-4993-b4d3-a33d4a0541a0",
-  "lastMigration": 24,
+  "lastMigration": 27,
   "name": "Registration",
   "endpointPrefix": "",
   "latency": 0,
   "port": 3003,
-  "hostname": "0.0.0.0",
+  "hostname": "",
   "routes": [
     {
       "uuid": "f7b2859f-5009-4e5b-8075-5aa5f359ad07",
@@ -116,6 +116,351 @@
         }
       ],
       "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "bede0b1c-3c2f-4ed0-af82-0ea23a211f53",
+      "type": "http",
+      "documentation": "Listing of all services with basic information",
+      "method": "get",
+      "endpoint": "services",
+      "responses": [
+        {
+          "uuid": "e65054b7-ad66-498c-974c-f35ad0e65de0",
+          "body": "[\n  {\n    \"id\": \"P2c9280957e579ad7017e58a3399f0068\",\n    \"name\": \"{{queryParam 'name'}}\",\n    \"version\": \"123\",\n    \"type\": \"None\",\n    \"isExecutable\": true,\n    \"isClosed\": true,\n    \"description\": \"string\",\n    \"serviceBody\": [\n      {\n        \"code\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "name",
+              "value": "^[a-zA-Z]+$",
+              "invert": false,
+              "operator": "regex"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "c38d1282-62b7-42d9-a9a0-82b849c431e8",
+      "type": "http",
+      "documentation": "Pass in the ID of the service and it will return all information about that service",
+      "method": "get",
+      "endpoint": "services/{serviceKey}",
+      "responses": [
+        {
+          "uuid": "eda5a1bb-d323-4f1b-8e41-f605049ca30a",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "1d70204e-9ad1-41bc-abef-f31ba04fc2cc",
+      "type": "http",
+      "documentation": "Get the list of all e-service forms with schema related to the given service",
+      "method": "get",
+      "endpoint": "services/{serviceKey}/eForms",
+      "responses": [
+        {
+          "uuid": "cc093491-a30f-4156-bb94-8427bf1222b8",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "c4f6aafc-8f85-4d13-8c08-8a80b3e0fead",
+      "type": "http",
+      "documentation": "Retrieve a specific e-form by ID",
+      "method": "get",
+      "endpoint": "eForms/{eFormId}",
+      "responses": [
+        {
+          "uuid": "87498584-fc8f-42a1-8a47-55cb509531bf",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "d18d829a-49c3-48d5-bd52-e4c9639ade31",
+      "type": "http",
+      "documentation": "Send an application file including all documents and form data to submit a registration request to be processed by operators.",
+      "method": "post",
+      "endpoint": "services/{serviceKey}/applications",
+      "responses": [
+        {
+          "uuid": "dbacc028-a9b5-49e9-8522-ab5b7dd8f58e",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "89458afa-1b9b-4b15-87f3-a661ce41e6bc",
+      "type": "http",
+      "documentation": "Upload a document/attachment to receive a documentId that can be linked to applications when submitting a new registration",
+      "method": "post",
+      "endpoint": "documents",
+      "responses": [
+        {
+          "uuid": "cb1ec87b-5668-4da2-97cc-611a3d89cf39",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "68c60782-44f4-41eb-aaca-b7a677143919",
+      "type": "http",
+      "documentation": "Returns a list of application files the user has permission to access (i.e. either only the applicant's own applications or all applications for an operator to process)",
+      "method": "get",
+      "endpoint": "applications",
+      "responses": [
+        {
+          "uuid": "9df28ac8-6b0e-49c6-ae5a-02e634cfd622",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "a31d8e3f-0344-4407-8a5a-b9d7cbaa713c",
+      "type": "http",
+      "documentation": "Get application file by ID",
+      "method": "get",
+      "endpoint": "applications/{fileId}",
+      "responses": [
+        {
+          "uuid": "27d6934d-0fd2-45f1-a031-2b1a40d7805b",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "c34d8049-b315-4ca2-96f1-3c6b69a7102e",
+      "type": "http",
+      "documentation": "Returns task list",
+      "method": "get",
+      "endpoint": "tasks",
+      "responses": [
+        {
+          "uuid": "21146fe5-403c-4fdd-86d6-e02a6c7a25ac",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "97273ad2-8d4f-484f-8434-4b0658f66b93",
+      "type": "http",
+      "documentation": "Get task by id",
+      "method": "get",
+      "endpoint": "tasks/{taskId}",
+      "responses": [
+        {
+          "uuid": "97c61fa3-0540-4f15-bc1f-36de6b70e7c3",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "75c58f90-678c-483d-9184-d38938564b27",
+      "type": "http",
+      "documentation": "Complete task by id",
+      "method": "post",
+      "endpoint": "tasks/{taskId}/complete",
+      "responses": [
+        {
+          "uuid": "ce0c3222-c835-4d9b-bf8d-8e30f8c42a96",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "3a9db97f-f5ba-4d70-aca5-efd43b638b6c",
+      "type": "http",
+      "documentation": "Update service application file with operator's form data",
+      "method": "put",
+      "endpoint": "applications/{fileId}",
+      "responses": [
+        {
+          "uuid": "1196a8c3-b749-42fc-b57e-517552b6d408",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
       "responseMode": null
     }
   ],
@@ -150,5 +495,60 @@
       "value": ""
     }
   ],
-  "data": []
+  "data": [],
+  "folders": [],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "f7b2859f-5009-4e5b-8075-5aa5f359ad07"
+    },
+    {
+      "type": "route",
+      "uuid": "bede0b1c-3c2f-4ed0-af82-0ea23a211f53"
+    },
+    {
+      "type": "route",
+      "uuid": "c38d1282-62b7-42d9-a9a0-82b849c431e8"
+    },
+    {
+      "type": "route",
+      "uuid": "1d70204e-9ad1-41bc-abef-f31ba04fc2cc"
+    },
+    {
+      "type": "route",
+      "uuid": "c4f6aafc-8f85-4d13-8c08-8a80b3e0fead"
+    },
+    {
+      "type": "route",
+      "uuid": "d18d829a-49c3-48d5-bd52-e4c9639ade31"
+    },
+    {
+      "type": "route",
+      "uuid": "89458afa-1b9b-4b15-87f3-a661ce41e6bc"
+    },
+    {
+      "type": "route",
+      "uuid": "68c60782-44f4-41eb-aaca-b7a677143919"
+    },
+    {
+      "type": "route",
+      "uuid": "a31d8e3f-0344-4407-8a5a-b9d7cbaa713c"
+    },
+    {
+      "type": "route",
+      "uuid": "c34d8049-b315-4ca2-96f1-3c6b69a7102e"
+    },
+    {
+      "type": "route",
+      "uuid": "97273ad2-8d4f-484f-8434-4b0658f66b93"
+    },
+    {
+      "type": "route",
+      "uuid": "75c58f90-678c-483d-9184-d38938564b27"
+    },
+    {
+      "type": "route",
+      "uuid": "3a9db97f-f5ba-4d70-aca5-efd43b638b6c"
+    }
+  ]
 }
