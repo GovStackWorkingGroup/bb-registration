@@ -1,7 +1,5 @@
 ---
-description: >-
-  This section lists the technical capabilities that this Building Block
-  must/could have.
+description: This section lists the technical capabilities of this Building Block.
 ---
 
 # 6 Functional Requirements

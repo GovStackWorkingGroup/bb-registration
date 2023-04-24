@@ -1,7 +1,7 @@
 ---
 description: >-
   Key Digital Functionalities describe the core (required) functions that this
-  building block must be able to perform.
+  Building Block must be able to perform.
 ---
 
 # 4 Key Digital Functionalities
