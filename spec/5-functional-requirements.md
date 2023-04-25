@@ -131,8 +131,6 @@ Applicants must see the expected processing end time for each application.
 An applicant can use a function (e.g. button) and the action to capture data from the QR code.\
 Expected result- the applicant can activate (a mobile phone) camera, read the QR code and capture the data from the QR code to a field. Example data to be captured: “MCTS31”; “www.registrations.org”
 
-[\<Example UI>](.gitbook/assets/QR%20code%20reader.PNG)
-
 #### 6.1.1.11 System audit log functionality (REQUIRED)
 
 * The system logs all user actions in the system.
@@ -147,8 +145,6 @@ Expected result- the applicant can activate (a mobile phone) camera, read the QR
 * Operators are linked to Institutions (or sub-units) and roles, thus can only see the tasks relevant to their role and Institution.
 * Optionally (configurable) - an operator could be able to claim a task from the application task dashboard. When the task has been claimed, then the application file will be taken off the common pool.
 
-[\<Example UI>](https://drive.google.com/file/d/1UNRuGBpcJH-r02\_yuI7wpOS34nVOX9tX/view?usp=sharing)
-
 #### 6.1.1.13 An Operator of a role must see the received application file screen containing all information submitted by an Applicant and information complemented by other Operators while processing the same file (REQUIRED)
 
 * Required documents relevant to this role and registration linked to the role;
@@ -157,15 +153,11 @@ Expected result- the applicant can activate (a mobile phone) camera, read the QR
 * Must be able to see the history of the application file processing.
 * Must be able to see the status of the application file.
 
-[\<Example UI>](https://drive.google.com/file/d/11hGK20tP6Kt0nn-A0vnCMCKl3DdfXFXM/view?usp=sharing)
-
 #### 6.1.1.14 An Operator must be able to make a decision in the system by selecting the right decision type - approve, reject, send back for correction (REQUIRED)
 
 * At least one decision option must be available in order to process the application file.
 * The system must enable a form for an Operator to draft a decision text and select/fill in additional information on the form.
 * In case of errors in the application, operators must be able to mark which document and/or data field is incorrect. Applicants must see the highlighted information.
-
-[\<Example UI>](https://drive.google.com/file/d/19WnGiBD7F2C9CCvST\_s4V6SulblOJbS5/view?usp=sharing)
 
 #### 6.1.1.15 Operators have the option to print, sign and upload a certificate (REQUIRED)
 
