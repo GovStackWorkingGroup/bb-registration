@@ -55,7 +55,6 @@ For each interaction, the following information is provided:
 ```mermaid
 sequenceDiagram
 title Technical auth
-
 User->Building block: Unauthorized attempt to access
 Building block->User: Redirect user to authentication UI
 User->Security(IAM): User provides authentication credentials
@@ -138,7 +137,6 @@ Pre-requirements: user does not have user credentials to authenticate/login to G
 ```mermaid
 sequenceDiagram
 title Request API descriptions
-
 Registration BB-> Information Mediator BB: Get list of registered data providers
 Information Mediator BB -> Registration BB: return
 note left of Registration BB: Select registered provider
@@ -151,6 +149,8 @@ note left of Registration BB: Map information to screens
 ```
 
 Illustration 10- Information Mediator API description.
+
+
 
 **Data structures:**
 
@@ -169,7 +169,6 @@ Illustration 10- Information Mediator API description.
 ```mermaid
 sequenceDiagram
 title Request payment options
-
 Registration BB-> Payment BB: Get payment information.
 Payment BB -> Registration BB: return
 note left of Registration BB: Import API descriptions
@@ -181,6 +180,8 @@ note left of Registration BB: Map information to screens
 ```
 
 Illustration 11- Request payment options.
+
+
 
 **Data structures:**
 
