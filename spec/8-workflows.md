@@ -113,9 +113,7 @@ See the full description of the User registration in [Security Building Block do
 
 ```mermaid
 sequenceDiagram
-
 title Self-registration via foundational ID
-
 User->Building block UI: Choose a service requiring foundational ID
 Building block UI->User: Redirect user to foundational ID verification UI
 User->ID(Foundational ID): User provides proof of foundation ID along with email or phone number
