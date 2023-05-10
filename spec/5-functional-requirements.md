@@ -217,9 +217,9 @@ System has an API that enables to view statistics of processing (See chapter 8).
 
 [This table](https://govstack-global.atlassian.net/l/cp/Be0cejZY) provides information on how the Functional Capabilities (by an applicant and a registrar) in specific use cases match the functional requirements as described.
 
-## 6.2 Development Platform (OPTIONAL)
+## 6.2 Development Platform
 
-Many registration applications leverage a no-code development platform. While not required, the no-code development platform is composed of:
+Many registration applications leverage a no-code development platform. The no-code development platform is composed of:
 
 * Rules engine ([6.2.1](5-functional-requirements.md#6.2.1-rules-engine-functional-requirements))
 * User interface and flow builder ([6.2.2](5-functional-requirements.md#6.2.2-user-interface-and-flow-builder-functional-requirements))
