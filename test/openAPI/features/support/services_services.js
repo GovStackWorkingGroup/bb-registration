@@ -28,23 +28,23 @@ When('GET request to retrieve a list of services is sent', () =>
 );
 
 Then(
-  'The response from the \\/statistics endpoint is received',
+  'The response from the \\/services endpoint is received',
   async () => await specServices.toss()
 );
 
 Then(
-  'The \\/statistics response should be returned in a timely manner 15000ms',
+  'The \\/services response should be returned in a timely manner 15000ms',
   () =>
     specServices
       .response()
       .to.have.responseTimeLessThan(defaultExpectedResponseTime)
 );
 
-Then('The \\/statistics response should have status 200', () =>
+Then('The \\/services response should have status 200', () =>
   specServices.response().to.have.status(200)
 );
 
-Then('The \\/statistics response should match json schema', () =>
+Then('The \\/services response should match json schema', () =>
   chai
     .expect(specServices._response.json)
     .to.be.jsonSchema(servicesResponseSchema)
@@ -52,12 +52,9 @@ Then('The \\/statistics response should match json schema', () =>
 
 // Scenario Outline: Retrieve the list of services that match the name provided in optional parameter
 // Given and others Then for this scenario are written in the aforementioned example
-When(
-  'User sends GET \\/statistics request with given {string} as name',
-  name => {
-    specServices.get(baseUrl).withQueryParams('name', name);
-  }
-);
+When('User sends GET \\/services request with given {string} as name', name => {
+  specServices.get(baseUrl).withQueryParams('name', name);
+});
 
 Then(
   'The name field in the response matches with {string} provided as name in the query parameter',
