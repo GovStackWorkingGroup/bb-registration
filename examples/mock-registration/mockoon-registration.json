@@ -196,20 +196,33 @@
       "type": "http",
       "documentation": "Get the list of all e-service forms with schema related to the given service",
       "method": "get",
-      "endpoint": "services/{serviceKey}/eForms",
+      "endpoint": "services/:serviceKey/eForms",
       "responses": [
         {
           "uuid": "cc093491-a30f-4156-bb94-8427bf1222b8",
-          "body": "{}",
+          "body": "[\n  {\n    \"eFormId\": \"d98a205a-679b-485b-823d-7a32a391e744\",\n    \"name\": \"FORM\",\n    \"description\": \"string\",\n    \"version\": \"1\",\n    \"latest\": true\n  }\n]",
           "latency": 0,
           "statusCode": 200,
-          "label": "",
-          "headers": [],
+          "label": "Succesfully retrieves the list of all e-service forms with schema",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
           "sendFileAsBody": false,
-          "rules": [],
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "serviceKey",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
           "rulesOperator": "OR",
           "disableTemplating": false,
           "fallbackTo404": false,
