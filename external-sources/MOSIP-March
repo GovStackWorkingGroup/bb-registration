@@ -20,7 +20,7 @@
   },
   "servers": [
     {
-      "url": "https://api.collab.mosip.net/v1/mock-identity-system",
+      "url": "https://abcdef.free.beeceptor.com/v1/mock-identity-system",
       "description": "collab"
     }
   ],
