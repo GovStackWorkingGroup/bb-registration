@@ -78,4 +78,5 @@ module.exports = {
     required: ['id', 'name', 'type', 'version'],
     additionalProperties: false,
   },
+  serviceIdEndpoint: 'services/{serviceId}'
 };

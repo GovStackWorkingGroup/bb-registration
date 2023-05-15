@@ -160,11 +160,11 @@
       "type": "http",
       "documentation": "Pass in the ID of the service and it will return all information about that service",
       "method": "get",
-      "endpoint": "services/{serviceKey}",
+      "endpoint": "services/{serviceId}",
       "responses": [
         {
           "uuid": "eda5a1bb-d323-4f1b-8e41-f605049ca30a",
-          "body": "{}",
+          "body": "[\n  {\n    \"id\": \"{{queryParam 'serviceId'}}\",\n    \"name\": \"Mother and Child Registration\",\n    \"version\": \"123\",\n    \"type\": \"None\",\n    \"isExecutable\": true,\n    \"isClosed\": true,\n    \"description\": \"string\",\n    \"serviceBody\": [\n      {\n        \"code\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  }\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -173,7 +173,15 @@
           "filePath": "",
           "databucketID": "",
           "sendFileAsBody": false,
-          "rules": [],
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "serviceId",
+              "value": "^[a-zA-Z]+$",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
           "rulesOperator": "OR",
           "disableTemplating": false,
           "fallbackTo404": false,
