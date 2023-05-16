@@ -15,13 +15,13 @@ const baseUrl = localhost + serviceIdEndpoint;
 const endpointTag = { tags: `@endpoint=/${serviceIdEndpoint}` };
 
 Before(endpointTag, () => {
-  specServiceId = spec().inspect();
+  specServiceId = spec();
 });
 
 // Scenario: Retrieve the information of single service smoke type test
 Given(
-  /^User wants to retrieve the service$/,
-  () => 'User wants to retrieve the service'
+  /^User wants to retrieve all the information about the service$/,
+  () => 'User wants to retrieve all the information about the service'
 );
 
 When(/^GET request to retrieve the information of single service with given "([^"]*)" as serviceId$/,
@@ -47,10 +47,9 @@ Then(
       .to.have.responseTimeLessThan(defaultExpectedResponseTime)
 );
 
-Then(/^The \/services\/\{serviceId\} response should have status (\d+)$/, (status) => {
- console.log(specServiceId)
+Then(/^The \/services\/\{serviceId\} response should have status (\d+)$/, (status) =>
   specServiceId.response().to.have.status(status)
-});
+);
 
 Then(/^The \/services\/\{serviceId\} response should match json schema$/, () =>
   chai

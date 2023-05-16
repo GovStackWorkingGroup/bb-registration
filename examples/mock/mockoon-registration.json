@@ -160,7 +160,7 @@
       "type": "http",
       "documentation": "Pass in the ID of the service and it will return all information about that service",
       "method": "get",
-      "endpoint": "services/{serviceId}",
+      "endpoint": "services/:serviceId",
       "responses": [
         {
           "uuid": "eda5a1bb-d323-4f1b-8e41-f605049ca30a",

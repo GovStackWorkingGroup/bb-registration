@@ -60,6 +60,9 @@ module.exports = {
       additionalProperties: false,
     },
   },
+  // service_serviceId
+  serviceIdEndpoint: 'services/{serviceId}',
+  // shares
   serviceSchema: {
     type: 'object',
     properties: {
@@ -77,6 +80,5 @@ module.exports = {
     serviceBody: this.listOfPropertiesSchema,
     required: ['id', 'name', 'type', 'version'],
     additionalProperties: false,
-  },
-  serviceIdEndpoint: 'services/{serviceId}'
+  }
 };
