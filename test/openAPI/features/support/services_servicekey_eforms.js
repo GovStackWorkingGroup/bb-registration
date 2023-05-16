@@ -59,9 +59,6 @@ Then(
       .to.be.jsonSchema(servicesServicesKeyEFormsResponseSchema)
 );
 
-// Scenario Outline: Succesfully retrieves the list of all e-service forms with schema related to the given service
-// Given, When and others Then for this scenario are written in the aforementioned example
-
 After(endpointTag, () => {
   specServicesServiceKeyEForms.end();
 });
