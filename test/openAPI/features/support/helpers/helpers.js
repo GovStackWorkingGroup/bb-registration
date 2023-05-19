@@ -45,7 +45,7 @@ module.exports = {
       },
     ],
   },
-  // services/{serviceId}/applications
+  // applicant_services_serviceid_applications
   submitApplicationEndpoint: 'services/{serviceId}/applications',
   submitApplicationResponseSchema: {
     type: 'object',
@@ -87,7 +87,7 @@ module.exports = {
     },
     required: ['serviceId', 'applicationData'],
   },
-  // services
+  // services_services
   servicesEndpoint: 'services',
   servicesResponseSchema: {
     type: 'array',

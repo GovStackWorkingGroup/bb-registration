@@ -25,7 +25,7 @@ Given(
 );
 
 When(
-  /^POST request to submit an application is sent with given I-M-C header and "([^"]*)" as serviceId parameter$/,
+  /^POST request to submit an application is sent with given Information-Mediator-Client header and "([^"]*)" as serviceId parameter$/,
   serviceID =>
     specSubmitApplication
       .post(baseUrl)

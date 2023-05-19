@@ -7,7 +7,7 @@ Feature: API endpoint that allows to submit an application file as an applicant
   Scenario: Successfully created a new application file in the system smoke type test
 
     Given An applicant wants to submit an application
-    When POST request to submit an application is sent with given I-M-C header and "f7d33db0-2809-484e-a780-76b7ccd4ecbf" as serviceId parameter
+    When POST request to submit an application is sent with given Information-Mediator-Client header and "f7d33db0-2809-484e-a780-76b7ccd4ecbf" as serviceId parameter
     And The request contains a payload with "42962de0-bdb2-11ed-9397-0242ac120004" as applicantId
     Then The response from the /services/{serviceId}/applications endpoint is received
     And The /services/{serviceId}/applications response should be returned in a timely manner 15000ms
@@ -17,7 +17,7 @@ Feature: API endpoint that allows to submit an application file as an applicant
   Scenario Outline: Successfully created a new application file in the system
 
     Given An applicant wants to submit an application
-    When POST request to submit an application is sent with given I-M-C header and "<serviceId>" as serviceId parameter
+    When POST request to submit an application is sent with given Information-Mediator-Client header and "<serviceId>" as serviceId parameter
     And The request contains a payload with "<applicationName>" as applicationName, "<applicantId>" as applicantId and "<created>" as created 
     Then The response from the /services/{serviceId}/applications endpoint is received
     And The /services/{serviceId}/applications response should be returned in a timely manner 15000ms
@@ -36,7 +36,7 @@ Feature: API endpoint that allows to submit an application file as an applicant
   Scenario: Could not create a new application because service with provided serviceId was not found
 
     Given An applicant wants to submit an application
-    When POST request to submit an application is sent with given I-M-C header and "n0t-ex1st1ng-serv1ce-1d" as serviceId parameter
+    When POST request to submit an application is sent with given Information-Mediator-Client header and "n0t-ex1st1ng-serv1ce-1d" as serviceId parameter
     And The request contains a payload with "23qwef41-bdb2-11ed-qwef-efg4345aqwef" as applicantId
     Then The response from the /services/{serviceId}/applications endpoint is received
     And The /services/{serviceId}/applications response should be returned in a timely manner 15000ms
