@@ -265,13 +265,77 @@
       "type": "http",
       "documentation": "Send an application file including all documents and form data to submit a registration request to be processed by operators.",
       "method": "post",
-      "endpoint": "services/{serviceKey}/applications",
+      "endpoint": "services/:serviceId/applications",
       "responses": [
         {
           "uuid": "dbacc028-a9b5-49e9-8522-ab5b7dd8f58e",
-          "body": "{}",
+          "body": "{\n  \"serviceId\": \"{{urlParam 'serviceId'}}\",\n  \"applicationData\": {\n  \"applicantId\": \"{{bodyRaw 'applicantId'}}\"\n  }\n}",
           "latency": 0,
           "statusCode": 200,
+          "label": "Response for smoke test type",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "applicantId",
+              "value": "42962de0-bdb2-11ed-9397-0242ac120004",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "params",
+              "modifier": "serviceId",
+              "value": "f7d33db0-2809-484e-a780-76b7ccd4ecbf",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "d46bd720-814c-46bf-9016-f0208415045d",
+          "body": "{\n  \"fileId\": \"{{faker 'random.alphaNumeric' 8}}-{{faker 'random.alphaNumeric' 4}}-{{faker 'random.alphaNumeric' 4}}-{{faker 'random.alphaNumeric' 4}}-{{faker 'random.alphaNumeric' 12}}\",\n  \"registered\": \"{{now}}\",\n  \"serviceId\": \"{{urlParam 'serviceId'}}\",\n  \"serviceName\": \"string\",\n  \"status\": {\n    \"code\": \"{{oneOf (array 'PENDING' 'APPROVED' 'SENDBACK' 'REJECTED')}}\",\n    \"title\": \"string\"\n  },\n  \"ended\": {{oneOf (array true false)}},\n  \"applicationData\": {\n    \"applicationName\": \"{{bodyRaw 'applicationName'}}\",\n    \"applicantId\": \"{{bodyRaw 'applicantId'}}\",\n    \"created\": \"{{bodyRaw 'created'}}\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Default positive response",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "applicantId",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "params",
+              "modifier": "serviceId",
+              "value": "n0t-ex1st1ng-serv1ce-1d",
+              "invert": true,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "04b47e38-6c35-4e23-8210-c7c1ac4062bc",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 404,
           "label": "",
           "headers": [],
           "bodyType": "INLINE",
