@@ -5,6 +5,7 @@ module.exports = {
     value: 'eGovStack/GOV/90000009/eregistrations-dev',
   },
   defaultExpectedResponseTime: 15000,
+  // data_statistics
   dataStatisticsEndpoint: 'data/statistics/1.0',
   dataStatisticsResponseSchema: {
     type: 'array',
@@ -44,11 +45,29 @@ module.exports = {
       },
     ],
   },
+  // services_services
   servicesEndpoint: 'services',
   servicesResponseSchema: {
     type: 'array',
     items: this.serviceSchema,
   },
+  // services_serviceKey_eforms
+  servicesServicesKeyEFormsEndpoint: 'services/{serviceKey}/eForms',
+  servicesServicesKeyEFormsResponseSchema: {
+    type: 'array',
+    items: {
+      type: 'object',
+      properties: {
+        eFormId: { type: 'string' },
+        name: { type: 'string' },
+        description: { type: 'string' },
+        version: { type: 'string' },
+        latest: { type: 'boolean' },
+      },
+      additionalProperties: false,
+    },
+  },
+  // shares
   listOfPropertiesSchema: {
     type: 'array',
     items: {
