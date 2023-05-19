@@ -7,7 +7,7 @@ const {
   servicesResponseSchema,
   localhost,
   header
-} = require('./helpers');
+} = require('./helpers/helpers');
 
 chai.use(require('chai-json-schema'));
 
