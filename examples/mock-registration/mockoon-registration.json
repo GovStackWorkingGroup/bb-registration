@@ -361,10 +361,35 @@
       "responses": [
         {
           "uuid": "cb1ec87b-5668-4da2-97cc-611a3d89cf39",
-          "body": "{}",
+          "body": "{\n  \"code\": 0,\n  \"type\": \"string\",\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
           "latency": 0,
           "statusCode": 200,
-          "label": "",
+          "label": "File successfully uploaded",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "file",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "b2d35f7a-4085-425f-aa0d-9fe44163f0e9",
+          "body": "{\n  \"traceId\": \"string\",\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"localizedMessage\": \"string\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Bad request, file upload failed",
           "headers": [],
           "bodyType": "INLINE",
           "filePath": "",

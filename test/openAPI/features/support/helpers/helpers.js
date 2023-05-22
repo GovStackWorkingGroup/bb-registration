@@ -123,6 +123,26 @@ module.exports = {
   },
   // service_serviceId
   serviceIdEndpoint: 'services/{serviceId}',
+  // applicant_documents
+  documentsEndpoint: 'documents',
+  documentsResponseSchema: {
+    type: 'object',
+    properties: {
+      code: { type: 'integer' },
+      type: { type: 'string' },
+      message: { type: 'string' },
+      url: { type: 'string' },
+    },
+  },
+  documentsErrorResponseSchema: {
+    type: 'object',
+    properties: {
+      traceId: { type: 'string' },
+      code: { type: 'string' },
+      message: { type: 'string' },
+      localizedMessage: { type: 'string' },
+    },
+  },
   // shares
   serviceSchema: {
     type: 'object',
@@ -141,5 +161,5 @@ module.exports = {
     serviceBody: this.listOfPropertiesSchema,
     required: ['id', 'name', 'type', 'version'],
     additionalProperties: false,
-  }
+  },
 };
