@@ -45,6 +45,49 @@ module.exports = {
       },
     ],
   },
+  //applicant_applications_fileId
+  applicationFileEndpoint: 'applications/{fileId}',
+  applicationFileResponseSchema: {
+    type: 'object',
+    properties: {
+      fileId: { type: 'string' },
+      registered: { type: 'string' },
+      serviceId: { type: 'string' },
+      serviceName: { type: 'string' },
+      status: {
+        type: 'object',
+        properties: {
+          code: {
+            type: 'string',
+            enum: [
+              'PENDING',
+              'APPROVED',
+              'SENDBACK',
+              'REJECTED'
+            ]
+          },
+          title: { type: 'string' }
+        }
+      },
+      ended: { type: 'boolean' },
+      applicationData: {
+        type: 'object',
+        properties: {
+          applicationName: { type: 'string' },
+          applicantId: { type: 'string' },
+          created: { type: 'string' },
+          formData: {
+            type: 'object',
+            properties: {
+              data: { type: 'object' },
+              eFormId: { type: 'string' },
+            },
+          },
+          documentUrls: { type: "array" }
+        }
+      }
+    },
+  },
   // applicant_services_serviceid_applications
   submitApplicationEndpoint: 'services/{serviceId}/applications',
   submitApplicationResponseSchema: {
