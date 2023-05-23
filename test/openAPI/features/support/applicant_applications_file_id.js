@@ -37,7 +37,7 @@ When(
 
 Then(
   /^The response from the \/applications\/\{fileId\} endpoint is received$/,
-  () => specApplicantApplicationsFileId.toss()
+  async () => specApplicantApplicationsFileId.toss()
 );
 
 Then(

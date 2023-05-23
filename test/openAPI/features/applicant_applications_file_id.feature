@@ -1,5 +1,5 @@
 @method=POST @endpoint=/applications/{fileId}
-Feature: Returns application file
+Feature: The API endpoint used to get application file by ID
 
   @smoke @unit @positive
   Scenario: Successfully get an application file smoke type test
