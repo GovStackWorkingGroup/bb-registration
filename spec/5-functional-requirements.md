@@ -221,9 +221,9 @@ System has an API that enables to view statistics of processing (See chapter 8).
 
 Many registration applications leverage a no-code development platform. The no-code development platform is composed of:
 
-* Rules engine ([6.2.1](5-functional-requirements.md#6.2.1-rules-engine-functional-requirements))
-* User interface and flow builder ([6.2.2](5-functional-requirements.md#6.2.2-user-interface-and-flow-builder-functional-requirements))
-* Controls configurator ([6.2.3](5-functional-requirements.md#6.2.3-control-configurators-functional-requirements))
+* Rules engine ([6.2.1](https://govstack.gitbook.io/bb-registration/v/registration-1.0/5-functional-requirements#6.2.1-rules-engine-functional-requirements))
+* User interface and flow builder ([6.2.2](https://govstack.gitbook.io/bb-registration/v/registration-1.0/5-functional-requirements#6.2.2-user-interface-and-flow-builder-functional-requirements))
+* Controls configurator ([6.2.3](https://govstack.gitbook.io/bb-registration/v/registration-1.0/5-functional-requirements#6.2.3-control-configurators-functional-requirements))
 
 It is used by authorized personnel, called “analysts”, entrusted by the entities in charge of the registrations to develop the corresponding online services.
 
