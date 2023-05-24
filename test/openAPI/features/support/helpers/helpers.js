@@ -138,7 +138,10 @@ module.exports = {
   },
   fileIdSchema: {
     fileId: { type: 'string' },
-    registered: { type: 'string' },
+    registered: {
+      type: "string",
+      format: "date-time"
+    },
     serviceId: { type: 'string' },
     serviceName: { type: 'string' },
     status: {
@@ -159,7 +162,10 @@ module.exports = {
     properties: {
       applicationName: { type: 'string' },
       applicantId: { type: 'string' },
-      created: { type: 'string' },
+      created: {
+        type: "string",
+        format: "date-time"
+      },
       formData: {
         type: 'object',
         properties: {
