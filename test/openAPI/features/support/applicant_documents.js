@@ -4,6 +4,7 @@ const { Given, When, Then, Before, After } = require('@cucumber/cucumber');
 const {
   localhost,
   defaultExpectedResponseTime,
+  documentToUpload,
   documentsEndpoint,
   documentsResponseSchema,
   documentsErrorResponseSchema,
@@ -20,13 +21,14 @@ Before(endpointTag, () => {
 
 // Scenario: Successfully uploaded a document smoke type test
 Given(/^Wants to upload a document$/, () => 'Wants to upload a document');
-When(
-  /^POST request to upload a document with given "([^"]*)" as an item of the file array is sent$/,
-  file => specDocuments.post(baseUrl).withJson({ file: [file] })
+
+When(/^POST request with given document is sent$/, () =>
+  specDocuments.post(baseUrl).withJson({ file: [documentToUpload] })
 );
 
-Then(/^The response from the \/documents endpoint is received$/, () =>
-  specDocuments.toss()
+Then(
+  /^The response from the \/documents endpoint is received$/,
+  async () => await specDocuments.toss()
 );
 
 Then(
@@ -51,14 +53,6 @@ Then(/^The \/documents response should match json schema$/, () =>
   chai
     .expect(specDocuments._response.json)
     .to.be.jsonSchema(documentsResponseSchema)
-);
-
-// Scenario Outline: Successfully uploaded documets
-// Others Given, When, Then are written in the aforementioned example
-When(
-  /^POST request to upload a document with given "([^"]*)" and "([^"]*)" as items of the file array is sent$/,
-  (file1, file2) =>
-    specDocuments.post(baseUrl).withJson({ file: [file1, file2] })
 );
 
 // Scenario: Could not upload a document because of missing payload

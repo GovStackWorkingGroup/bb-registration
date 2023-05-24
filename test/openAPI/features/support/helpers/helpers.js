@@ -124,6 +124,8 @@ module.exports = {
   // service_serviceId
   serviceIdEndpoint: 'services/{serviceId}',
   // applicant_documents
+  documentToUpload:
+    'ewogIGZpZWxkbmFtZTogJ2ltYWdlJywKICBvcmlnaW5hbG5hbWU6ICdTY3JlZW5zaG90IDIwMjEtMTEtMDIgYXQgMDAuMTIuMjgucG5nJywKICBlbmNvZGluZzogJzdiaXQnLAogIG1pbWV0eXBlOiAnaW1hZ2UvcG5nJywKICBkZXN0aW5hdGlvbjogJ3VwbG9hZHMvJywKICBmaWxlbmFtZTogJ2ExNWFmNzdhMzFlYjQ0YjRhNmIwNDNkYjkwZjE1MjE0JywKICBwYXRoOiAndXBsb2Fkcy9hMTVhZjc3YTMxZWI0NGI0YTZiMDQzZGI5MGYxNTIxNCcsCiAgc2l6ZTogNTM4NTI0Cn0=',
   documentsEndpoint: 'documents',
   documentsResponseSchema: {
     type: 'object',

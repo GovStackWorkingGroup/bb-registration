@@ -40,7 +40,7 @@ When(
 
 Then(
   /^The response from the \/services\/{serviceId}\/applications endpoint is received$/,
-  () => specSubmitApplication.toss()
+  async () => await specSubmitApplication.toss()
 );
 
 Then(
