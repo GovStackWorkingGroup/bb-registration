@@ -45,46 +45,18 @@ module.exports = {
       },
     ],
   },
+  //applicant_applications_file_id
+  applicationFileEndpoint: 'applications/{fileId}',
+  applicationFileResponseSchema: {
+    type: 'object',
+    properties: this.fileIdSchema,
+    required: ['serviceId', 'applicationData'],
+  },
   // applicant_services_serviceid_applications
   submitApplicationEndpoint: 'services/{serviceId}/applications',
   submitApplicationResponseSchema: {
     type: 'object',
-    properties: {
-      fileId: { type: 'string' },
-      registered: { type: 'string' },
-      serviceId: { type: 'string' },
-      serviceName: { type: 'string' },
-      status: {
-        type: 'object',
-        properties: {
-          code: {
-            type: 'string',
-            enum: ['PENDING', 'APPROVED', 'SENDBACK', 'REJECTED'],
-          },
-          title: { type: 'string' },
-        },
-      },
-      ended: { type: 'boolean' },
-      applicationData: {
-        type: 'object',
-        properties: {
-          applicationName: { type: 'string' },
-          applicantId: { type: 'string' },
-          created: { type: 'string' },
-          formData: {
-            type: 'object',
-            properties: {
-              data: { type: 'object' },
-              eFormId: { type: 'string' },
-            },
-          },
-          documentUrls: {
-            type: 'array',
-          },
-        },
-        required: ['applicantId'],
-      },
-    },
+    properties: this.fileIdSchema,
     required: ['serviceId', 'applicationData'],
   },
   // services_services
@@ -163,5 +135,49 @@ module.exports = {
     serviceBody: this.listOfPropertiesSchema,
     required: ['id', 'name', 'type', 'version'],
     additionalProperties: false,
+  },
+  fileIdSchema: {
+    fileId: { type: 'string' },
+    registered: {
+      type: "string",
+      format: "date-time"
+    },
+    serviceId: { type: 'string' },
+    serviceName: { type: 'string' },
+    status: {
+      type: 'object',
+      properties: {
+        code: {
+          type: 'string',
+          enum: ['PENDING', 'APPROVED', 'SENDBACK', 'REJECTED'],
+        },
+        title: { type: 'string' },
+      },
+    },
+    ended: { type: 'boolean' },
+    applicationData: this.applicationFileSubmit,
+  },
+  applicationFileSubmit: {
+    type: 'object',
+    properties: {
+      applicationName: { type: 'string' },
+      applicantId: { type: 'string' },
+      created: {
+        type: "string",
+        format: "date-time"
+      },
+      formData: {
+        type: 'object',
+        properties: {
+          data: { type: 'object' },
+          eFormId: { type: 'string' },
+        },
+      },
+      documentUrls: this.documentUrls,
+    },
+    required: ['applicantId'],
+  },
+  documentUrls: {
+    type: 'array',
   },
 };
