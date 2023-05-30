@@ -87,6 +87,43 @@ module.exports = {
     properties: this.fileIdSchema,
     required: ['serviceId', 'applicationData'],
   },
+  // applicant_applications
+  applicantApplicationsEndpoint: 'applications',
+  applicantApplicationsResponseSchema: {
+    type: 'array',
+    items: {
+      type: 'object',
+      properties: {
+        fileId: { type: 'string' },
+        mainTaskId: { type: 'string' },
+        taskTitle: { type: 'string' },
+        roleId: { type: 'string' },
+        roleName: { type: 'string' },
+        assigneeId: { type: 'string' },
+        operatorName: { type: 'string' },
+        status: this.statusSchema,
+        applicantId: { type: 'string' },
+        created: {
+          type: 'string',
+          format: 'date-time',
+        },
+        registered: {
+          type: 'string',
+          format: 'date-time',
+        },
+        description: { type: 'string' },
+        serviceName: { type: 'string' },
+        serviceId: {
+          type: 'string',
+          // format: 'uuid',
+        },
+        eformId: { type: 'string' },
+        documentUrls: this.documentUrls,
+        additionalMeta: this.additionalDataSchema,
+      },
+      required: ['fileId'],
+    },
+  },
   // services_services
   servicesEndpoint: 'services',
   servicesResponseSchema: {
@@ -105,18 +142,6 @@ module.exports = {
         description: { type: 'string' },
         version: { type: 'string' },
         latest: { type: 'boolean' },
-      },
-      additionalProperties: false,
-    },
-  },
-  // shares
-  listOfPropertiesSchema: {
-    type: 'array',
-    items: {
-      type: 'object',
-      properties: {
-        code: { type: 'string' },
-        value: { type: 'string' },
       },
       additionalProperties: false,
     },
@@ -164,11 +189,22 @@ module.exports = {
     required: ['id', 'name', 'type', 'version'],
     additionalProperties: false,
   },
+  listOfPropertiesSchema: {
+    type: 'array',
+    items: {
+      type: 'object',
+      properties: {
+        code: { type: 'string' },
+        value: { type: 'string' },
+      },
+      additionalProperties: false,
+    },
+  },
   fileIdSchema: {
     fileId: { type: 'string' },
     registered: {
-      type: "string",
-      format: "date-time"
+      type: 'string',
+      format: 'date-time',
     },
     serviceId: { type: 'string' },
     serviceName: { type: 'string' },
@@ -182,8 +218,8 @@ module.exports = {
       applicationName: { type: 'string' },
       applicantId: { type: 'string' },
       created: {
-        type: "string",
-        format: "date-time"
+        type: 'string',
+        format: 'date-time',
       },
       formData: {
         type: 'object',
@@ -208,5 +244,26 @@ module.exports = {
   },
   documentUrls: {
     type: 'array',
+  },
+  statusSchema: {
+    type: 'object',
+    properties: {
+      code: {
+        type: 'string',
+        enum: ['PENDING', 'APPROVED', 'SENDBACK', 'REJECTED'],
+      },
+      title: { type: 'string' },
+    },
+  },
+  additionalDataSchema: {
+    type: 'object',
+    properties: {
+      data: {
+        type: 'object',
+        additionalProperties: {
+          type: 'object',
+        },
+      },
+    },
   },
 };
