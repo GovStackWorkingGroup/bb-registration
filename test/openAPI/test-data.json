@@ -1,0 +1,194 @@
+{
+  "informationMediatorClientHeader": {
+    "key": "Information-Mediator-Client",
+    "value": "eGovStack/GOV/90000009/eregistrations-dev"
+  },
+  "applications": [
+    {
+      "fileId": "81c4445c-bff6-11ed-afa1-0242ac120002",
+      "mainTaskId": "42962de0-xxxx-11ed-0000-0242ac120004",
+      "taskTitle": "Application xyz",
+      "roleId": "42962de0-xxxx-11ed-0000-0242ac120004",
+      "roleName": "Registrar",
+      "assigneeId": "42962de0-xxxx-11ed-0000-0242ac120004",
+      "operatorName": "John Smith",
+      "status": {
+        "code": "PENDING",
+        "title": "Pending"
+      },
+      "applicantId": "42962de0-xxxx-11ed-0000-0242ac120004",
+      "created": "2000-10-23T00:00:00.000Z",
+      "registered": "2000-10-23T00:00:00.000Z",
+      "description": "Any text.",
+      "serviceName": "Post partum registration service",
+      "serviceId": "42962de0-xxxx-11ed-0000-0242ac120004",
+      "eformId": "42962de0-xxxx-11ed-0000-0242ac120004",
+      "documentUrls": ["string"],
+      "additionalMeta": {
+        "data": {
+          "additionalProp1": {},
+          "additionalProp2": {},
+          "additionalProp3": {}
+        }
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "taskId": "string",
+      "taskName": "string",
+      "mainTaskId": "string",
+      "name": "string",
+      "assigneeId": "string",
+      "roleId": "string",
+      "created": "2023-05-29T09:40:33.444Z",
+      "description": "string",
+      "serviceId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "serviceName": "string",
+      "fileId": "string",
+      "eFormId": "string",
+      "formVariables": {
+        "additionalProp1": {
+          "data": {
+            "additionalProp1": {},
+            "additionalProp2": {},
+            "additionalProp3": {}
+          }
+        },
+        "additionalProp2": {
+          "data": {
+            "additionalProp1": {},
+            "additionalProp2": {},
+            "additionalProp3": {}
+          }
+        },
+        "additionalProp3": {
+          "data": {
+            "additionalProp1": {},
+            "additionalProp2": {},
+            "additionalProp3": {}
+          }
+        }
+      },
+      "status": {
+        "code": "PENDING",
+        "title": "Pending"
+      },
+      "data": {
+        "additionalProp1": {},
+        "additionalProp2": {},
+        "additionalProp3": {}
+      }
+    }
+  ],
+  "services": [
+    {
+      "id": "f7d33db0-2809-484e-a780-76b7ccd4ecbf",
+      "name": "Mother and Child Registration",
+      "version": "123",
+      "type": "None",
+      "isExecutable": true,
+      "isClosed": true,
+      "description": "string",
+      "serviceBody": [
+        {
+          "code": "string",
+          "value": "string"
+        }
+      ],
+      "eForms": [
+        {
+          "eFormId": "d98a205a-679b-485b-823d-7a32a391e744",
+          "name": "FORM",
+          "description": "string",
+          "version": "1",
+          "latest": true,
+          "schema": {
+            "additionalProp1": {}
+          }
+        }
+      ]
+    },
+    {
+      "id": "P2c9280957e579ad7017e58a3399f0068",
+      "name": "Good Health and Well-Being",
+      "version": "1.1",
+      "type": "None",
+      "isExecutable": true,
+      "isClosed": true,
+      "description": "string",
+      "serviceBody": [
+        {
+          "code": "string",
+          "value": "string"
+        }
+      ],
+      "eForms": [
+        {
+          "eFormId": "w12a205a-679b-xx34-823d-7a32a391e744",
+          "name": "FORM",
+          "description": "string",
+          "version": "1",
+          "latest": true,
+          "schema": {
+            "additionalProp1": {}
+          }
+        }
+      ]
+    },
+    {
+      "id": "WWc9280957e579ad0007e58a3399f0068",
+      "name": "Industry and Infrastructure",
+      "version": "1.1",
+      "type": "None",
+      "isExecutable": true,
+      "isClosed": true,
+      "description": "string",
+      "serviceBody": [
+        {
+          "code": "string",
+          "value": "string"
+        }
+      ],
+      "eForms": [
+        {
+          "eFormId": "w12a89q9-679b-xx34-823d-7a32a391e744",
+          "name": "FORM",
+          "description": "string",
+          "version": "1",
+          "latest": true,
+          "schema": {
+            "additionalProp1": {}
+          }
+        }
+      ]
+    },
+    {
+      "id": "DEc9280007e579ad7017e58a3399k5528",
+      "name": "Zero Hunger",
+      "version": "2.1",
+      "type": "None",
+      "isExecutable": true,
+      "isClosed": true,
+      "description": "string",
+      "serviceBody": [
+        {
+          "code": "string",
+          "value": "string"
+        }
+      ],
+      "eForms": [
+        {
+          "eFormId": "k02a20pa-679b-34xx-823d-7a32a391e744",
+          "name": "FORM",
+          "description": "string",
+          "version": "1",
+          "latest": true,
+          "schema": {
+            "additionalProp1": {}
+          }
+        }
+      ]
+    }
+  ]
+}
