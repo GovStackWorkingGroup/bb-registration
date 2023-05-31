@@ -45,6 +45,34 @@ module.exports = {
       },
     ],
   },
+  // applicant_tasks
+  applicantTasksEndpoint: 'tasks',
+  applicantTasksResponseSchema: {
+    type: 'array',
+    items: {
+      type: 'object',
+      properties: {
+        taskId: { type: 'string' },
+        mainTaskId: { type: 'string' },
+        name: { type: 'string' },
+        assigneeId: { type: 'string' },
+        roleId: { type: 'string' },
+        created: {
+          type: 'string',
+          format: 'date-time',
+        },
+        description: { type: 'string' },
+        serviceId: {
+          type: 'string',
+          // format: 'uuid',
+        },
+        serviceName: { type: 'string' },
+        fileId: { type: 'string' },
+        eFormId: { type: 'string' },
+        status: this.statusSchema,
+      },
+    },
+  },
   //applicant_applications_file_id
   applicationFileEndpoint: 'applications/{fileId}',
   applicationFileResponseSchema: {
@@ -144,16 +172,7 @@ module.exports = {
     },
     serviceId: { type: 'string' },
     serviceName: { type: 'string' },
-    status: {
-      type: 'object',
-      properties: {
-        code: {
-          type: 'string',
-          enum: ['PENDING', 'APPROVED', 'SENDBACK', 'REJECTED'],
-        },
-        title: { type: 'string' },
-      },
-    },
+    status: this.statusSchema,
     ended: { type: 'boolean' },
     applicationData: this.applicationFileSubmit,
   },
@@ -176,6 +195,16 @@ module.exports = {
       documentUrls: this.documentUrls,
     },
     required: ['applicantId'],
+  },
+  statusSchema: {
+    type: 'object',
+    properties: {
+      code: {
+        type: 'string',
+        enum: ['PENDING', 'APPROVED', 'SENDBACK', 'REJECTED'],
+      },
+      title: { type: 'string' },
+    },
   },
   documentUrls: {
     type: 'array',
