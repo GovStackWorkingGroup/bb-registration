@@ -36,6 +36,7 @@
   "tasks": [
     {
       "taskId": "42962de0-bdb2-11ed-9397-0242ac120033",
+      "taskName": "task name xyz",
       "mainTaskId": "42962de0-bdb2-11ed-9397-0242ac120004",
       "name": "name xyz",
       "assigneeId": "42962de0-bdb2-11ed-9397-0242ac120022",
@@ -49,6 +50,34 @@
       "status": {
         "code": "PENDING",
         "title": "Pending"
+      },
+      "formVariables": {
+        "additionalProp1": {
+          "data": {
+            "additionalProp1": {},
+            "additionalProp2": {},
+            "additionalProp3": {}
+          }
+        },
+        "additionalProp2": {
+          "data": {
+            "additionalProp1": {},
+            "additionalProp2": {},
+            "additionalProp3": {}
+          }
+        },
+        "additionalProp3": {
+          "data": {
+            "additionalProp1": {},
+            "additionalProp2": {},
+            "additionalProp3": {}
+          }
+        }
+      },
+      "data": {
+        "additionalProp1": {},
+        "additionalProp2": {},
+        "additionalProp3": {}
       }
     }
   ],
