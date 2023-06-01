@@ -17,7 +17,7 @@ const baseUrl = localhost + applicationTasksTaskIdEndpoint;
 const endpointTag = { tags: `@endpoint=/${applicationTasksTaskIdEndpoint}` };
 
 Before(endpointTag, () => {
-  specApplicantTasksTaskId = spec().inspect();
+  specApplicantTasksTaskId = spec();
 });
 
 // Scenario: Successfully get task information smoke type test
