@@ -90,7 +90,6 @@ module.exports = {
       fileId: { type: 'string' },
       serviceId: {
         type: 'string'
-        // format: 'uuid',
       },
       serviceName: { type: 'string' },
       eFormId: { type: 'string' },
@@ -99,16 +98,7 @@ module.exports = {
           type: 'object',
           additionalProperties: { type: 'object' }
         },
-      status: {
-        type: 'object',
-        properties: {
-          code: {
-            type: 'string',
-            enum: ['PENDING', 'APPROVED', 'SENDBACK', 'REJECTED'],
-          },
-          title: { type: 'string' },
-        },
-      },
+      status: this.statusSchema,
       data: {
         type: 'object',
         additionalProperties: {  type: 'object' }
