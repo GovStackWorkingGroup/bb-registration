@@ -942,24 +942,64 @@
       "type": "http",
       "documentation": "Complete task by id",
       "method": "post",
-      "endpoint": "tasks/{taskId}/complete",
+      "endpoint": "tasks/:taskId/complete",
       "responses": [
         {
           "uuid": "0ae4fa6d-df36-453b-bc3a-87439ec493f4",
-          "body": "{}",
+          "body": "{\n  \"taskId\": \"{{routeParam 'taskId'}}\",\n  \"fileId\": \"string\",\n  \"serviceId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n  \"status\": {\n    \"code\": \"PENDING\",\n    \"title\": \"Pending\"\n  },\n  \"variables\": {\n    \"additionalProp1\": {\n      \"data\": {\n        \"additionalProp1\": {},\n        \"additionalProp2\": {},\n        \"additionalProp3\": {}\n      }\n    }\n  }\n}",
           "latency": 0,
           "statusCode": 200,
-          "label": "",
+          "label": "Successfully completes the task",
           "headers": [],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
           "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "taskId",
+              "value": "^d1e33d56-c5c7-4272-aeb6-bc2732cce1f2$",
+              "invert": false,
+              "operator": "regex"
+            },
+            {
+              "target": "body",
+              "modifier": "data",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": true
+        },
+        {
+          "uuid": "e71fc74b-1686-413f-aacd-c54e763da15b",
+          "body": "",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Invalid - taskId not found",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "taskId",
+              "value": "^d1e33d56-c5c7-4272-aeb6-bc2732cce1f2$",
+              "invert": true,
+              "operator": "regex"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
         }
       ],
       "enabled": true,
