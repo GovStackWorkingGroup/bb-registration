@@ -178,6 +178,22 @@ module.exports = {
       additionalProperties: false,
     },
   },
+  //services_eforms_eformid
+  servicesEformsEformIdEndpoint: 'eForms/{eFormId}',
+  servicesEformsEformIdResponseSchema: {
+    type: 'object',
+    properties: {
+      eFormId: { type: 'string' },
+      name: { type: 'string' },
+      description: { type: 'string' },
+      version: { type: 'string' },
+      latest: { type: 'boolean' },
+      schema: {
+        type: 'object',
+        additionalProperties: true
+      }
+    }
+  },
   // service_serviceId
   serviceIdEndpoint: 'services/{serviceId}',
   // applicant_documents
