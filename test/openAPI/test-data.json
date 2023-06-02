@@ -300,5 +300,17 @@
         }
       ]
     }
+  ],
+  "eForms": [
+    {
+      "eFormId": "d98a205a-679b-485b-823d-7a32a391e744",
+      "name": "A1",
+      "description": "eForm description",
+      "version": "1",
+      "latest": true,
+      "schema": {
+        "additionalProp1": {}
+      }
+    }
   ]
 }
