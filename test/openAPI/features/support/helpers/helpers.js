@@ -235,6 +235,9 @@ module.exports = {
       },
     },
   },
+  // operator_applications_update
+  updateApplicationFileEndpoint: '/applications/{fileId}',
+  updateApplicationFileResponseSchema: {},
   // shares
   serviceSchema: {
     type: 'object',
