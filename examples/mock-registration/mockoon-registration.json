@@ -237,20 +237,53 @@
       "type": "http",
       "documentation": "Retrieve a specific e-form by ID",
       "method": "get",
-      "endpoint": "eForms/{eFormId}",
+      "endpoint": "eForms/:eFormId",
       "responses": [
         {
           "uuid": "0ec2d07b-2f75-4cc2-a35f-43ff4fd58a69",
-          "body": "{}",
+          "body": "{\n  \"eFormId\": \"{{urlParam 'eFormId'}}\",\n  \"name\": \"A1\",\n  \"description\": \"eForm description\",\n  \"version\": \"1\",\n  \"latest\": true,\n  \"schema\": {\n    \"additionalProp1\": {}\n  }\n}",
           "latency": 0,
           "statusCode": 200,
-          "label": "",
+          "label": "Successfully return eForm information",
           "headers": [],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
           "sendFileAsBody": false,
-          "rules": [],
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "eFormId",
+              "value": "d98a205a-679b-485b-823d-7a32a391e744",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "01e15673-d3d1-479c-8335-12ce663c6716",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Eform was not found",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "eFormId",
+              "value": "n0t-ex1st1ng-eForm#-1d",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
           "rulesOperator": "OR",
           "disableTemplating": false,
           "fallbackTo404": false,
