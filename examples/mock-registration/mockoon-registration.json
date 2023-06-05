@@ -413,19 +413,134 @@
       "endpoint": "applications",
       "responses": [
         {
-          "uuid": "0132e1e3-1cfd-424a-b67b-c76307b2e560",
-          "body": "{}",
+          "uuid": "b673c638-b31b-41c3-bbc6-7e0816ccc262",
+          "body": "[\n  {\n    \"fileId\": \"81c4445c-bff6-11ed-afa1-0242ac120002\",\n    \"mainTaskId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"taskTitle\": \"Application xyz\",\n    \"roleId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"roleName\": \"Registrar\",\n    \"assigneeId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"operatorName\": \"John Smith\",\n    \"status\": {\n      \"code\": \"PENDING\",\n      \"title\": \"Pending\"\n    },\n    \"applicantId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"created\": \"2000-10-23T00:00:00.000Z\",\n    \"registered\": \"2000-10-23T00:00:00.000Z\",\n    \"description\": \"Any text.\",\n    \"serviceName\": \"Post partum registration service\",\n    \"serviceId\": \"{{queryParam 'serviceId'}}\",\n    \"eformId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"documentUrls\": [\n      \"string\"\n    ],\n    \"additionalMeta\": {\n      \"data\": {\n        \"additionalProp1\": {},\n        \"additionalProp2\": {},\n        \"additionalProp3\": {}\n      }\n    }\n  }\n]",
           "latency": 0,
           "statusCode": 200,
-          "label": "",
+          "label": "Successfully retrieves all application files - provided serviceId",
           "headers": [],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
           "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "serviceId",
+              "value": "0b4e529c-fe1a-11ed-be56-0242ac120002",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": true,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "4ae1c99e-337b-4a7c-95cf-d13aa93c3a36",
+          "body": "[\n  {\n    \"fileId\": \"81c4445c-bff6-11ed-afa1-0242ac120002\",\n    \"mainTaskId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"taskTitle\": \"Application xyz\",\n    \"roleId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"roleName\": \"Registrar\",\n    \"assigneeId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"operatorName\": \"John Smith\",\n    \"status\": {\n      \"code\": \"PENDING\",\n      \"title\": \"Pending\"\n    },\n    \"applicantId\": \"{{queryParam 'applicantId'}}\",\n    \"created\": \"2000-10-23T00:00:00.000Z\",\n    \"registered\": \"2000-10-23T00:00:00.000Z\",\n    \"description\": \"Any text.\",\n    \"serviceName\": \"Post partum registration service\",\n    \"serviceId\": \"4334-df23-sf324-234efwef\",\n    \"eformId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"documentUrls\": [\n      \"string\"\n    ],\n    \"additionalMeta\": {\n      \"data\": {\n        \"additionalProp1\": {},\n        \"additionalProp2\": {},\n        \"additionalProp3\": {}\n      }\n    }\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Successfully retrieves all application files - provided applicantId",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "applicantId",
+              "value": "11962de0-11b2-11cc-9390-0242ac121114",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": true,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "e4f8b67f-1f40-4323-9f21-7a1665ab98f1",
+          "body": "[\n  {\n    \"fileId\": \"81c4445c-bff6-11ed-afa1-0242ac120002\",\n    \"mainTaskId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"taskTitle\": \"Application xyz\",\n    \"roleId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"roleName\": \"Registrar\",\n    \"assigneeId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"operatorName\": \"John Smith\",\n    \"status\": {\n      \"code\": \"PENDING\",\n      \"title\": \"Pending\"\n    },\n    \"applicantId\": \"{{queryParam 'applicantId'}}\",\n    \"created\": \"2000-10-23T00:00:00.000Z\",\n    \"registered\": \"2000-10-23T00:00:00.000Z\",\n    \"description\": \"Any text.\",\n    \"serviceName\": \"Post partum registration service\",\n    \"serviceId\": \"{{queryParam 'serviceId'}}\",\n    \"eformId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"documentUrls\": [\n      \"string\"\n    ],\n    \"additionalMeta\": {\n      \"data\": {\n        \"additionalProp1\": {},\n        \"additionalProp2\": {},\n        \"additionalProp3\": {}\n      }\n    }\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Successfully retrieves all application files - provided applicantId and serviceId",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "applicantId",
+              "value": "99b62de0-11b2-11cc-9390-0242ac121555",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "query",
+              "modifier": "serviceId",
+              "value": "99be529c-fe1a-11ed-be56-0242ac120555",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": true,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "5df06b6b-f60e-4afa-aa6e-8febb073f222",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Retrieves empty array - provided applicantId not exist",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "applicantId",
+              "value": "n0t-ex1st1ng-applicant#-1d",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": true,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "49403f36-42f5-42b9-949b-c6c19260a7b7",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Retrieves empty array - provided serviceId not exist",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "serviceId",
+              "value": "n0t-ex1st1ng-serv1ce#-1d",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": true,
           "fallbackTo404": false,
           "default": true
         }

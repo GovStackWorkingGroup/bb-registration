@@ -1,4 +1,4 @@
-@method=POST @endpoint=/applications/{fileId}
+@method=GET @endpoint=/applications/{fileId}
 Feature: The API endpoint used to get application file by ID
 
   @smoke @unit @positive
