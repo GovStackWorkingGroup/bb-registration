@@ -838,21 +838,64 @@
       "type": "http",
       "documentation": "Get task by id",
       "method": "get",
-      "endpoint": "tasks/{taskId}",
+      "endpoint": "tasks/:taskId",
       "responses": [
         {
           "uuid": "1a3bb697-2125-4795-9129-5f88077d48ba",
-          "body": "{}",
+          "body": "{\n  \"taskId\": \"{{urlParam 'taskId'}}\",\n  \"taskName\": \"task name xyz\",\n  \"assigneeId\": \"42962de0-xxxx-11ed-0000-0242ac120004\",\n  \"roleId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n  \"created\": \"2023-06-01T11:31:25.431Z\",\n  \"description\": \"random description\",\n  \"fileId\": \"P2c9280957e579ad7017e58a3399f1234\",\n  \"serviceId\": \"P2c9280957e579ad7017e58a3399f0068\",\n  \"serviceName\": \"Good Health and Well-Being\",\n  \"eFormId\": \"w12a205a-679b-xx34-823d-7a32a391e744\",\n  \"formVariables\": {\n    \"additionalProp1\": {},\n    \"additionalProp2\": {},\n    \"additionalProp3\": {}\n  },\n  \"status\": {\n    \"code\": \"{{oneOf (array 'PENDING' 'APPROVED' 'SENDBACK' 'REJECTED')}}\",\n    \"title\": \"Pending\"\n  },\n  \"data\": {\n    \"additionalProp1\": {},\n    \"additionalProp2\": {},\n    \"additionalProp3\": {}\n  }\n}",
           "latency": 0,
           "statusCode": 200,
-          "label": "",
-          "headers": [],
+          "label": "Successfully get information of taskId",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
           "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "taskId",
+              "value": "81c4445c-bff6-11ed-afa1-0242ac120002",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "1303623c-ff7e-4afa-b70a-24b27273a179",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Not found",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "taskId",
+              "value": "n0t-ex1st1ng-task#-1d",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": true
