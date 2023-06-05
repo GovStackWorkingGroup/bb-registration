@@ -185,6 +185,26 @@
         "title": "Pending"
       },
       "data": {}
+    },
+    {
+      "taskId": "d1e33d56-c5c7-4272-aeb6-bc2732cce1f2",
+      "taskName": "My new task",
+      "mainTaskId": "bebb3890-f7e6-4e8f-b64a-5f778868f380",
+      "name": "John Kane",
+      "assigneeId": "494ef3b8-c74b-4d42-873f-f362c2715cf7",
+      "roleId": "bcd51356-aa24-418e-9ad8-dfbb3ea79bd6",
+      "created": "2023-05-29T09:40:33.444Z",
+      "description": "Some description",
+      "serviceId": "e9353e68-ba57-463e-b393-2da8416679d9",
+      "serviceName": "New service name",
+      "fileId": "40f8df24-60a1-4558-9576-9a2264570e86",
+      "eFormId": "ec7fd082-3a0a-4ed2-b043-bb4feaab0eac",
+      "formVariables": {},
+      "status": {
+        "code": "PENDING",
+        "title": "Pending"
+      },
+      "data": {}
     }
   ],
   "services": [
