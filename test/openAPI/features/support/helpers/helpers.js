@@ -79,30 +79,29 @@ module.exports = {
     type: 'object',
     properties: {
       taskId: { type: 'string' },
-      taskName:  { type: 'string' },
+      taskName: { type: 'string' },
       assigneeId: { type: 'string' },
       roleId: { type: 'string' },
       created: {
-        type: "string",
-        format: "date-time"
+        type: 'string',
+        format: 'date-time',
       },
       description: { type: 'string' },
       fileId: { type: 'string' },
       serviceId: {
-        type: 'string'
+        type: 'string',
       },
       serviceName: { type: 'string' },
       eFormId: { type: 'string' },
-      formVariables:
-        {
-          type: 'object',
-          additionalProperties: { type: 'object' }
-        },
+      formVariables: {
+        type: 'object',
+        additionalProperties: { type: 'object' },
+      },
       status: this.statusSchema,
       data: {
         type: 'object',
-        additionalProperties: {  type: 'object' }
-      }
+        additionalProperties: { type: 'object' },
+      },
     },
   },
   //applicant_applications_file_id
@@ -190,9 +189,9 @@ module.exports = {
       latest: { type: 'boolean' },
       schema: {
         type: 'object',
-        additionalProperties: true
-      }
-    }
+        additionalProperties: true,
+      },
+    },
   },
   // service_serviceId
   serviceIdEndpoint: 'services/{serviceId}',
@@ -216,6 +215,24 @@ module.exports = {
       code: { type: 'string' },
       message: { type: 'string' },
       localizedMessage: { type: 'string' },
+    },
+  },
+  // applicant_complete_task
+  applicantCompleteTaskEndpoint: 'tasks/{taskId}/complete',
+  applicantCompleteTaskResponseSchema: {
+    type: 'object',
+    properties: {
+      taskId: { type: 'string' },
+      fileId: { type: 'string' },
+      serviceId: {
+        type: 'string',
+        format: 'uuid',
+      },
+      status: this.statusSchema,
+      variables: {
+        type: 'object',
+        additionalProperties: this.additionalDataSchema,
+      },
     },
   },
   // shares
@@ -298,9 +315,7 @@ module.exports = {
     properties: {
       data: {
         type: 'object',
-        additionalProperties: {
-          type: 'object',
-        },
+        additionalProperties: { type: 'object' },
       },
     },
   },
