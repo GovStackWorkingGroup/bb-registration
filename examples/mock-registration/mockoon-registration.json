@@ -526,21 +526,193 @@
       "endpoint": "tasks",
       "responses": [
         {
-          "uuid": "b30e8e17-da83-423f-9c41-e8a283c69385",
-          "body": "{}",
+          "uuid": "b673c638-b31b-41c3-bbc6-7e0816ccc262",
+          "body": "[\n  {\n    \"taskId\": \"string\",\n    \"mainTaskId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"name\": \"task name\",\n    \"assigneeId\": \"42962de0-bdb2-11ed-9397-0242ac120022\",\n    \"roleId\": \"string\",\n    \"created\": \"2023-05-31T06:54:43.138Z\",\n    \"description\": \"string\",\n    \"serviceId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"serviceName\": \"string\",\n    \"fileId\": \"{{queryParam 'fileId'}}\",\n    \"eFormId\": \"string\",\n    \"status\": {\n      \"code\": \"PENDING\",\n      \"title\": \"Pending\"\n    }\n  }\n]",
           "latency": 0,
           "statusCode": 200,
-          "label": "",
+          "label": "Successfully retrieves all tasks - provided fileId",
           "headers": [],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
           "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "fileId",
+              "value": "81c4445c-bff6-11ed-afa1-0242ac120002",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": true,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "4ae1c99e-337b-4a7c-95cf-d13aa93c3a36",
+          "body": "[\n  {\n    \"taskId\": \"string\",\n    \"mainTaskId\": \"{{queryParam 'mainTaskId'}}\",\n    \"name\": \"task name\",\n    \"assigneeId\": \"42962de0-bdb2-11ed-9397-0242ac120022\",\n    \"roleId\": \"string\",\n    \"created\": \"2023-05-31T06:54:43.138Z\",\n    \"description\": \"string\",\n    \"serviceId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"serviceName\": \"string\",\n    \"fileId\": \"81c4445c-bff6-11ed-afa1-0242ac120002\",\n    \"eFormId\": \"string\",\n    \"status\": {\n      \"code\": \"PENDING\",\n      \"title\": \"Pending\"\n    }\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Successfully retrieves all tasks - provided mainTaskId",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "mainTaskId",
+              "value": "42962de0-bdb2-11ed-9397-0242ac120004",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": true,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "9f9776f5-b470-404f-829c-1c07f14fb43f",
+          "body": "[\n  {\n    \"taskId\": \"string\",\n    \"mainTaskId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"name\": \"string\",\n    \"assigneeId\": \"{{queryParam 'assigneeId'}}\",\n    \"roleId\": \"string\",\n    \"created\": \"2023-05-31T06:54:43.138Z\",\n    \"description\": \"string\",\n    \"serviceId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"serviceName\": \"string\",\n    \"fileId\": \"81c4445c-bff6-11ed-afa1-0242ac120002\",\n    \"eFormId\": \"string\",\n    \"status\": {\n      \"code\": \"PENDING\",\n      \"title\": \"Pending\"\n    }\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Successfully retrieves all tasks - provided assigneeId",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "assigneeId",
+              "value": "42962de0-bdb2-11ed-9397-0242ac120022",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": true,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "e4f8b67f-1f40-4323-9f21-7a1665ab98f1",
+          "body": "[\n  {\n    \"taskId\": \"string\",\n    \"mainTaskId\": \"{{queryParam 'mainTaskId'}}\",\n    \"name\": \"string\",\n    \"assigneeId\": \"{{queryParam 'assigneeId'}}\",\n    \"roleId\": \"string\",\n    \"created\": \"2023-05-31T06:54:43.138Z\",\n    \"description\": \"string\",\n    \"serviceId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"serviceName\": \"string\",\n    \"fileId\": \"{{queryParam 'fileId'}}\",\n    \"eFormId\": \"string\",\n    \"status\": {\n      \"code\": \"PENDING\",\n      \"title\": \"Pending\"\n    }\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Successfully retrieves all tasks - provided fileId, assigneeId and mainTaskId ",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "assigneeId",
+              "value": "42962de0-bdb2-11ed-9397-0242ac120022",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "query",
+              "modifier": "fileId",
+              "value": "99be529c-fe1a-11ed-be56-0242ac120555",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "query",
+              "modifier": "mainTaskId",
+              "value": "42962de0-bdb2-11ed-9397-0242ac120004",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": true,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "5df06b6b-f60e-4afa-aa6e-8febb073f222",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Retrieves empty array - provided fileId not exist",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "fileId",
+              "value": "n0t-ex1st1ng-file#-1d",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": true,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "49403f36-42f5-42b9-949b-c6c19260a7b7",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Retrieves empty array - provided mainTaskId not exist",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "mainTaskId",
+              "value": "n0t-ex1st1ng-main-task#-1d",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": true,
           "fallbackTo404": false,
           "default": true
+        },
+        {
+          "uuid": "b858c9e5-9199-493a-88e3-ab3847db0f05",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Retrieves empty array - provided assigneeId not exist",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "assigneeId",
+              "value": "n0t-ex1st1ng-assignee#-1d",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": true,
+          "fallbackTo404": false,
+          "default": false
         }
       ],
       "enabled": true,
