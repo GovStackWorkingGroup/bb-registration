@@ -674,7 +674,7 @@
       "endpoint": "tasks",
       "responses": [
         {
-          "uuid": "b673c638-b31b-41c3-bbc6-7e0816ccc262",
+          "uuid": "fd6aad2d-c357-4999-8a20-5ed8a768e58e",
           "body": "[\n  {\n    \"taskId\": \"string\",\n    \"mainTaskId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"name\": \"task name\",\n    \"assigneeId\": \"42962de0-bdb2-11ed-9397-0242ac120022\",\n    \"roleId\": \"string\",\n    \"created\": \"2023-05-31T06:54:43.138Z\",\n    \"description\": \"string\",\n    \"serviceId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"serviceName\": \"string\",\n    \"fileId\": \"{{queryParam 'fileId'}}\",\n    \"eFormId\": \"string\",\n    \"status\": {\n      \"code\": \"PENDING\",\n      \"title\": \"Pending\"\n    }\n  }\n]",
           "latency": 0,
           "statusCode": 200,
@@ -699,7 +699,7 @@
           "default": false
         },
         {
-          "uuid": "4ae1c99e-337b-4a7c-95cf-d13aa93c3a36",
+          "uuid": "aa9164b6-df08-43b6-bfc4-9464880b9417",
           "body": "[\n  {\n    \"taskId\": \"string\",\n    \"mainTaskId\": \"{{queryParam 'mainTaskId'}}\",\n    \"name\": \"task name\",\n    \"assigneeId\": \"42962de0-bdb2-11ed-9397-0242ac120022\",\n    \"roleId\": \"string\",\n    \"created\": \"2023-05-31T06:54:43.138Z\",\n    \"description\": \"string\",\n    \"serviceId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"serviceName\": \"string\",\n    \"fileId\": \"81c4445c-bff6-11ed-afa1-0242ac120002\",\n    \"eFormId\": \"string\",\n    \"status\": {\n      \"code\": \"PENDING\",\n      \"title\": \"Pending\"\n    }\n  }\n]",
           "latency": 0,
           "statusCode": 200,
@@ -749,7 +749,7 @@
           "default": false
         },
         {
-          "uuid": "e4f8b67f-1f40-4323-9f21-7a1665ab98f1",
+          "uuid": "fb4e19e4-d89c-405d-9d46-fde3ff73b560",
           "body": "[\n  {\n    \"taskId\": \"string\",\n    \"mainTaskId\": \"{{queryParam 'mainTaskId'}}\",\n    \"name\": \"string\",\n    \"assigneeId\": \"{{queryParam 'assigneeId'}}\",\n    \"roleId\": \"string\",\n    \"created\": \"2023-05-31T06:54:43.138Z\",\n    \"description\": \"string\",\n    \"serviceId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"serviceName\": \"string\",\n    \"fileId\": \"{{queryParam 'fileId'}}\",\n    \"eFormId\": \"string\",\n    \"status\": {\n      \"code\": \"PENDING\",\n      \"title\": \"Pending\"\n    }\n  }\n]",
           "latency": 0,
           "statusCode": 200,
@@ -788,7 +788,7 @@
           "default": false
         },
         {
-          "uuid": "5df06b6b-f60e-4afa-aa6e-8febb073f222",
+          "uuid": "7e325351-74ec-416b-8d0e-5e9f905ecff2",
           "body": "[]",
           "latency": 0,
           "statusCode": 200,
@@ -813,7 +813,7 @@
           "default": false
         },
         {
-          "uuid": "49403f36-42f5-42b9-949b-c6c19260a7b7",
+          "uuid": "b9aff60e-92f7-4fe6-b0b7-0582f2b680a9",
           "body": "[]",
           "latency": 0,
           "statusCode": 200,
@@ -1010,24 +1010,78 @@
       "type": "http",
       "documentation": "Update service application file with operator's form data",
       "method": "put",
-      "endpoint": "applications/{fileId}",
+      "endpoint": "applications/:fileId",
       "responses": [
         {
           "uuid": "5ced7fd0-dc90-4c11-bb70-b41ca40a3312",
-          "body": "{}",
+          "body": "{\n  \"fileId\": \"{{urlParam 'fileId'}}\",\n  \"registered\": \"2000-10-23T00:00:00.000Z\",\n  \"serviceId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n  \"serviceName\": \"Post partum registration service\",\n  \"status\": {\n    \"code\": \"PENDING\",\n    \"title\": \"Pending\"\n  },\n  \"ended\": false,\n  \"applicationData\": {\n    \"applicationName\": \"Amya Yuko\",\n    \"applicantId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"created\": \"2000-10-23T00:00:00.000Z\",\n    \"formData\": {\n      \"data\": {\n        \"additionalProp1\": {},\n        \"additionalProp2\": {},\n        \"additionalProp3\": {}\n      },\n      \"eFormId\": \"42962de0-bdb2-11ed-9397-0242ac120004\"\n    },\n    \"documentUrls\": [\n      \"string\"\n    ]\n  }\n}",
           "latency": 0,
           "statusCode": 200,
-          "label": "",
+          "label": "Succesfully update service application file",
           "headers": [],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
           "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Information-Mediator-Client",
+              "value": "^eGovStack/GOV/90000009/eregistrations-dev$",
+              "invert": false,
+              "operator": "regex"
+            },
+            {
+              "target": "params",
+              "modifier": "fileId",
+              "value": "^b8508d35-c2f3-442b-88a1-267ca25e85c0$",
+              "invert": false,
+              "operator": "regex"
+            }
+          ],
+          "rulesOperator": "AND",
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": true
+        },
+        {
+          "uuid": "c5ddf5c1-84fb-49b7-a4c5-736780adf434",
+          "body": "",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Not found",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Information-Mediator-Client",
+              "value": "^eGovStack/GOV/90000009/eregistrations-dev$",
+              "invert": false,
+              "operator": "regex"
+            },
+            {
+              "target": "body",
+              "modifier": "",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "params",
+              "modifier": "fileId",
+              "value": "^b8508d35-c2f3-442b-88a1-267ca25e85c0$",
+              "invert": true,
+              "operator": "regex"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
         }
       ],
       "enabled": true,

@@ -4,7 +4,6 @@ const { Given, When, Then, Before, After } = require('@cucumber/cucumber');
 const {
   localhost,
   defaultExpectedResponseTime,
-  applicantCompleteTaskResponseSchema,
   updateApplicationFileEndpoint,
   header,
   updateApplicationFileResponseSchema,
@@ -31,15 +30,22 @@ When(
   'PUT request to update service application file is sent with given Information-Mediator-Client header, {string} as a fileId parameter and body',
   fileId =>
     specUpdateApplicationFile
-      .post(baseUrl)
+      .put(baseUrl)
       .withHeaders(header.key, header.value)
       .withPathParams('fileId', fileId)
       .withJson({
-        data: {
-          additionalProp1: {},
-          additionalProp2: {},
-          additionalProp3: {},
+        applicationName: 'Amya Yuko',
+        applicantId: '42962de0-bdb2-11ed-9397-0242ac120004',
+        created: '2000-10-23T00:00:00.000Z',
+        formData: {
+          data: {
+            additionalProp1: {},
+            additionalProp2: {},
+            additionalProp3: {},
+          },
+          eFormId: '42962de0-bdb2-11ed-9397-0242ac120004',
         },
+        documentUrls: ['string'],
       })
 );
 
@@ -70,10 +76,10 @@ Then(
 );
 
 Then(
-  `The PUT /applications/{fileId} response's fileId should be equal to the taskId from the request {string}`,
+  `The PUT \\/applications\\/\\{fileId} response's fileId should be equal to the fileId from the request {string}`,
   fieldId =>
     chai
-      .expect(specUpdateApplicationFile._response.json.fieldId)
+      .expect(specUpdateApplicationFile._response.json.fileId)
       .to.be.equal(fieldId)
 );
 

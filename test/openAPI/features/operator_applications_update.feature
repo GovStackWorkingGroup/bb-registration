@@ -10,7 +10,7 @@ Feature: The API endpoint used to update service application file
     And The PUT /applications/{fileId} response should be returned in a timely manner 15000ms
     And The PUT /applications/{fileId} response should have status 200
     And The PUT /applications/{fileId} response should match json schema
-    And The PUT /applications/{fileId} response's fileId should be equal to the taskId from the request "b8508d35-c2f3-442b-88a1-267ca25e85c0"
+    And The PUT /applications/{fileId} response's fileId should be equal to the fileId from the request "b8508d35-c2f3-442b-88a1-267ca25e85c0"
 
   @unit @negative
   Scenario: Could not update service application file because provided fileId was not found
