@@ -96,7 +96,7 @@ When(
 );
 
 When(
-  'The request contains a payload with {int} as firstResult, {int} as maxResult, {string} as sortBy and {string} as sortOrder',
+  'The \\/applications request contains a payload with {int} as firstResult, {int} as maxResult, {string} as sortBy and {string} as sortOrder',
   (firstResult, maxResult, sortBy, sortOrder) => {
     specApplicationsList.withQueryParams({
       firstResult: firstResult,
