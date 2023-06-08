@@ -21,7 +21,7 @@
   "servers": [
     {
       "url": "https://api.collab.mosip.net/v1/mock-identity-system",
-      "description": "collab"
+      "description": "qa4"
     }
   ],
   "paths": {
@@ -98,23 +98,37 @@
               },
               "examples": {
                 "Example 1": {
-                  "value": {
+                  "value": {"requestTime":"2023-06-01T16:11:16.535Z","request":{
                     "individualId": "8267411575",
                     "pin": "55555",
-                    "fullName": [
-                      {
-                        "language": "fra",
-                        "value": "Alice"
-                      },
-                      {
-                        "language": "ara",
-                        "value": "أليس"
-                      },
-                      {
-                        "language": "eng",
-                        "value": "Alice"
-                      }
-                    ],
+					"givenName": [
+                        {
+                          "language": "fra",
+                          "value": "Alice"
+                        },
+                        {
+                          "language": "ara",
+                          "value": "أليس"
+                        },
+                        {
+                          "language": "eng",
+                          "value": "Alice"
+                        }
+                      ],
+					  "familyName": [
+                        {
+                          "language": "fra",
+                          "value": "McCall"
+                        },
+                        {
+                          "language": "ara",
+                          "value": "مكول"
+                        },
+                        {
+                          "language": "eng",
+                          "value": "McCall"
+                        }
+                      ],
                     "gender": [
                       {
                         "language": "eng",
@@ -194,7 +208,141 @@
                       "value": "dhdfhdhhdhdfhfdh=="
                     },
                     "phone": "+919427357935",
-                    "email": "alice1234@gmail.com"
+                    "email": "alice1234@gmail.com",
+					"zoneInfo": "Kenitra",
+					"locale": "en-US"
+                  }
+                  }
+                },
+				"Example 2": {
+                  "value": {"requestTime":"2023-06-01T16:11:16.535Z","request":{
+                    "individualId": "8267411575",
+                    "pin": "55555",
+                    "fullName": [
+                      {
+                        "language": "fra",
+                        "value": "Alice McCall"
+                      },
+                      {
+                        "language": "ara",
+                        "value": "مكول أليس"
+                      },
+                      {
+                        "language": "eng",
+                        "value": "Alice McCall"
+                      }
+                    ],
+					"givenName": [
+                        {
+                          "language": "fra",
+                          "value": "Alice"
+                        },
+                        {
+                          "language": "ara",
+                          "value": "أليس"
+                        },
+                        {
+                          "language": "eng",
+                          "value": "Alice"
+                        }
+                      ],
+					  "familyName": [
+                        {
+                          "language": "fra",
+                          "value": "McCall"
+                        },
+                        {
+                          "language": "ara",
+                          "value": "مكول"
+                        },
+                        {
+                          "language": "eng",
+                          "value": "McCall"
+                        }
+                      ],
+                    "gender": [
+                      {
+                        "language": "eng",
+                        "value": "Female"
+                      },
+                      {
+                        "language": "fra",
+                        "value": "Femâle"
+                      },
+                      {
+                        "language": "ara",
+                        "value": "ذكر"
+                      }
+                    ],
+                    "dateOfBirth": "1995/07/02",
+                    "streetAddress": [
+                      {
+                        "language": "fra",
+                        "value": "yuān⥍"
+                      },
+                      {
+                        "language": "ara",
+                        "value": "$لُنگᆑ"
+                      },
+                      {
+                        "language": "eng",
+                        "value": "Slung"
+                      }
+                    ],
+                    "locality": [
+                      {
+                        "language": "fra",
+                        "value": "CMâttye"
+                      },
+                      {
+                        "language": "ara",
+                        "value": "دسييسيكدك"
+                      },
+                      {
+                        "language": "eng",
+                        "value": "Cmattey"
+                      }
+                    ],
+                    "region": [
+                      {
+                        "language": "fra",
+                        "value": "melh$pèng"
+                      },
+                      {
+                        "language": "ara",
+                        "value": "مِله$پِ̀نگ"
+                      },
+                      {
+                        "language": "eng",
+                        "value": "melhspeng"
+                      }
+                    ],
+                    "postalCode": "45009",
+                    "country": [
+                      {
+                        "language": "fra",
+                        "value": "India"
+                      },
+                      {
+                        "language": "ara",
+                        "value": "الهند"
+                      },
+                      {
+                        "language": "eng",
+                        "value": "India"
+                      }
+                    ],
+                    "encodedPhoto": "dhdfhdhhdhdfhfdh==",
+                    "individualBiometrics": {
+                      "format": "cbeff",
+                      "version": 1,
+                      "value": "dhdfhdhhdhdfhfdh=="
+                    },
+                    "phone": "+919427357935",
+                    "email": "alice1234@gmail.com",
+					"zoneInfo": "Kenitra",
+					"locale": "en-US"
+                  }
                   }
                 }
               }
@@ -240,10 +388,10 @@
                 },
                 "examples": {
                   "Example 1": {
-                    "value": {
+                    "value": {"responseTime":"2023-06-01T16:04:16.535Z","response":{
                       "individualId": "8267411575",
                       "pin": "55555",
-                      "fullName": [
+                      "givenName": [
                         {
                           "language": "fra",
                           "value": "Alice"
@@ -255,6 +403,20 @@
                         {
                           "language": "eng",
                           "value": "Alice"
+                        }
+                      ],
+					  "familyName": [
+                        {
+                          "language": "fra",
+                          "value": "McCall"
+                        },
+                        {
+                          "language": "ara",
+                          "value": "مكول"
+                        },
+                        {
+                          "language": "eng",
+                          "value": "McCall"
                         }
                       ],
                       "gender": [
@@ -336,9 +498,12 @@
                         "value": "dhdfhdhhdhdfhfdh=="
                       },
                       "phone": "+919427357935",
-                      "email": "alice1234@gmail.com"
-                    }
+                      "email": "alice1234@gmail.com",
+					  "zoneInfo": "Kenitra",
+					  "locale": "en-US"
+                    },"errors":[]
                   }
+                }
                 }
               }
             }
@@ -397,18 +562,32 @@
               }
             ],
             "postalCode": "45009",
-            "fullName": [
+            "givenName": [
               {
                 "language": "fra",
-                "value": "Himaja Dhanya R"
+                "value": "Himaja"
               },
               {
                 "language": "ara",
-                "value": "تتگلدكنسَزقهِقِفل دسييسيكدكنوڤو"
+                "value": "تتگلدكنسَزقهِقِفل"
               },
               {
                 "language": "eng",
                 "value": "Himaja Dhanya R"
+              }
+            ],
+			"familyName": [
+              {
+                "language": "fra",
+                "value": "Dhanya R"
+              },
+              {
+                "language": "ara",
+                "value": " دسييسيكدكنوڤو"
+              },
+              {
+                "language": "eng",
+                "value": "Dhanya R"
               }
             ],
             "dateOfBirth": "1995/07/02",
@@ -497,28 +676,44 @@
                 "language": "eng",
                 "value": "melhspeng"
               }
-            ],
+            ], 
             "email": "dhanya.himaja@gmail.com",
-            "encodedPhoto": "dhdfhdhhdhdfhfdh=="
+            "encodedPhoto": "dhdfhdhhdhdfhfdh==",
+			"zoneInfo": "Kenitra",
+			"locale": "en-US"
           }
         },
         "examples": [
           {
             "individualId": "8267411575",
             "pin": "55555",
-            "fullName": [
-              {
-                "language": "fra",
-                "value": "Alice"
-              },
-              {
-                "language": "ara",
-                "value": "أليس"
-              },
-              {
-                "language": "eng",
-                "value": "Alice"
-              }
+            "givenName": [
+				{
+                  "language": "fra",
+                  "value": "Alice"
+                },
+                {
+                  "language": "ara",
+                  "value": "أليس"
+                },
+                {
+                  "language": "eng",
+                  "value": "Alice"
+                }
+            ],
+			"familyName": [
+				{
+                  "language": "fra",
+                  "value": "McCall"
+                },
+                {
+                  "language": "ara",
+                  "value": "مكول"
+                },
+                {
+                  "language": "eng",
+                  "value": "McCall"
+                }
             ],
             "gender": [
               {
@@ -599,7 +794,9 @@
               "value": "dhdfhdhhdhdfhfdh=="
             },
             "phone": "+919427007935",
-            "email": "alice1234@gmail.com"
+            "email": "alice1234@gmail.com",
+			"zoneInfo": "Kenitra",
+			"locale": "en-US"
           }
         ],
         "properties": {
@@ -610,6 +807,18 @@
             "type": "string"
           },
           "fullName": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LanguageValue"
+            }
+          },
+		  "givenName": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LanguageValue"
+            }
+          },
+		  "familyName": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/LanguageValue"
@@ -667,18 +876,26 @@
           },
           "phone": {
             "type": "string"
+          },
+		  "zoneInfo": {
+            "type": "string"
+          },
+		  "locale": {
+            "type": "string"
           }
         },
         "required": [
           "individualId",
           "pin",
-          "fullName",
+          "givenName",
+		  "familyName",
           "gender",
           "dateOfBirth",
           "streetAddress",
           "locality",
           "region",
           "postalCode",
+		  "country",
           "encodedPhoto",
           "email",
           "phone"
