@@ -1,0 +1,1124 @@
+{
+  "uuid": "6adb7c00-6229-4a70-8c19-d60893db3074",
+  "lastMigration": 27,
+  "name": "Registration",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3003,
+  "hostname": "",
+  "routes": [
+    {
+      "uuid": "207066ab-94a3-4985-9e92-56e677660c7a",
+      "documentation": "API endpoint that allows anyone to see service statistics",
+      "method": "get",
+      "endpoint": "data/statistics/1.0",
+      "responses": [
+        {
+          "uuid": "0d2db17c-7e15-4805-98f6-dff5354594cb",
+          "body": "[\n  {\n    \"processed\": 100,\n    \"approved\": 90,\n    \"sentBack\": 3,\n    \"rejected\": 7,\n    \"references\": {\n      \"startDate\": {{queryParam 'startDate' '' true}},\n      \"endDate\": {{queryParam 'endDate.1' '' true}},\n      \"registrationName\": {{queryParam 'registrationName.1' '' true}},\n      \"operator\": {{queryParam 'operator.1' '' true}},\n      \"role\": {{queryParam 'role.1' '' true}},\n      \"timeframeDay\": \n      {{#switch (queryParam 'timeframe.1')}}\n        {{#case 'day'}}true{{/case}}\n        {{#default}}false{{/default}}\n      {{/switch}},\n      \"timeframeWeek\":\n      {{#switch (queryParam 'timeframe.1')}}\n        {{#case 'week'}}true{{/case}}\n        {{#default}}false{{/default}}\n      {{/switch}},\n      \"timeframeMonth\":\n      {{#switch (queryParam 'timeframe.1')}}\n        {{#case 'month'}}true{{/case}}\n        {{#default}}false{{/default}}\n      {{/switch}},\n      \"timeframeYear\":\n      {{#switch (queryParam 'timeframe.1')}}\n        {{#case 'year'}}true{{/case}}\n        {{#default}}false{{/default}}\n      {{/switch}}\n    }\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Success Response",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Information-Mediator-Client",
+              "value": "^[a-zA-Z0-9_]+\\/[a-zA-Z0-9_]+\\/[a-zA-Z0-9_]+\\/[a-zA-Z0-9_-]+$",
+              "invert": false,
+              "operator": "regex"
+            },
+            {
+              "target": "query",
+              "modifier": "registrationName",
+              "value": "n0tex1st",
+              "invert": true,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "cf3a0e74-66b2-4fb7-8e9e-509a280558d1",
+          "body": "",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Requests not found",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Information-Mediator-Client",
+              "value": "^[a-zA-Z0-9_]+\\/[a-zA-Z0-9_]+\\/[a-zA-Z0-9_]+\\/[a-zA-Z0-9_-]+$",
+              "invert": false,
+              "operator": "regex"
+            },
+            {
+              "target": "query",
+              "modifier": "registrationName",
+              "value": "n0tex1st",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "33a6d708-f983-435c-b566-0dcb1ac2aa2f",
+          "body": "",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Invalid input supplied",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Information-Mediator-Client",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            },
+            {
+              "target": "header",
+              "modifier": "Information-Mediator-Client",
+              "value": "^[a-zA-Z0-9_]+\\/[a-zA-Z0-9_]+\\/[a-zA-Z0-9_]+\\/[a-zA-Z0-9_-]+$",
+              "invert": true,
+              "operator": "regex"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "7ca08a90-2715-4ad2-afde-696647a4d3c2",
+      "type": "http",
+      "documentation": "Listing of all services with basic information",
+      "method": "get",
+      "endpoint": "services",
+      "responses": [
+        {
+          "uuid": "9751feee-0dd9-4fd7-83af-8faecc2088c6",
+          "body": "[\n  {\n    \"id\": \"P2c9280957e579ad7017e58a3399f0068\",\n    \"name\": \"{{queryParam 'name'}}\",\n    \"version\": \"123\",\n    \"type\": \"None\",\n    \"isExecutable\": true,\n    \"isClosed\": true,\n    \"description\": \"string\",\n    \"serviceBody\": [\n      {\n        \"code\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "name",
+              "value": "^[a-zA-Z]+$",
+              "invert": false,
+              "operator": "regex"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "73f5385f-4bdc-4add-93dd-f44925cdbc4f",
+      "type": "http",
+      "documentation": "Pass in the ID of the service and it will return all information about that service",
+      "method": "get",
+      "endpoint": "services/:serviceId",
+      "responses": [
+        {
+          "uuid": "c856dc41-6ac4-4081-8c47-85b4baa1b965",
+          "body": "[\n  {\n    \"id\": \"{{queryParam 'serviceId'}}\",\n    \"name\": \"Mother and Child Registration\",\n    \"version\": \"123\",\n    \"type\": \"None\",\n    \"isExecutable\": true,\n    \"isClosed\": true,\n    \"description\": \"string\",\n    \"serviceBody\": [\n      {\n        \"code\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "serviceId",
+              "value": "^[a-zA-Z]+$",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "9d413b42-bd48-4089-b8b5-1c4339994a8e",
+      "type": "http",
+      "documentation": "Get the list of all e-service forms with schema related to the given service",
+      "method": "get",
+      "endpoint": "services/:serviceKey/eForms",
+      "responses": [
+        {
+          "uuid": "c9244d8e-ffe6-4847-800c-7c06226ededa",
+          "body": "[\n  {\n    \"eFormId\": \"d98a205a-679b-485b-823d-7a32a391e744\",\n    \"name\": \"FORM\",\n    \"description\": \"string\",\n    \"version\": \"1\",\n    \"latest\": true\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Succesfully retrieves the list of all e-service forms with schema",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "serviceKey",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "aadca089-c293-4f5b-a3a4-d0974989524c",
+      "type": "http",
+      "documentation": "Retrieve a specific e-form by ID",
+      "method": "get",
+      "endpoint": "eForms/:eFormId",
+      "responses": [
+        {
+          "uuid": "0ec2d07b-2f75-4cc2-a35f-43ff4fd58a69",
+          "body": "{\n  \"eFormId\": \"{{urlParam 'eFormId'}}\",\n  \"name\": \"A1\",\n  \"description\": \"eForm description\",\n  \"version\": \"1\",\n  \"latest\": true,\n  \"schema\": {\n    \"additionalProp1\": {}\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Successfully return eForm information",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "eFormId",
+              "value": "d98a205a-679b-485b-823d-7a32a391e744",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "01e15673-d3d1-479c-8335-12ce663c6716",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Eform was not found",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "eFormId",
+              "value": "n0t-ex1st1ng-eForm#-1d",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "701bd4fe-74fa-45ec-8154-cca297141d1f",
+      "type": "http",
+      "documentation": "Send an application file including all documents and form data to submit a registration request to be processed by operators.",
+      "method": "post",
+      "endpoint": "services/:serviceId/applications",
+      "responses": [
+        {
+          "uuid": "4c59dcb8-68cb-4d41-ab3a-ea0d60bfb742",
+          "body": "{\n  \"serviceId\": \"{{urlParam 'serviceId'}}\",\n  \"applicationData\": {\n  \"applicantId\": \"{{bodyRaw 'applicantId'}}\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Response for smoke test type",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "applicantId",
+              "value": "42962de0-bdb2-11ed-9397-0242ac120004",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "params",
+              "modifier": "serviceId",
+              "value": "f7d33db0-2809-484e-a780-76b7ccd4ecbf",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "d46bd720-814c-46bf-9016-f0208415045d",
+          "body": "{\n  \"fileId\": \"{{faker 'random.alphaNumeric' 8}}-{{faker 'random.alphaNumeric' 4}}-{{faker 'random.alphaNumeric' 4}}-{{faker 'random.alphaNumeric' 4}}-{{faker 'random.alphaNumeric' 12}}\",\n  \"registered\": \"{{now}}\",\n  \"serviceId\": \"{{urlParam 'serviceId'}}\",\n  \"serviceName\": \"string\",\n  \"status\": {\n    \"code\": \"{{oneOf (array 'PENDING' 'APPROVED' 'SENDBACK' 'REJECTED')}}\",\n    \"title\": \"string\"\n  },\n  \"ended\": {{oneOf (array true false)}},\n  \"applicationData\": {\n    \"applicationName\": \"{{bodyRaw 'applicationName'}}\",\n    \"applicantId\": \"{{bodyRaw 'applicantId'}}\",\n    \"created\": \"{{bodyRaw 'created'}}\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Default positive response",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "applicantId",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "params",
+              "modifier": "serviceId",
+              "value": "n0t-ex1st1ng-serv1ce-1d",
+              "invert": true,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "04b47e38-6c35-4e23-8210-c7c1ac4062bc",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "ede2d6e7-e890-4c9c-90b7-307723144705",
+      "type": "http",
+      "documentation": "Upload a document/attachment to receive a documentId that can be linked to applications when submitting a new registration",
+      "method": "post",
+      "endpoint": "documents",
+      "responses": [
+        {
+          "uuid": "cb1ec87b-5668-4da2-97cc-611a3d89cf39",
+          "body": "{\n  \"code\": 0,\n  \"type\": \"string\",\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "File successfully uploaded",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "file",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "b2d35f7a-4085-425f-aa0d-9fe44163f0e9",
+          "body": "{\n  \"traceId\": \"string\",\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"localizedMessage\": \"string\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Bad request, file upload failed",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "8cc141ed-c07c-4691-b7c1-b3fa8c88ec96",
+      "type": "http",
+      "documentation": "Returns a list of application files the user has permission to access (i.e. either only the applicant's own applications or all applications for an operator to process)",
+      "method": "get",
+      "endpoint": "applications",
+      "responses": [
+        {
+          "uuid": "b673c638-b31b-41c3-bbc6-7e0816ccc262",
+          "body": "[\n  {\n    \"fileId\": \"81c4445c-bff6-11ed-afa1-0242ac120002\",\n    \"mainTaskId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"taskTitle\": \"Application xyz\",\n    \"roleId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"roleName\": \"Registrar\",\n    \"assigneeId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"operatorName\": \"John Smith\",\n    \"status\": {\n      \"code\": \"PENDING\",\n      \"title\": \"Pending\"\n    },\n    \"applicantId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"created\": \"2000-10-23T00:00:00.000Z\",\n    \"registered\": \"2000-10-23T00:00:00.000Z\",\n    \"description\": \"Any text.\",\n    \"serviceName\": \"Post partum registration service\",\n    \"serviceId\": \"{{queryParam 'serviceId'}}\",\n    \"eformId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"documentUrls\": [\n      \"string\"\n    ],\n    \"additionalMeta\": {\n      \"data\": {\n        \"additionalProp1\": {},\n        \"additionalProp2\": {},\n        \"additionalProp3\": {}\n      }\n    }\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Successfully retrieves all application files - provided serviceId",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "serviceId",
+              "value": "0b4e529c-fe1a-11ed-be56-0242ac120002",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": true,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "4ae1c99e-337b-4a7c-95cf-d13aa93c3a36",
+          "body": "[\n  {\n    \"fileId\": \"81c4445c-bff6-11ed-afa1-0242ac120002\",\n    \"mainTaskId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"taskTitle\": \"Application xyz\",\n    \"roleId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"roleName\": \"Registrar\",\n    \"assigneeId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"operatorName\": \"John Smith\",\n    \"status\": {\n      \"code\": \"PENDING\",\n      \"title\": \"Pending\"\n    },\n    \"applicantId\": \"{{queryParam 'applicantId'}}\",\n    \"created\": \"2000-10-23T00:00:00.000Z\",\n    \"registered\": \"2000-10-23T00:00:00.000Z\",\n    \"description\": \"Any text.\",\n    \"serviceName\": \"Post partum registration service\",\n    \"serviceId\": \"4334-df23-sf324-234efwef\",\n    \"eformId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"documentUrls\": [\n      \"string\"\n    ],\n    \"additionalMeta\": {\n      \"data\": {\n        \"additionalProp1\": {},\n        \"additionalProp2\": {},\n        \"additionalProp3\": {}\n      }\n    }\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Successfully retrieves all application files - provided applicantId",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "applicantId",
+              "value": "11962de0-11b2-11cc-9390-0242ac121114",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": true,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "e4f8b67f-1f40-4323-9f21-7a1665ab98f1",
+          "body": "[\n  {\n    \"fileId\": \"81c4445c-bff6-11ed-afa1-0242ac120002\",\n    \"mainTaskId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"taskTitle\": \"Application xyz\",\n    \"roleId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"roleName\": \"Registrar\",\n    \"assigneeId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"operatorName\": \"John Smith\",\n    \"status\": {\n      \"code\": \"PENDING\",\n      \"title\": \"Pending\"\n    },\n    \"applicantId\": \"{{queryParam 'applicantId'}}\",\n    \"created\": \"2000-10-23T00:00:00.000Z\",\n    \"registered\": \"2000-10-23T00:00:00.000Z\",\n    \"description\": \"Any text.\",\n    \"serviceName\": \"Post partum registration service\",\n    \"serviceId\": \"{{queryParam 'serviceId'}}\",\n    \"eformId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"documentUrls\": [\n      \"string\"\n    ],\n    \"additionalMeta\": {\n      \"data\": {\n        \"additionalProp1\": {},\n        \"additionalProp2\": {},\n        \"additionalProp3\": {}\n      }\n    }\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Successfully retrieves all application files - provided applicantId and serviceId",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "applicantId",
+              "value": "99b62de0-11b2-11cc-9390-0242ac121555",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "query",
+              "modifier": "serviceId",
+              "value": "99be529c-fe1a-11ed-be56-0242ac120555",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": true,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "5df06b6b-f60e-4afa-aa6e-8febb073f222",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Retrieves empty array - provided applicantId not exist",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "applicantId",
+              "value": "n0t-ex1st1ng-applicant#-1d",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": true,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "49403f36-42f5-42b9-949b-c6c19260a7b7",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Retrieves empty array - provided serviceId not exist",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "serviceId",
+              "value": "n0t-ex1st1ng-serv1ce#-1d",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": true,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "da491140-233c-4727-b8ce-b628268ff345",
+      "type": "http",
+      "documentation": "Get application file by ID",
+      "method": "get",
+      "endpoint": "applications/:fileId",
+      "responses": [
+        {
+          "uuid": "276da465-4e0c-438d-a823-06939667134a",
+          "body": "{\n  \"fileId\": \"81c4445c-bff6-11ed-afa1-0242ac120002\",\n  \"registered\": \"2000-10-23T00:00:00.000Z\",\n  \"serviceId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n  \"serviceName\": \"Post partum registration service\",\n  \"status\": {\n    \"code\": \"{{oneOf (array 'PENDING' 'APPROVED' 'SENDBACK' 'REJECTED')}}\",\n    \"title\": \"Pending\"\n  },\n  \"ended\": false,\n  \"applicationData\": {\n    \"applicationName\": \"Amya Yuko\",\n    \"applicantId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"created\": \"2000-10-23T00:00:00.000Z\",\n    \"formData\": {\n      \"data\": {},\n      \"eFormId\": \"42962de0-bdb2-11ed-9397-0242ac120004\"\n    },\n    \"documentUrls\": [\n      \"string\"\n    ]\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Successfully get information of fileId",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Information-Mediator-Client",
+              "value": "^[a-zA-Z0-9_]+\\/[a-zA-Z0-9_]+\\/[a-zA-Z0-9_]+\\/[a-zA-Z0-9_-]+$",
+              "invert": false,
+              "operator": "regex"
+            },
+            {
+              "target": "params",
+              "modifier": "fileId",
+              "value": "81c4445c-bff6-11ed-afa1-0242ac120002",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "c48775c7-771b-4b0e-bf02-26a54b458e3b",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Not found",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Information-Mediator-Client",
+              "value": "^[a-zA-Z0-9_]+\\/[a-zA-Z0-9_]+\\/[a-zA-Z0-9_]+\\/[a-zA-Z0-9_-]+$",
+              "invert": false,
+              "operator": "regex"
+            },
+            {
+              "target": "params",
+              "modifier": "fileId",
+              "value": "n0t-ex1st1ng-serv1ce#-1d",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "0bf10cd6-0317-4b00-803c-14b873e38e50",
+      "type": "http",
+      "documentation": "Returns task list",
+      "method": "get",
+      "endpoint": "tasks",
+      "responses": [
+        {
+          "uuid": "b673c638-b31b-41c3-bbc6-7e0816ccc262",
+          "body": "[\n  {\n    \"taskId\": \"string\",\n    \"mainTaskId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"name\": \"task name\",\n    \"assigneeId\": \"42962de0-bdb2-11ed-9397-0242ac120022\",\n    \"roleId\": \"string\",\n    \"created\": \"2023-05-31T06:54:43.138Z\",\n    \"description\": \"string\",\n    \"serviceId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"serviceName\": \"string\",\n    \"fileId\": \"{{queryParam 'fileId'}}\",\n    \"eFormId\": \"string\",\n    \"status\": {\n      \"code\": \"PENDING\",\n      \"title\": \"Pending\"\n    }\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Successfully retrieves all tasks - provided fileId",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "fileId",
+              "value": "81c4445c-bff6-11ed-afa1-0242ac120002",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": true,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "4ae1c99e-337b-4a7c-95cf-d13aa93c3a36",
+          "body": "[\n  {\n    \"taskId\": \"string\",\n    \"mainTaskId\": \"{{queryParam 'mainTaskId'}}\",\n    \"name\": \"task name\",\n    \"assigneeId\": \"42962de0-bdb2-11ed-9397-0242ac120022\",\n    \"roleId\": \"string\",\n    \"created\": \"2023-05-31T06:54:43.138Z\",\n    \"description\": \"string\",\n    \"serviceId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"serviceName\": \"string\",\n    \"fileId\": \"81c4445c-bff6-11ed-afa1-0242ac120002\",\n    \"eFormId\": \"string\",\n    \"status\": {\n      \"code\": \"PENDING\",\n      \"title\": \"Pending\"\n    }\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Successfully retrieves all tasks - provided mainTaskId",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "mainTaskId",
+              "value": "42962de0-bdb2-11ed-9397-0242ac120004",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": true,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "9f9776f5-b470-404f-829c-1c07f14fb43f",
+          "body": "[\n  {\n    \"taskId\": \"string\",\n    \"mainTaskId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n    \"name\": \"string\",\n    \"assigneeId\": \"{{queryParam 'assigneeId'}}\",\n    \"roleId\": \"string\",\n    \"created\": \"2023-05-31T06:54:43.138Z\",\n    \"description\": \"string\",\n    \"serviceId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"serviceName\": \"string\",\n    \"fileId\": \"81c4445c-bff6-11ed-afa1-0242ac120002\",\n    \"eFormId\": \"string\",\n    \"status\": {\n      \"code\": \"PENDING\",\n      \"title\": \"Pending\"\n    }\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Successfully retrieves all tasks - provided assigneeId",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "assigneeId",
+              "value": "42962de0-bdb2-11ed-9397-0242ac120022",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": true,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "e4f8b67f-1f40-4323-9f21-7a1665ab98f1",
+          "body": "[\n  {\n    \"taskId\": \"string\",\n    \"mainTaskId\": \"{{queryParam 'mainTaskId'}}\",\n    \"name\": \"string\",\n    \"assigneeId\": \"{{queryParam 'assigneeId'}}\",\n    \"roleId\": \"string\",\n    \"created\": \"2023-05-31T06:54:43.138Z\",\n    \"description\": \"string\",\n    \"serviceId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"serviceName\": \"string\",\n    \"fileId\": \"{{queryParam 'fileId'}}\",\n    \"eFormId\": \"string\",\n    \"status\": {\n      \"code\": \"PENDING\",\n      \"title\": \"Pending\"\n    }\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Successfully retrieves all tasks - provided fileId, assigneeId and mainTaskId ",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "assigneeId",
+              "value": "42962de0-bdb2-11ed-9397-0242ac120022",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "query",
+              "modifier": "fileId",
+              "value": "99be529c-fe1a-11ed-be56-0242ac120555",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "query",
+              "modifier": "mainTaskId",
+              "value": "42962de0-bdb2-11ed-9397-0242ac120004",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": true,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "5df06b6b-f60e-4afa-aa6e-8febb073f222",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Retrieves empty array - provided fileId not exist",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "fileId",
+              "value": "n0t-ex1st1ng-file#-1d",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": true,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "49403f36-42f5-42b9-949b-c6c19260a7b7",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Retrieves empty array - provided mainTaskId not exist",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "mainTaskId",
+              "value": "n0t-ex1st1ng-main-task#-1d",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": true,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "b858c9e5-9199-493a-88e3-ab3847db0f05",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Retrieves empty array - provided assigneeId not exist",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "assigneeId",
+              "value": "n0t-ex1st1ng-assignee#-1d",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": true,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "ee725fb2-1f75-40e6-8bce-6eef3aa56120",
+      "type": "http",
+      "documentation": "Get task by id",
+      "method": "get",
+      "endpoint": "tasks/:taskId",
+      "responses": [
+        {
+          "uuid": "1a3bb697-2125-4795-9129-5f88077d48ba",
+          "body": "{\n  \"taskId\": \"{{urlParam 'taskId'}}\",\n  \"taskName\": \"task name xyz\",\n  \"assigneeId\": \"42962de0-xxxx-11ed-0000-0242ac120004\",\n  \"roleId\": \"42962de0-bdb2-11ed-9397-0242ac120004\",\n  \"created\": \"2023-06-01T11:31:25.431Z\",\n  \"description\": \"random description\",\n  \"fileId\": \"P2c9280957e579ad7017e58a3399f1234\",\n  \"serviceId\": \"P2c9280957e579ad7017e58a3399f0068\",\n  \"serviceName\": \"Good Health and Well-Being\",\n  \"eFormId\": \"w12a205a-679b-xx34-823d-7a32a391e744\",\n  \"formVariables\": {\n    \"additionalProp1\": {},\n    \"additionalProp2\": {},\n    \"additionalProp3\": {}\n  },\n  \"status\": {\n    \"code\": \"{{oneOf (array 'PENDING' 'APPROVED' 'SENDBACK' 'REJECTED')}}\",\n    \"title\": \"Pending\"\n  },\n  \"data\": {\n    \"additionalProp1\": {},\n    \"additionalProp2\": {},\n    \"additionalProp3\": {}\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Successfully get information of taskId",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "taskId",
+              "value": "81c4445c-bff6-11ed-afa1-0242ac120002",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "1303623c-ff7e-4afa-b70a-24b27273a179",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Not found",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "taskId",
+              "value": "n0t-ex1st1ng-task#-1d",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "5d69ce4f-2033-4ae0-aca7-03ffdb4a2d35",
+      "type": "http",
+      "documentation": "Complete task by id",
+      "method": "post",
+      "endpoint": "tasks/:taskId/complete",
+      "responses": [
+        {
+          "uuid": "0ae4fa6d-df36-453b-bc3a-87439ec493f4",
+          "body": "{\n  \"taskId\": \"{{routeParam 'taskId'}}\",\n  \"fileId\": \"string\",\n  \"serviceId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n  \"status\": {\n    \"code\": \"PENDING\",\n    \"title\": \"Pending\"\n  },\n  \"variables\": {\n    \"additionalProp1\": {\n      \"data\": {\n        \"additionalProp1\": {},\n        \"additionalProp2\": {},\n        \"additionalProp3\": {}\n      }\n    }\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Successfully completes the task",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "taskId",
+              "value": "^d1e33d56-c5c7-4272-aeb6-bc2732cce1f2$",
+              "invert": false,
+              "operator": "regex"
+            },
+            {
+              "target": "body",
+              "modifier": "data",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "e71fc74b-1686-413f-aacd-c54e763da15b",
+          "body": "",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Invalid - taskId not found",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "taskId",
+              "value": "^d1e33d56-c5c7-4272-aeb6-bc2732cce1f2$",
+              "invert": true,
+              "operator": "regex"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "f32782b6-4ba8-4d7d-91a1-c19efeadaa61",
+      "type": "http",
+      "documentation": "Update service application file with operator's form data",
+      "method": "put",
+      "endpoint": "applications/{fileId}",
+      "responses": [
+        {
+          "uuid": "5ced7fd0-dc90-4c11-bb70-b41ca40a3312",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "folders": [],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "207066ab-94a3-4985-9e92-56e677660c7a"
+    },
+    {
+      "type": "route",
+      "uuid": "7ca08a90-2715-4ad2-afde-696647a4d3c2"
+    },
+    {
+      "type": "route",
+      "uuid": "73f5385f-4bdc-4add-93dd-f44925cdbc4f"
+    },
+    {
+      "type": "route",
+      "uuid": "9d413b42-bd48-4089-b8b5-1c4339994a8e"
+    },
+    {
+      "type": "route",
+      "uuid": "aadca089-c293-4f5b-a3a4-d0974989524c"
+    },
+    {
+      "type": "route",
+      "uuid": "701bd4fe-74fa-45ec-8154-cca297141d1f"
+    },
+    {
+      "type": "route",
+      "uuid": "ede2d6e7-e890-4c9c-90b7-307723144705"
+    },
+    {
+      "type": "route",
+      "uuid": "8cc141ed-c07c-4691-b7c1-b3fa8c88ec96"
+    },
+    {
+      "type": "route",
+      "uuid": "da491140-233c-4727-b8ce-b628268ff345"
+    },
+    {
+      "type": "route",
+      "uuid": "0bf10cd6-0317-4b00-803c-14b873e38e50"
+    },
+    {
+      "type": "route",
+      "uuid": "ee725fb2-1f75-40e6-8bce-6eef3aa56120"
+    },
+    {
+      "type": "route",
+      "uuid": "5d69ce4f-2033-4ae0-aca7-03ffdb4a2d35"
+    },
+    {
+      "type": "route",
+      "uuid": "f32782b6-4ba8-4d7d-91a1-c19efeadaa61"
+    }
+  ]
+}

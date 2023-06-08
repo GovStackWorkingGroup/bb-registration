@@ -41,6 +41,15 @@ api with BB test definitions.
 Launch the mock server from examples/mock folder. The instruction is located in
 'examples/mock' folder in file README.md
 
+## Test data
+
+In order to properly call the tests, a file with input data has been created.
+
+The data must exist in tested software before running the tests.
+
+This data are compatible with the data used in the tests and they are stored in
+the `openAPI` folder in the `test-data.json`.
+
 ### Cucumber tests
 
 To install project's dependencies, navigate to folder 'test' and execute the

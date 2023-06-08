@@ -42,8 +42,6 @@ The development platform allows to design online registration services quickly b
 
 ## 4.3 Out-of-Scope Assumptions
 
-
-
 * Registration Building Block does not define which registrant/object should be registered. But allowing applicants to determine if they are or are not subject to a registration is part of the Registration Building Block.
 * Long-term storing of registration data/claims and results is not covered in this Building Block. See Digital Registries Building Block for registry and data storage functionalities. However, the integration capability to the Digital Registries Building Block is part of the scope.
 * Event notification from external endpoints is not covered in this Building Block. See more in Messaging Building Block. However, the connection to the Messaging Building Block is part of the scope.
