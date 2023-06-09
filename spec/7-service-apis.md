@@ -6,62 +6,13 @@ description: >-
 
 # 8 Service APIs
 
-The APIs defined here establish a blueprint for how the Building Block will interact with other Building Blocks. Additional APIs may be implemented by the Building Block, but the listed APIs define a minimal set of functionality that should be provided by any implementation of this Building Block.&#x20;
+The APIs defined here establish a blueprint for how the Building Block will interact with other Building Blocks. Additional APIs may be implemented by the Building Block, but the listed APIs define a minimal set of functionality that should be provided by any implementation of this Building Block.
 
-The [GovStack non-functional requirements document](https://govstack.gitbook.io/specification/architecture-and-nonfunctional-requirements/6-onboarding) provides additional information on how 'adapters' may be used to translate an existing API to the patterns described here.
+The [GovStack non-functional requirements document](https://govstack.gitbook.io/specification/v/1.0/architecture-and-nonfunctional-requirements/6-onboarding) provides additional information on how 'adaptors' may be used to translate an existing API to the patterns described here. This section also provides guidance on how candidate products are tested and how GovStack validates a product's API against the API specifications defined here.&#x20;
 
-```mermaid
-sequenceDiagram
-    rect rgba(0, 0, 255, .1)
+The tests for the Registration Building Block can be found in [this GitHub repository](https://github.com/GovStackWorkingGroup/bb-registration/tree/main/test/openAPI).
 
-    App->>+Registration BB: GET /services
-    Registration BB-->>-App: array of services (serviceKey)
-    
-    App->>+Registration BB: GET /service/{serviceKey}
-    Registration BB-->>-App: Service properties
-    
-    end
-    rect rgba(204, 204, 255, .2)
-    App->>+Registration BB: GET /eForms/{serviceKey}
-    Registration BB-->>-App: Array of form schemas (eFormId)
-
-    App->>+Registration BB: GET /eFormSchema/{eFormId}
-    Registration BB-->>-App: Form schema 
-
-    end
-
-    rect rgba(0, 0, 255, .1)
-    App->>+Registration BB: POST /api/service/{fileId}/documentUpload
-    Registration BB-->>-App: documentId, url
-    
-    
-    App->>+Registration BB: POST /api/service/{serviceKey}/startWithForm
-    Registration BB-->>-App: fileId
-    
-
-    end
-
-    rect rgba(204, 204, 255, .2)
-
-    App->>+Registration BB: GET /api/service/applicationFileList
-    Registration BB-->>-App: List of applications, fileId
-
-    App->>+Registration BB: GET /api/service/applicationFile/{fileId}
-    Registration BB-->>-App: Application file 
-
-    end
-    rect rgba(0, 0, 255, .1)
-    App->>+Registration BB: GET /task,  assignee ID
-    Registration BB-->>-App: Return taskId, status 
-    end
-
-    rect rgba(204, 204, 255, .2)
-    App->>+Registration BB: GET /data/statistics/1.0
-    Registration BB-->>-App: statistics data
-    end
-```
-
-## 8.1 Accessing Services & Forms
+## 8.1 Online Registration e-services
 
 The available services (i.e. registration processes) and form definitions within such a service can be accessed:
 
@@ -77,13 +28,25 @@ The available services (i.e. registration processes) and form definitions within
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
 {% endswagger %}
 
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/services/{serviceId}" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
+{% endswagger %}
+
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/services/{serviceId}/eForms" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
+{% endswagger %}
+
 {% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/eForms/{eFormId}" method="get" %}
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
 {% endswagger %}
 
-## 8.2 Applicant user services
+## 8.2 Generic Registration Steps
 
 Going through the registration process as an applicant requires multiple steps available via API endpoints:
+
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/services/{serviceId}/applications" method="post" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
+{% endswagger %}
 
 {% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/services/{serviceId}/applications" method="post" %}
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
@@ -111,7 +74,7 @@ Existing applications can be accessed after submission:
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
 {% endswagger %}
 
-## 8.3 Operator user services
+## 8.3 Development Platform
 
 Operators can access and process existing application files
 
@@ -143,7 +106,7 @@ Operators can access and process existing application files
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
 {% endswagger %}
 
-## 8.4 Statistics
+### Statistics
 
 The statistics API gives Building Block operational statistics, that reference the number of processed applications (per operator, registration, service, date):
 
