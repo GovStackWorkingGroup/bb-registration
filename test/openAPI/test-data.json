@@ -115,6 +115,34 @@
           "additionalProp3": {}
         }
       }
+    },
+    {
+      "fileId": "b8508d35-c2f3-442b-88a1-267ca25e85c0",
+      "mainTaskId": "13883ad3-9de2-4951-b104-49b73edcf0b0",
+      "taskTitle": "Application xyz",
+      "roleId": "8917e9b3-655f-49c4-be3c-5c2e71ccaf60",
+      "roleName": "Registrar",
+      "assigneeId": "ab9f3de5-c33d-45b0-a400-1331de03b03c",
+      "operatorName": "John Kane",
+      "status": {
+        "code": "PENDING",
+        "title": "Pending"
+      },
+      "applicantId": "622fcd1a-8070-4efc-9d26-29461f83a15b",
+      "created": "2000-10-23T00:00:00.000Z",
+      "registered": "2000-10-23T00:00:00.000Z",
+      "description": "Any text.",
+      "serviceName": "Post partum registration service",
+      "serviceId": "8b410187-e137-4487-b627-09b2b909e630",
+      "eformId": "3f7d1b2e-6c51-473a-a583-814f868cf172",
+      "documentUrls": ["string"],
+      "additionalMeta": {
+        "data": {
+          "additionalProp1": {},
+          "additionalProp2": {},
+          "additionalProp3": {}
+        }
+      }
     }
   ],
   "tasks": [
@@ -360,6 +388,33 @@
       "eForms": [
         {
           "eFormId": "d98a205a-679b-485b-823d-7a32a391e744",
+          "name": "FORM",
+          "description": "string",
+          "version": "1",
+          "latest": true,
+          "schema": {
+            "additionalProp1": {}
+          }
+        }
+      ]
+    },
+    {
+      "id": "8b410187-e137-4487-b627-09b2b909e630",
+      "name": "Post partum registration service",
+      "version": "3.1",
+      "type": "None",
+      "isExecutable": true,
+      "isClosed": true,
+      "description": "string",
+      "serviceBody": [
+        {
+          "code": "string",
+          "value": "string"
+        }
+      ],
+      "eForms": [
+        {
+          "eFormId": "3f7d1b2e-6c51-473a-a583-814f868cf172",
           "name": "FORM",
           "description": "string",
           "version": "1",

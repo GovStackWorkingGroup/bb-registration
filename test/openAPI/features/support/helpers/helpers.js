@@ -235,6 +235,42 @@ module.exports = {
       },
     },
   },
+  // operator_applications_update
+  updateApplicationFileEndpoint: 'applications/{fileId}',
+  updateApplicationFileResponseSchema: {
+    properties: {
+      fileId: {
+        type: 'string',
+        description:
+          ' Application file identifier 81c4445c-bff6-11ed-afa1-0242ac120002',
+        example: '81c4445c-bff6-11ed-afa1-0242ac120002',
+      },
+      registered: {
+        type: 'string',
+        format: 'date-time',
+        example: '2000-10-23T00:00:00.000Z',
+        description:
+          'Time when the application file was registered in the Registration BB system',
+      },
+      serviceId: {
+        type: 'string',
+        format: 'uuid',
+        description: 'id of the service this application relates to',
+      },
+      serviceName: {
+        type: 'string',
+        example: 'Post partum registration service',
+      },
+      status: this.statusSchema,
+      ended: {
+        type: 'boolean',
+        example: 'false',
+        description: 'True, if application file processing has ended',
+      },
+      applicationData: this.applicationFileSubmit,
+    },
+    required: ['serviceId'],
+  },
   // shares
   serviceSchema: {
     type: 'object',
