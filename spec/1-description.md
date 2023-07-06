@@ -6,7 +6,7 @@ description: This section provides context for this Building Block.
 
 Registration is a process through which an applicant gets information recorded in a registry and receives a credential as proof of registration, in exchange for providing information, with or without money. The information provided by the applicant consists of data and/or credentials issued by public or private entities. Money is provided to pay for one or more registration fees/costs.
 
-A registration involves at least two parties:&#x20;
+A registration involves at least two parties:
 
 * an applicant who wants to register (something or somebody);
 * an authorized representative of a registry in charge of registering the data and issuing the credential.
@@ -21,7 +21,7 @@ In practice, from the **applicant’s point of view**, a registration process ca
 
 * Answer questions to determine if the applicant is eligible to register according to the data, credentials/documents, and fees required (for the applicant’s case).
 * Provide data in a form, and upload copies of credentials/documents.
-* Pay fees at a physical point of payment (bank, cashier, etc.) or through an online service.
+* Pay fees at a physical point of payment (bank, cashier, etc.) or through an online service (e.g. via GovStack _Payments Building Block_ or equivalent).&#x20;
 * Confirm his/her will to register.
 * Query the status of the registration process.
 * Receive credentials electronically or collect them at a physical point of collection.

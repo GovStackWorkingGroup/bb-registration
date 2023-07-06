@@ -21,12 +21,12 @@ The online registration services developed with the no-code platform are used by
 The online registration services (e-services) created through the development platform are adapted to any type of registration. They consist of a succession of online screens and actions through which the following generic process can be completed:
 
 1. An applicant initiates a registration application. The system may smartly evaluate the applicant's data and guide the applicant toward the relevant eligible registration(s) during this initial step.
-2. The applicant can provide claims (= fill out a form), credentials (=upload documents), and fees (= pay online or upload a payment receipt) (we call this part “application file”).
+2. The applicant can provide claims (= fill out a form), credentials (=upload documents), and fees (= pay online through _Payments Building Block_ or upload a payment receipt) (we call this part “application file”).
    * The applicant reviews & submits the application file. The system can warn of invalid or missing information through automatic validation, which can include use of external APIs. The applicant confirms and submits the application file to be processed by one or more entities in charge of the registration.
 3. An operator (one or more human or automated “robot” roles) reviews the claims provided and makes a decision (approve, reject, or send it back for correction) about the application file (we call this part “processing”).
    * If the back office processing flow has multiple roles then the approval by the first processing role operator will take the application processing task to the next role in the workflow.
    * An applicant can see/monitor the status of the submitted application file and receive results from the entities in charge of the registration.
-4. The system, on approval, sends claims to a registry (i.e. registration of relevant information in the registry. See Digital Registries Building Block) and issues a credential.&#x20;
+4. The system, on approval, sends claims to a registry (i.e. registration of relevant information in the registry. See Digital Registries Building Block) and issues a credential.
 
 The system at all stages can interact via API interface with other building blocks and external services to exchange and validate the information.
 
@@ -45,7 +45,7 @@ The development platform allows to design online registration services quickly b
 * Registration Building Block does not define which registrant/object should be registered. But allowing applicants to determine if they are or are not subject to a registration is part of the Registration Building Block.
 * Long-term storing of registration data/claims and results is not covered in this Building Block. See Digital Registries Building Block for registry and data storage functionalities. However, the integration capability to the Digital Registries Building Block is part of the scope.
 * Event notification from external endpoints is not covered in this Building Block. See more in Messaging Building Block. However, the connection to the Messaging Building Block is part of the scope.
-* Payment solutions are not covered in this Building Block. See more in Payment Building Block. However, the connection to the Payment Building Block is part of the scope.
+* Payment solutions are not covered in this Building Block. See more in Payments Building Block. However, the connection to the Payments Building Block is part of the scope.
 * Data transfer security solutions are not covered in this Building Block. See more Information Mediator Building Block. However, the connection to the Information Mediator must exist as it is the base for the connectivity with other Building Blocks.
 * Consent management is not covered in this Building Block. See more in the Consent Building Block. However, the connection to the Consent Building Block is part of the scope.
 * Authentication/login is not managed in this Building Block. See more Security Building Block. However, the connection to the Authentication solution must be done in each Building Block.
