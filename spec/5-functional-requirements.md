@@ -178,40 +178,7 @@ Expected result- the applicant can activate (a mobile phone) camera, read the QR
 
 ### 6.1.2 External API functional requirements
 
-An external Application may access the Registration Building Block and provide registration data via API for the following functions:&#x20;
-
-* to enable an external APP (Building Blocks) to send application files to e-service without using the default user interface enabled by Registration Building Block and receive confirmation of the registration.
-* to enable an external APP to see the list of e-services and service schema via API.
-* to enable an external APP to see the list of registered application files in an e-service.
-* to enable an external APP to update existing application files by using the API.
-* go through the data capturing process and submit an application to receive a registration (certificate);
-* receive confirmation that the e-service received my application file;
-* monitor the processing status of my application, receive update messages;
-* see the history of all applications submitted by the user.
-* Operators can see a list of received applications and process the applications;
-* Operators can make decisions (three types) and upload the decisions to the system as result;
-* Operators can see statistics of the processing;
-* Each back office operator can only see relevant data of the application. Operators are authorized to see and process their role-related applications.
-
-#### 6.1.2.1 Register Application Files API (REQUIRED)
-
-System has an API service that enables to register new application files in the Registration Building Block (See chapter 8).
-
-#### 6.1.2.2 View Schema API (RECOMMENDED)
-
-System has an API that enables to view a schema of an e-service application file with all data fields. Schema can be used by other Building Blocks and components to create alternative e-service channels (e.g. mobile apps).
-
-#### 6.1.2.3 View File Processing Tasks API (REQUIRED)
-
-System has an API that enables to view a list of registered application file processing tasks (See chapter 8).
-
-#### 6.1.2.4 Change File Process Status API (REQUIRED)
-
-System has an API that enables to change the status of registered application file process flow- complete application processing task (See chapter 8).
-
-#### 6.1.2.5 View Statistics API (REQUIRED)
-
-System has an API that enables to view statistics of processing (See chapter 8).
+An external application may access the Registration Building Block and provide registration data via API, as specified in chapter 8 "Service APIs".
 
 ### 6.1.3 Generic Registration Functionalities
 
@@ -331,7 +298,7 @@ An analyst must be able to report/input in the rule engine, in clear language, r
 * All fees have an assigned currency. The system may allow multiple currencies;
 * A fee can have a description.
 
-When the fee is calculated, a formula builder will allow the analyst to build the formula, using values from any field in the service and numeric values, combined with the usual operators (+, -, \*, /). In some cases, some subjects of the registration will receive a different fee. The analyst can define through determinants (or combination of determinants) the different categories of subjects and can link each category of subjects to a specific fee.&#x20;
+When the fee is calculated, a formula builder will allow the analyst to build the formula, using values from any field in the service and numeric values, combined with the usual operators (+, -, \*, /). In some cases, some subjects of the registration will receive a different fee. The analyst can define through determinants (or combination of determinants) the different categories of subjects and can link each category of subjects to a specific fee.
 
 Examples:
 
@@ -346,7 +313,7 @@ An analyst must be able to report/input in the rule engine, in clear language, r
 * A type (text, number, date);
 * mandatory/optional (See Control configurator element for more options).
 
-As for the other requirements, some data can be required only for a specific category of subjects. The analyst can define, through determinants (or combination of determinants) the different categories of subjects and link them to specific required documents.&#x20;
+As for the other requirements, some data can be required only for a specific category of subjects. The analyst can define, through determinants (or combination of determinants) the different categories of subjects and link them to specific required documents.
 
 Examples:
 
@@ -542,7 +509,7 @@ The following preview functions must be available:
 
 1. Preview of user interfaces one by one;
 2. Preview of full service;
-3. Preview of full service in test instance with the functionality to test the full service before publishing to live instance.&#x20;
+3. Preview of full service in test instance with the functionality to test the full service before publishing to live instance.
 
 #### 6.2.2.10 Import/Export of service descriptions (REQUIRED)
 
