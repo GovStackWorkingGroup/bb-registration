@@ -131,21 +131,14 @@ Applicants must see the expected processing end time for each application.
 An applicant can use a function (e.g. button) and the action to capture data from the QR code.\
 Expected result- the applicant can activate (a mobile phone) camera, read the QR code and capture the data from the QR code to a field. Example data to be captured: “MCTS31”; “www.registrations.org”
 
-#### 6.1.1.11 System audit log functionality (REQUIRED)
-
-* The system logs all user actions in the system.
-* The user action log is visible for admin users.
-* By default user action log is stored for 1 year after which the system will delete the log. The storage length is configurable in the Rules Engine.
-* Statistics are entered into the statistics log table.
-
-#### 6.1.1.12 Back office Operators have a view to see the list of applications to be processed, task list dashboard (REQUIRED)
+#### 6.1.1.11 Back office Operators have a view to see the list of applications to be processed, task list dashboard (REQUIRED)
 
 * The system has the function for an Operator to pick assignments from the common task dashboard.
 * The system has the view for an Operator to see assigned roles and assigned tasks for this role.
 * Operators are linked to Institutions (or sub-units) and roles, thus can only see the tasks relevant to their role and Institution.
 * Optionally (configurable) - an operator could be able to claim a task from the application task dashboard. When the task has been claimed, then the application file will be taken off the common pool.
 
-#### 6.1.1.13 An Operator of a role must see the received application file screen containing all information submitted by an Applicant and information complemented by other Operators while processing the same file (REQUIRED)
+#### 6.1.1.12 An Operator of a role must see the received application file screen containing all information submitted by an Applicant and information complemented by other Operators while processing the same file (REQUIRED)
 
 * Required documents relevant to this role and registration linked to the role;
 * Required data relevant to this role and registration(s) linked to this role.
@@ -153,23 +146,23 @@ Expected result- the applicant can activate (a mobile phone) camera, read the QR
 * Must be able to see the history of the application file processing.
 * Must be able to see the status of the application file.
 
-#### 6.1.1.14 An Operator must be able to make a decision in the system by selecting the right decision type - approve, reject, send back for correction (REQUIRED)
+#### 6.1.1.13 An Operator must be able to make a decision in the system by selecting the right decision type - approve, reject, send back for correction (REQUIRED)
 
 * At least one decision option must be available in order to process the application file.
 * The system must enable a form for an Operator to draft a decision text and select/fill in additional information on the form.
 * In case of errors in the application, operators must be able to mark which document and/or data field is incorrect. Applicants must see the highlighted information.
 
-#### 6.1.1.15 Operators have the option to print, sign and upload a certificate (REQUIRED)
+#### 6.1.1.14 Operators have the option to print, sign and upload a certificate (REQUIRED)
 
 * The system must not let an Operator make a decision in case a required document/result certificate is missing.
 * The system can display, print and upload a filled certificate from a template.
 
-#### 6.1.1.16 Operators have the option to edit application information if corrections are needed (REQUIRED)
+#### 6.1.1.5 Operators have the option to edit application information if corrections are needed (REQUIRED)
 
 * The system must highlight if an Operator has made any changes to the information submitted by the Applicant.
 * The system should enable the Operator to remove and/or upload required documents.
 
-#### 6.1.1.17 Operators have the option to communicate with applicant users (REQUIRED)
+#### 6.1.1.16 Operators have the option to communicate with applicant users (REQUIRED)
 
 * Communication is application related and stored with application data.
 * Communication can be initiated by an operator or by an applicant. Communication initiation options must be configurable.
