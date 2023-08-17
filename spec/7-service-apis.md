@@ -58,27 +58,7 @@ Going through the registration process as an applicant requires multiple steps a
 
 ## 8.2 Processing of Registrations
 
-Existing applications can be accessed after submission:
-
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/applications" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
-{% endswagger %}
-
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/applications/{fileId}" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
-{% endswagger %}
-
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/tasks" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
-{% endswagger %}
-
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/tasks/{taskId}" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
-{% endswagger %}
-
-## 8.3 Development Platform
-
-Operators can access and process existing application files
+Operators can access and process existing application files:
 
 {% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/applications" method="get" %}
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
@@ -107,6 +87,10 @@ Operators can access and process existing application files
 {% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/tasks/{taskId}/complete" method="post" %}
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
 {% endswagger %}
+
+## 8.3 Development Platform
+
+Currently there are no specifications for API endpoints to manage and design services and workflows.
 
 ### Statistics
 
