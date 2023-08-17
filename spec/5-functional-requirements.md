@@ -14,14 +14,9 @@ The functionalities described in this chapter apply to any government registrati
 
 ## 6.1 Online Registration e-services
 
-The purpose of the online registration services (from here on e-services) module of Registration Building Block is:
+The purpose of the "online registration e-services" (from here on e-services) module of the Registration Building Block is to enable Applicants to apply for and receive registration claims (certificated documents).
 
-* to enable Applicants to apply for and receive registration claims (certificated documents);
-* to enable the Back Office staff, i.e. Operators to process applications, register information, and issue registration certificates.
-
-### 6.1.1 Applicant Functional Requirements
-
-As an Applicant, I want to use an e-service, so that I can apply for multiple logically grouped registrations with one integrated service and receive all needed claims/certificates simultaneously.
+_As an Applicant, I want to use an e-service, so that I can apply for multiple logically grouped registrations with one integrated service and receive all needed claims/certificates simultaneously._
 
 The functional requirements for an Applicant are as follows:
 
@@ -34,11 +29,9 @@ The functional requirements for an Applicant are as follows:
 * Operators can see statistics of the processing;
 * Each back office operator can only see relevant data of the application. Operators are authorized to see and process their role-related applications.
 
-#### 6.1.1.1 User Account (A0), (REQUIRED)
+#### 6.1.1 User Account (REQUIRED)
 
-The User Account page, A0, is the first page that all users see when they authenticate (log in) to the system.
-
-A0 must contain the following sections:
+The User Account page is the first page that all users see when they authenticate (log in) to the system. It must contain the following sections:
 
 * "My applications" part with various tabs,
   * list of applications (can be filtered and queried by status);
@@ -68,7 +61,7 @@ The system must enable to:
 15. send on-screen messages and e-mail, sms, etc. messages to the applicant(s) and users based on application statuses;
 16. see the status of the application file of the registration(s) process.
 
-#### 6.1.1.2 e-Service screens (REQUIRED)
+#### 6.1.2 e-Service screens (REQUIRED)
 
 An applicant has the option to see all screens of the e-service. The e-service may have one or more screens. Service screens are preconfigured in Screen and flow builder as service schema. Example screens:
 
@@ -80,15 +73,15 @@ An applicant has the option to see all screens of the e-service. The e-service m
 
 The above screens, when activated, will be displayed, in the predefined order (guide, applicant form, document upload, payment, send) as a wizard. If not activated, then the applicant will not see the pages.
 
-#### 6.1.1.3 e-Service data capturing (REQUIRED)
+#### 6.1.3 e-Service data capturing (REQUIRED)
 
 When an applicant is entering data the system must capture the data entered. Applicant can save their applicant file as a draft and continue data entering later.
 
-#### 6.1.1.4 e-Service data validation (REQUIRED)
+#### 6.1.4 e-Service data validation (REQUIRED)
 
 When an applicant is entering data the system must validate the data based on the configuration made by the Analyst in the Control Configurator.
 
-#### 6.1.1.5 e-Service registrations (REQUIRED)
+#### 6.1.5 e-Service registrations (REQUIRED)
 
 The system must tell applicants which services are applicable.
 
@@ -98,13 +91,13 @@ The system must tell applicants which services are applicable.
 
 Example: the UC-Postpartum infant care- Registrations in Civil registry, mother and child tracking program (MCTS), and optionally to paediatrician first meeting registration (three simultaneous registrations within one service).
 
-#### 6.1.1.6 e-Service required documents, requirements (REQUIRED)
+#### 6.1.6 e-Service required documents, requirements (REQUIRED)
 
 When an applicant has filled in data on a selected registration to apply for, the system must show which additional information/documents must be uploaded with the application. Duplicate requirements are merged. If a requirement is an output of one registration and at the same time the input to the next registration, then this document must not be asked/visible in the requirements list as it will be acquired during the process.
 
 An Applicant must be able to upload documents or take the documents to the counter service as originals.
 
-#### 6.1.1.7 e-Service required fees/payments (REQUIRED)
+#### 6.1.7 e-Service required fees/payments (REQUIRED)
 
 When an applicant has filled in data on a selected registration to apply for, the system must show which fees are relevant.
 
@@ -115,30 +108,34 @@ When an applicant has filled in data on a selected registration to apply for, th
 * All payment-related transactions must be logged;
 * All payments received must be available in the payment registry (or equivalent registry) as successful transactions.
 
-#### 6.1.1.8 e-Service movement on screens, roles and submission (REQUIRED)
+#### 6.1.8 e-Service movement on screens, roles and submission (REQUIRED)
 
 Applicants can move between the screens and change the data up to the point of submission. Applicants can submit an application for processing (flow). All submitted applications are recorded in the processing flow engine and the first role defined in the flow builder will receive the registered application file as a task for processing. Movement on the screens can be done by clicking a button (Next) or by clicking on a tab/page name. Movement between the processing roles is done via decisions (approve, reject, send back)\
 The system must validate inconsistencies in the application upon submission.
 
-#### 6.1.1.9 e-Service application history (REQUIRED)
+#### 6.1.9 e-Service application history (REQUIRED)
 
 An applicant must see the application and flow history, process registration time, and processing status in a flow. It should be possible to see which Institution is currently processing the application.
 
 Applicants must see the expected processing end time for each application.
 
-#### 6.1.1.10 Read information from QR-code/barcode and insert to the form (REQUIRED)
+#### 6.1.10 Read information from QR-code/barcode and insert to the form (REQUIRED)
 
 An applicant can use a function (e.g. button) and the action to capture data from the QR code.\
 Expected result- the applicant can activate (a mobile phone) camera, read the QR code and capture the data from the QR code to a field. Example data to be captured: “MCTS31”; “www.registrations.org”
 
-#### 6.1.1.11 Back office Operators have a view to see the list of applications to be processed, task list dashboard (REQUIRED)
+## 6.2 Processing of Registrations
+
+The purpose of the "processing of registrations" module of the Registration Building Block is to enable Back Office staff, i.e. Operators to process applications, register information, and issue registration certificates.
+
+#### 6.2.1 Back office Operators have a view to see the list of applications to be processed, task list dashboard (REQUIRED)
 
 * The system has the function for an Operator to pick assignments from the common task dashboard.
 * The system has the view for an Operator to see assigned roles and assigned tasks for this role.
 * Operators are linked to Institutions (or sub-units) and roles, thus can only see the tasks relevant to their role and Institution.
 * Optionally (configurable) - an operator could be able to claim a task from the application task dashboard. When the task has been claimed, then the application file will be taken off the common pool.
 
-#### 6.1.1.12 An Operator of a role must see the received application file screen containing all information submitted by an Applicant and information complemented by other Operators while processing the same file (REQUIRED)
+#### 6.2.2 An Operator of a role must see the received application file screen containing all information submitted by an Applicant and information complemented by other Operators while processing the same file (REQUIRED)
 
 * Required documents relevant to this role and registration linked to the role;
 * Required data relevant to this role and registration(s) linked to this role.
@@ -146,38 +143,30 @@ Expected result- the applicant can activate (a mobile phone) camera, read the QR
 * Must be able to see the history of the application file processing.
 * Must be able to see the status of the application file.
 
-#### 6.1.1.13 An Operator must be able to make a decision in the system by selecting the right decision type - approve, reject, send back for correction (REQUIRED)
+#### 6.2.3 An Operator must be able to make a decision in the system by selecting the right decision type - approve, reject, send back for correction (REQUIRED)
 
 * At least one decision option must be available in order to process the application file.
 * The system must enable a form for an Operator to draft a decision text and select/fill in additional information on the form.
 * In case of errors in the application, operators must be able to mark which document and/or data field is incorrect. Applicants must see the highlighted information.
 
-#### 6.1.1.14 Operators have the option to print, sign and upload a certificate (REQUIRED)
+#### 6.2.4 Operators have the option to print, sign and upload a certificate (REQUIRED)
 
 * The system must not let an Operator make a decision in case a required document/result certificate is missing.
 * The system can display, print and upload a filled certificate from a template.
 
-#### 6.1.1.5 Operators have the option to edit application information if corrections are needed (REQUIRED)
+#### 6.2.5 Operators have the option to edit application information if corrections are needed (REQUIRED)
 
 * The system must highlight if an Operator has made any changes to the information submitted by the Applicant.
 * The system should enable the Operator to remove and/or upload required documents.
 
-#### 6.1.1.16 Operators have the option to communicate with applicant users (REQUIRED)
+#### 6.2.6 Operators have the option to communicate with applicant users (REQUIRED)
 
 * Communication is application related and stored with application data.
 * Communication can be initiated by an operator or by an applicant. Communication initiation options must be configurable.
 * The communication system must be integrated with other systems via API (Information Mediator) and configurable for multiple channels.
 * Communication options are asynchronous and/or in real-time.
 
-### 6.1.2 External API functional requirements
-
-An external application may access the Registration Building Block and provide registration data via API, as specified in chapter 8 "Service APIs".
-
-### 6.1.3 Generic Registration Functionalities
-
-[This table](https://govstack-global.atlassian.net/l/cp/Be0cejZY) provides information on how the Functional Capabilities (by an applicant and a registrar) in specific use cases match the functional requirements as described.
-
-## 6.2 Development Platform
+## 6.3 Development Platform
 
 Many registration applications leverage a no-code development platform. The no-code development platform is composed of:
 
@@ -198,7 +187,7 @@ Post-requirements:
 * Applicants can submit applications;
 * Operators can process the applications.
 
-### 6.2.1 Rules Engine Functional Requirements
+### 6.3.1 Rules Engine Functional Requirements
 
 The Rules Engine is a module where an analyst defines:
 
@@ -214,25 +203,25 @@ The rules can be:
 * Entered in the rule engine by an analyst, on the basis of the regulations;
 * Provided by external rules providers (e.g. rules databases at the ministries level).
 
-#### 6.2.1.1 Creation of Services (REQUIRED)
+#### 6.3.1.1 Creation of Services (REQUIRED)
 
 An analyst (user) must be able to create, in the rule engine, one or more services, each service encompassing one or more registrations. A “Service” is a name given to a registration, or to a combination of registrations that can be undertaken simultaneously. To create a service, an analyst will:
 
 * Give a name to the service;
 * Link one or more registrations to the service.
 
-#### 6.2.1.2 Publish service to external instance (RECOMMENDED)
+#### 6.3.1.2 Publish service to external instance (RECOMMENDED)
 
 Each service can be published in the same or in a separate instance, together with the rule engine. The instance must be configured and interoperable with Registration Building Block service definitions.
 
-#### 6.2.1.3 Creation of one or more “Registrations” (REQUIRED)
+#### 6.3.1.3 Creation of one or more “Registrations” (REQUIRED)
 
 An analyst can create one or more registrations. For each registration, the analyst defines in clear language and in the rules engine:
 
 * The name of the registration;
 * The entity in charge of the registration.
 
-#### 6.2.1.4 Definition of the subjects of a registration (REQUIRED)
+#### 6.3.1.4 Definition of the subjects of a registration (REQUIRED)
 
 For each registration, an analyst must be able to report/input in the rule engine, in clear language, rules defining who/what are the subjects of the registration.
 
@@ -253,7 +242,7 @@ Examples:
 * Registration is mandatory for attribute “resident” AND attribute “foreigner” (all residents who are foreigners must register).
 * Registration is mandatory for {attribute “resident”} AND {attribute “foreigner” OR attribute “have children”} (all foreign residents must register; national residents who have children must register).
 
-#### 6.2.1.5 Definition of the results of a registration (REQUIRED)
+#### 6.3.1.5 Definition of the results of a registration (REQUIRED)
 
 An analyst must be able to report/input in the rule engine, in clear language, rules defining what are the results of registration. The result of a registration has a name (for example registration number, registration certificate, permit, license, etc.). To this name, the analyst must be able to associate a template/document (see RE-11). In some cases, some subjects of the registration will receive a different result. The analyst can define through determinants (or combination of determinants) the different categories of subjects and can link each category of subjects to a specific result.
 
@@ -262,7 +251,7 @@ Examples:
 * Future truck drivers that apply for a driving license and pass the exam will receive a driving license for “large vehicles”, while car drivers will receive a driving license for “light vehicles” (attributes: “truck driver” or “car driver”).
 * Enterprises with assets below US$5,000 will receive a “Cottage Industry Certificate”; enterprises with assets above US$5,000 will receive a “Business License” when applying for an activity license (attributes: “assets below US$5,000” and “assets above US$5,000”).
 
-#### 6.2.1.6 Requirements of a registration - Documents/Credentials (REQUIRED)
+#### 6.3.1.6 Requirements of a registration - Documents/Credentials (REQUIRED)
 
 An analyst must be able to report/input in the rule engine, in clear language, rules defining what are the documents/credentials that must be provided.
 
@@ -282,7 +271,7 @@ Examples:
 * Foreigners must provide a copy of their residence permit (attribute: “foreigner”).
 * Applicants that can’t provide a copy of their birth certificate must provide a certified copy of their ID (attribute: “can’t provide a copy of the birth certificate”).
 
-#### 6.2.1.7 Requirements of a registration - Fees (REQUIRED)
+#### 6.3.1.7 Requirements of a registration - Fees (REQUIRED)
 
 An analyst must be able to report/input in the rule engine, in clear language, rules defining what are the fees of a registration. The fees of a registration have a name (i.e. State fee of MCTS program, license registration fee, etc.). To this name, the analyst must be able to associate an amount and a currency.
 
@@ -298,7 +287,7 @@ Examples:
 1. Mothers with one child that apply to a registration to MCTS program will receive an identity card for 10 EUR, while mothers with two children or more will receive an identity card for 15 EUR (attributes: “one child” or “more than one child”).
 2. Farmers with farming land area > 10 000 square meters that apply for registration of farmland will receive a registration certificate for 10 EUR, while farmers with land area <= 10 000 square meters will receive a registration result/credential certificate for 5 EUR.
 
-#### 6.2.1.8 Requirements of a registration - Data/Claims (REQUIRED)
+#### 6.3.1.8 Requirements of a registration - Data/Claims (REQUIRED)
 
 An analyst must be able to report/input in the rule engine, in clear language, rules defining what is the data (claims) that must be provided. A piece of data is defined by:
 
@@ -313,7 +302,7 @@ Examples:
 * Married applicants must provide the first name, last name, and date of birth of their spouse (attribute: “married”).
 * Owners of farmland should provide the number and date of registration of their property; applicants who rent the farmland must provide the name and ID number of the owner (attribute: “own land”, “rent land”).
 
-#### 6.2.1.9 Possibility to combine various registrations in one service (REQUIRED)
+#### 6.3.1.9 Possibility to combine various registrations in one service (REQUIRED)
 
 In many cases, the process for the user/applicant contains multiple pre-and post-registration steps in order to achieve the final goal (e.g. applying for a healthcare program). For example, in order to register a mother and a newborn child to the Mother and Child support program, both of the subjects must be previously registered in the Civil/Population registry. Civil registry registration service could be a separate service, but it is much user-friendlier and less time-consuming for the applicant to merge the two registrations into one service that can be filled at the same time. This service type is called Single Window or integrated registrations service.
 
@@ -330,7 +319,7 @@ Examples:
 * One service has two registrations and both of them require a passport to be uploaded. When an applicant chooses to apply for both registrations then the system must ask for the passport upload only once.
 * One service has two registrations. The first registration’s result (credential) is the second registration’s requirement. The system must not ask for this requirement from the applicant as the result will be generated during the process. However, if the user chooses to register for only the second registration then the requirement must be asked.
 
-#### 6.2.1.10 Creation and functioning of determinants (REQUIRED)
+#### 6.3.1.10 Creation and functioning of determinants (REQUIRED)
 
 The analyst can define through determinants (or combination of determinants) the different categories of subjects and can link each category of subjects to a specific element of a service. An element of a service can be a field, block, button, message, processing role, result, requirement, etc.
 
@@ -350,7 +339,7 @@ Apply determinants to:
 
 Determinants can be combined by “AND” and “OR” operators. Combinations can be grouped into “groups of determinants”. A group of determinants can be combined through “AND” and “OR” operators.
 
-#### 6.2.1.11 Definition of a template associated with the result of a registration (REQUIRED)
+#### 6.3.1.11 Definition of a template associated with the result of a registration (REQUIRED)
 
 An analyst must be able to create an electronic template (a screen with images, text, fields, QR code) and link it to the result of a registration.
 
@@ -370,14 +359,14 @@ In addition to fields, the analyst can create information texts and add images, 
 
 Determinants and groups of determinants created in the rule engine can be assigned to each field on a template. A field will be displayed/printed only if the determinants assigned to it are true. Fields can be grouped into containers (blocks, tables, etc.). A container is defined by a name. Fields can be moved to and on the screen by “drag-and-drop, inside/outside of and between containers.
 
-### 6.2.2 User Interface and Flow Builder Functional Requirements
+### 6.3.2 User Interface and Flow Builder Functional Requirements
 
 The purpose of the **Screen and flow builder** is to define and display the screens, and the fields on each screen, in the application file and processing parts, and to pre-fill or capture the data entered by the users of these screens in:
 
 * The **application file**, where applicants provide claims (fill out a form), credentials (upload files), and fees (pay online or upload a payment receipt) and send his/her request to one or more entities in charge of the registration.
 * The **processing part**, where one or more human or automated (“robot” or “BOT”) operators can review the information (i.e. the data and documents) provided by the applicant, approve or reject an application, send claims to a registry, and issue a credential.
 
-#### 6.2.2.1 Application file and layout - Creation of screens and their sequence (REQUIRED)
+#### 6.3.2.1 Application file and layout - Creation of screens and their sequence (REQUIRED)
 
 An analyst must be able to create one or more screens that will allow to show information to the applicant and display fields that the applicant will have to fill in to provide the requirements of the registration. The analyst can define the sequence/order in which the screens will be displayed to the applicant. The analyst can define a one-screen e-service or create a multi-page wizard e-service supported by Breadcrumb. The number of screens in an e-service is not limited.By default, the system provides a template structure e-service screen skeleton. To this end, the analyst will be able to activate or inactivate, through a toggle, the following screens:
 
@@ -389,7 +378,7 @@ An analyst must be able to create one or more screens that will allow to show in
 
 The above screens, when activated, will be displayed, in the predefined order (guide, applicant form, document upload, payment, send). The flow of screens can be visualized by the analyst.
 
-#### 6.2.2.2 Application file - Creation of fields on each screen (REQUIRED)
+#### 6.3.2.2 Application file - Creation of fields on each screen (REQUIRED)
 
 On each screen, an analyst can create data fields/claims that must be filled by the applicant and place them on the screen. Fields will have the following characteristics:
 
@@ -404,7 +393,7 @@ On each screen, an analyst can create data fields/claims that must be filled by 
 
 Determinants and groups of determinants created in the rule engine can be assigned to each field. A field will be displayed only if the determinants assigned to it are true. Actions and groups of actions created in the service can be assigned to each field or button. For example, an Action can pull data to the form, submit data to external API endpoints, create PDF documents from templates, or help users to move between the forms. A field will activate action automatically upon form load once. Actions can be controlled with determinants. Every time a field is created it is recorded in the “data” part of the rules engine. Fields can be grouped into containers (blocks). A container is defined by a name. Fields can be moved to and on the screen by “drag-and-drop, inside/outside of and between containers. In addition to fields, the analyst can create information texts and images that (contrary to fields) do not expect any input from the applicant.
 
-#### 6.2.2.3 Processing part - Creation of screens/roles (REQUIRED)
+#### 6.3.2.3 Processing part - Creation of screens/roles (REQUIRED)
 
 The processing part relies on the flow builder because roles are part of the process flow. An analyst can create one or more screens allowing human operators to process the application files, i.e. to review the information sent by the applicant, to add data or documents to the application file (e.g. a number, a date, a credential, etc.), to approve an application, to reject it or to send it back to the applicant when more information is required. We call “processing role” (or simply “role”) each successive processing an application file will go through until final approval is given and the registration is completed. Usually, different roles are ensured by different government entities. It happens that successive roles are ensured by different units in the same entity.
 
@@ -433,7 +422,7 @@ Therefore, an analyst must be able to create one or more roles, each role coming
 
 Determinants and groups of determinants created in the rule engine can be assigned to each role. A role will be displayed/activated only if the determinants assigned to it are true. If Role determinants evaluate to false, then the application file passes the processing role without stopping.
 
-#### 6.2.2.4 Processing part - Ordering of screens/roles in Flow Builder (REQUIRED)
+#### 6.3.2.4 Processing part - Ordering of screens/roles in Flow Builder (REQUIRED)
 
 An analyst will be able to define, for each role, a list of possible statuses, by selecting which of the following statuses are possible for the role:
 
@@ -450,7 +439,7 @@ For each activated status, the analyst will be able to indicate where the applic
 
 Therefore, the roles/screens in the processing part will come in an order specified by the analyst and this functionality is called Flow Builder. The analyst must be able to visualize the flow of roles/screens.
 
-#### 6.2.2.5 Processing part - creation of fields on processing screens (REQUIRED)
+#### 6.3.2.5 Processing part - creation of fields on processing screens (REQUIRED)
 
 On each screen, an analyst can create fields that must be filled by the role operator and place them on the screen. Fields will have the following characteristics:
 
@@ -461,7 +450,7 @@ On each screen, an analyst can create fields that must be filled by the role ope
 
 Every time a field is created it is recorded in the “data” part of the rules engine. Fields can be grouped into blocks, columns, field sets, and other containers (tables). A container is defined by a name. Fields can be moved on the screen by “drag-and-drop, inside/outside of and between Blocks. In addition to fields, the analyst can create information texts and images that, contrary to fields, do not expect any input from the applicant. Only human roles have the option to build processing screens. Determinants and groups of determinants created in the rule engine can be assigned to each field. A field will be displayed only if the determinants assigned to it are true.
 
-#### 6.2.2.6 An analyst must be able to add QR-code/barcode scanning function to the service screen (REQUIRED)
+#### 6.3.2.6 An analyst must be able to add QR-code/barcode scanning function to the service screen (REQUIRED)
 
 An Analyst can add a form field element (e.g. button) to a screen and configure an action to trigger the capture of data from a QR code.
 
@@ -469,7 +458,7 @@ Expected result- Analyst will build a service that has a button on the screen an
 
 QR code must be generated with the ISO/IEC 18004:2015 standard.
 
-#### 6.2.2.7 Actions (REQUIRED)
+#### 6.3.2.7 Actions (REQUIRED)
 
 The analyst must be able to configure the triggering of actions when a user or system initiates an event on a screen of a service. A triggering event can be a button click, a form loading, a form element click, data entered into a field, or a row added to a table. Before actions can be triggered the API request must be defined in action attributes. The action attribute specifies one or more of the following data mappings (BOT):
 
@@ -490,11 +479,11 @@ Examples:
 * User clicks the “Print” button and the system triggers “Print to PDF” data action where a template is used as a base for creating a new PDF document. System will enable the user to see, print or download the generated PDF.
 * User submits application and system will trigger BOT Role in the flow and it, in turn, activates the data action bot (e.g. POST/GET message to external API).
 
-#### 6.2.2.8 Formulas (REQUIRED)
+#### 6.3.2.8 Formulas (REQUIRED)
 
 Analysts must be able to add formula calculations to and between the fields. The Formulas can be added to numeric fields, int, decimal, and date. Calculated values allow calculating values based on the values in other fields of the form. E.g. If the registration subject has more than 2 children, then multiply the social payment times the number of kids.
 
-#### 6.2.2.9 Preview (REQUIRED)
+#### 6.3.2.9 Preview (REQUIRED)
 
 Analyst must be able to preview service User Interfaces before publishing the service to the applicants.
 
@@ -504,7 +493,7 @@ The following preview functions must be available:
 2. Preview of full service;
 3. Preview of full service in test instance with the functionality to test the full service before publishing to live instance.
 
-#### 6.2.2.10 Import/Export of service descriptions (REQUIRED)
+#### 6.3.2.10 Import/Export of service descriptions (REQUIRED)
 
 Analyst must be able to import/export full-service description. Service descriptions must contain at least:
 
@@ -514,15 +503,15 @@ Analyst must be able to import/export full-service description. Service descript
 
 As a result, the service can be imported with minimal effort from another instance and published for users/applicants to use. Instance-specific configurations must be done in each instance and are not target to import or export.
 
-#### 6.2.2.11 Text-to-speech feature (RECOMMENDED)
+#### 6.3.2.11 Text-to-speech feature (RECOMMENDED)
 
 User can activate the text-to-speech feature in the user information capturing forms to read out the screen information. The goal is to help illiterate users with understanding the text on the screen. The feature can read captured information and other e-service information visible on the e-service screens.
 
-#### 6.2.2.12 Voice guide feature (RECOMMENDED)
+#### 6.3.2.12 Voice guide feature (RECOMMENDED)
 
 The feature enables to capture information from voice answers and ask confirmation if captured information is correct. Voice guide enable the user to follow the e-service wizard and submit applications.
 
-### 6.2.3 Control Configurator’s Functional Requirements
+### 6.3.3 Control Configurator’s Functional Requirements
 
 **Control configurator**, to check if the claims (claims and credentials of registers) are complete and true. This is done through:
 
@@ -534,7 +523,7 @@ Pre-requirements:
 
 * The user is authenticated and authorized to use this administrative Control Configurator functionality.
 
-#### 6.2.3.1 Controlling the data capturing- Form field value validation (REQUIRED)
+#### 6.3.3.1 Controlling the data capturing- Form field value validation (REQUIRED)
 
 An Analyst must be able to configure field-specific validation options e.g.:
 
@@ -545,7 +534,7 @@ An Analyst must be able to configure field-specific validation options e.g.:
 * File upload size max limit;
 * File upload type allowed.
 
-#### 6.2.3.2 Controlling the data capturing- Form field value validation from external API (REQUIRED)
+#### 6.3.3.2 Controlling the data capturing- Form field value validation from external API (REQUIRED)
 
 An analyst must be able to configure screen field(s) validation from an external API data source.
 
@@ -554,7 +543,7 @@ Examples:
 * Applicant name and ID must match with data in the Civil Registry record;
 * Subject (first name, last name, Dya of Birth) must not have been entered into the MCTS registry.
 
-#### 6.2.3.3 Controlling the data capturing- data integrity validation (REQUIRED)
+#### 6.3.3.3 Controlling the data capturing- data integrity validation (REQUIRED)
 
 The system must verify that all claims/fields are correctly captured and all required documents uploaded.
 
