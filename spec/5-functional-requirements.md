@@ -18,20 +18,9 @@ The purpose of the "online registration e-services" (from here on e-services) mo
 
 _As an Applicant, I want to use an e-service, so that I can apply for multiple logically grouped registrations with one integrated service and receive all needed claims/certificates simultaneously._
 
-The functional requirements for an Applicant are as follows:
+#### 6.1.1 Applicant Dashboard / Account (REQUIRED)
 
-* Applicants can log in to the system and see available e-services;
-* Applicants can select relevant services and apply for registration(s);
-* Applicants can submit applications to relevant entities;
-* Applicants can see applications in the draft, rejected, validated, and sent back for corrections status;
-* Entity operators can see a list of received applications and process the applications;
-* Operators can make decisions (three types) and upload the decisions to the system as result;
-* Operators can see statistics of the processing;
-* Each back office operator can only see relevant data of the application. Operators are authorized to see and process their role-related applications.
-
-#### 6.1.1 User Account (REQUIRED)
-
-The User Account page is the first page that all users see when they authenticate (log in) to the system. It must contain the following sections:
+The first page that all users see after logging in to the system. It provides a complete overview of relevant actions and should contain the following sections:
 
 * "My applications" part with various tabs,
   * list of applications (can be filtered and queried by status);
@@ -42,46 +31,27 @@ The User Account page is the first page that all users see when they authenticat
 
 In order to make the service usable and personalized, Applicants must authenticate to the system - then the Applicant’s information is automatically attached to the application file when sending the application for processing.
 
-The system must enable to:
+#### 6.1.2 Step-by-step application process (REQUIRED)
 
-1. see the User Account screen(Dashboard);
-2. select an e-service from the list of e-services and fill out a new application;
-3. open the Applicant’s own applications to see the content;
-4. save and continue filling the Applicant’s draft applications;
-5. filter applications (search free text from the application name, submission date, deadline date, and status);
-6. delete draft applications;
-7. see the content (Data, documents) of the submitted applications and the status of the application;
-8. see “My documents” - certificates and/or approvals issued for the Applicant;
-9. see and give approval for applications waiting for the Applicant's approval;
-10. see, correct, and resubmit applications sent back for correction;
-11. see applications rejected by the Back Office;
-12. see messages sent for the Applicant;
-13. see and CRUD (Create, Read, Update, Delete) all documents uploaded by the Applicant;
-14. see a list of registration application files, filtered by status (pending, validated, rejected, sent back for correction);
-15. send on-screen messages and e-mail, sms, etc. messages to the applicant(s) and users based on application statuses;
-16. see the status of the application file of the registration(s) process.
+An Applicant can select a service and follow a structured registration process to submit an application. This always consists of the following steps (some steps may be inactive for a given service, however):
 
-#### 6.1.2 e-Service screens (REQUIRED)
-
-An applicant has the option to see all screens of the e-service. The e-service may have one or more screens. Service screens are preconfigured in Screen and flow builder as service schema. Example screens:
-
-* **Guide** screen: this is a screen where the analyst can create text for the information of the applicants (guidelines) or ask questions (through fields) to determine what category of subjects the applicant belongs to (i.e. if the applicant is subject to the registration and what data, documents and fees are required).
-* **Applicant** form screen: this is where the applicant will provide the required data.
+* **Guide** screen: Text providing information to the applicants (guidelines) or ask questions (through fields) to determine what category of subjects the applicant belongs to (i.e. if the applicant is subject to the registration and what data, documents and fees are required).
+* **Applicant** form screen: For the applicant to provide the required data.
 * **Documents** upload screen: where the applicant will upload scanned copies of the required documents/credentials.
 * **Payment** screen: where the applicant will see a list of fees that must be paid and can be redirected to an external online payment service.
 * **Send** screen: where the applicant can be reminded of any information missing in his/her application (if some fields have not been filled or documents have not been uploaded) and will be requested to confirm his/her will to apply for registration.
 
-The above screens, when activated, will be displayed, in the predefined order (guide, applicant form, document upload, payment, send) as a wizard. If not activated, then the applicant will not see the pages.
+The above screens, when activated, will be displayed, in the predefined order as a wizard. If not activated, then the applicant will not see the inactive page. Service screens are preconfigured in Screen and flow builder as service schema.
 
-#### 6.1.3 e-Service data capturing (REQUIRED)
+#### 6.1.3 Draft applications (REQUIRED)
 
-When an applicant is entering data the system must capture the data entered. Applicant can save their applicant file as a draft and continue data entering later.
+The Applicant can save their application file as a draft and continue data entering later. When an applicant is entering data the system must capture the data entered. For managing drafts the system must support to:
 
-#### 6.1.4 e-Service data validation (REQUIRED)
+* save and continue filling draft applications
+* delete draft applications
+* list applications that are in draft status
 
-When an applicant is entering data the system must validate the data based on the configuration made by the Analyst in the Control Configurator.
-
-#### 6.1.5 e-Service registrations (REQUIRED)
+#### 6.1.4 Guide to applicable registrations (REQUIRED)
 
 The system must tell applicants which services are applicable.
 
@@ -91,13 +61,19 @@ The system must tell applicants which services are applicable.
 
 Example: the UC-Postpartum infant care- Registrations in Civil registry, mother and child tracking program (MCTS), and optionally to paediatrician first meeting registration (three simultaneous registrations within one service).
 
-#### 6.1.6 e-Service required documents, requirements (REQUIRED)
+#### 6.1.5 Validate entered data for application (REQUIRED)
 
-When an applicant has filled in data on a selected registration to apply for, the system must show which additional information/documents must be uploaded with the application. Duplicate requirements are merged. If a requirement is an output of one registration and at the same time the input to the next registration, then this document must not be asked/visible in the requirements list as it will be acquired during the process.
+When an applicant is entering data the system must validate the data based on the configuration made by the Analyst in the Control Configurator.
 
-An Applicant must be able to upload documents or take the documents to the counter service as originals.
+#### 6.1.6 Upload documents for application (REQUIRED)
 
-#### 6.1.7 e-Service required fees/payments (REQUIRED)
+When an applicant has filled in data on a selected registration to apply for, the system must show which additional information/documents must be uploaded with the application.
+
+* Duplicate requirements (of multiple registrations within the same application file) are merged.
+* If a requirement is an output of one registration and at the same time the input to the next registration, then this document must not be asked/visible in the requirements list as it will be acquired during the process.
+* An Applicant must be able to upload documents or take the documents to the counter service as originals.
+
+#### 6.1.7 Pay fees for application (REQUIRED)
 
 When an applicant has filled in data on a selected registration to apply for, the system must show which fees are relevant.
 
@@ -108,16 +84,26 @@ When an applicant has filled in data on a selected registration to apply for, th
 * All payment-related transactions must be logged;
 * All payments received must be available in the payment registry (or equivalent registry) as successful transactions.
 
-#### 6.1.8 e-Service movement on screens, roles and submission (REQUIRED)
+#### 6.1.8 Send application for submission (REQUIRED)
 
-Applicants can move between the screens and change the data up to the point of submission. Applicants can submit an application for processing (flow). All submitted applications are recorded in the processing flow engine and the first role defined in the flow builder will receive the registered application file as a task for processing. Movement on the screens can be done by clicking a button (Next) or by clicking on a tab/page name. Movement between the processing roles is done via decisions (approve, reject, send back)\
-The system must validate inconsistencies in the application upon submission.
+Applicants can move between the screens of the application process steps and change the data up to the point of submission. Applicants can submit an application for processing (flow).
 
-#### 6.1.9 e-Service application history (REQUIRED)
+* The system must validate inconsistencies in the application upon submission.
+* The Applicant must be requested to confirm his/her will to apply for registration.
+* All submitted applications are recorded in the processing flow engine and the first role defined in the flow builder will receive the registered application file as a task for processing. Movement between the processing roles is done via decisions (approve, reject, send back).
+* Upon submission, the application appears as a task for the Operator of the relevant entity (see 6.2).
 
-An applicant must see the application and flow history, process registration time, and processing status in a flow. It should be possible to see which Institution is currently processing the application.
+#### 6.1.9 View applications status and history (REQUIRED)
 
-Applicants must see the expected processing end time for each application.
+An applicant must see the application and flow history, process registration time, and processing status in a flow:
+
+* see all applications in the draft, rejected, validated, and sent back for corrections status
+* filter applications: search free text from the application name, submission date, deadline date, and status (pending, validated, rejected, sent back for correction)
+* see the status including expected processing end time for each application and which Institution is currently processing the application
+* see certificates and/or approvals issued for the Applicant
+* view the content (data, documents) of submitted applications
+* correct and resubmit applications that have been sent back for correction by an Operator
+* communicate with the Operator processing the application (--> see 6.2.6)
 
 #### 6.1.10 Read information from QR-code/barcode and insert to the form (REQUIRED)
 
@@ -126,16 +112,22 @@ Expected result- the applicant can activate (a mobile phone) camera, read the QR
 
 ## 6.2 Processing of Registrations
 
-The purpose of the "processing of registrations" module of the Registration Building Block is to enable Back Office staff, i.e. Operators to process applications, register information, and issue registration certificates.
+The purpose of the "processing of registrations" module of the Registration Building Block is to enable Back Office staff, i.e. Operators, to process applications, register information, and issue registration certificates.
 
-#### 6.2.1 Back office Operators have a view to see the list of applications to be processed, task list dashboard (REQUIRED)
+Each back office operator can only see relevant data of the application. Operators are authorized to see and process their role-related applications.
+
+#### 6.2.1 List applications and tasks (REQUIRED)
+
+Operators have a view to see the list of applications to be processed and a task list dashboard.
 
 * The system has the function for an Operator to pick assignments from the common task dashboard.
 * The system has the view for an Operator to see assigned roles and assigned tasks for this role.
 * Operators are linked to Institutions (or sub-units) and roles, thus can only see the tasks relevant to their role and Institution.
 * Optionally (configurable) - an operator could be able to claim a task from the application task dashboard. When the task has been claimed, then the application file will be taken off the common pool.
 
-#### 6.2.2 An Operator of a role must see the received application file screen containing all information submitted by an Applicant and information complemented by other Operators while processing the same file (REQUIRED)
+#### 6.2.2 View application file with all details (REQUIRED)
+
+An Operator of a role must see the received application file screen containing all information submitted by an Applicant and information complemented by other Operators while processing the same file.
 
 * Required documents relevant to this role and registration linked to the role;
 * Required data relevant to this role and registration(s) linked to this role.
@@ -143,23 +135,27 @@ The purpose of the "processing of registrations" module of the Registration Buil
 * Must be able to see the history of the application file processing.
 * Must be able to see the status of the application file.
 
-#### 6.2.3 An Operator must be able to make a decision in the system by selecting the right decision type - approve, reject, send back for correction (REQUIRED)
+#### 6.2.3 Make decisions about an application (REQUIRED)
+
+An Operator must be able to make a decision in the system by selecting the right decision type - approve, reject or send back for correction.
 
 * At least one decision option must be available in order to process the application file.
 * The system must enable a form for an Operator to draft a decision text and select/fill in additional information on the form.
 * In case of errors in the application, operators must be able to mark which document and/or data field is incorrect. Applicants must see the highlighted information.
 
-#### 6.2.4 Operators have the option to print, sign and upload a certificate (REQUIRED)
+#### 6.2.4 Print, sign and upload a certificate (REQUIRED)
 
 * The system must not let an Operator make a decision in case a required document/result certificate is missing.
 * The system can display, print and upload a filled certificate from a template.
 
-#### 6.2.5 Operators have the option to edit application information if corrections are needed (REQUIRED)
+#### 6.2.5 Edit application information if corrections are needed (REQUIRED)
 
 * The system must highlight if an Operator has made any changes to the information submitted by the Applicant.
 * The system should enable the Operator to remove and/or upload required documents.
 
-#### 6.2.6 Operators have the option to communicate with applicant users (REQUIRED)
+#### 6.2.6 Communicate between Operator and Applicant (REQUIRED)
+
+Operators have the option to communicate with applicant users.
 
 * Communication is application related and stored with application data.
 * Communication can be initiated by an operator or by an applicant. Communication initiation options must be configurable.
