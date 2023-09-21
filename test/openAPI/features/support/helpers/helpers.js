@@ -162,7 +162,7 @@ module.exports = {
     items: this.serviceSchema,
   },
   // services_serviceKey_eforms
-  servicesServicesKeyEFormsEndpoint: 'services/{serviceKey}/eForms',
+  servicesServicesKeyEFormsEndpoint: 'services/{serviceId}/eForms',
   servicesServicesKeyEFormsResponseSchema: {
     type: 'array',
     items: {

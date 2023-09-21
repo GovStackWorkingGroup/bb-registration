@@ -44,6 +44,13 @@ Then('The \\/services response should have status 200', () =>
   specServices.response().to.have.status(200)
 );
 
+Then('The \\/services response should have {string}: {string} header',
+  (key, value) => {
+    specServices
+      .response()
+      .should.have.headerContains(key, value)
+  });
+
 Then('The \\/services response should match json schema', () =>
   chai
     .expect(specServices._response.json)

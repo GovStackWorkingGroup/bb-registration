@@ -53,6 +53,14 @@ Then(
 );
 
 Then(
+  /^The \/eForms\/\{eFormId\} response should have "([^"]*)": "([^"]*)" header$/,
+  (key, value) =>
+    specServicesEformsEformId
+      .response()
+      .should.have.headerContains(key, value)
+);
+
+Then(
   /^The \/eForms\/\{eFormId\} response should match json schema$/,
   () =>
     chai

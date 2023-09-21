@@ -27,15 +27,15 @@ Given(
 );
 
 When(
-  'PUT request to update service application file is sent with given Information-Mediator-Client header, {string} as a fileId parameter and body',
-  fileId =>
+  'PUT request to update service application file is sent with given Information-Mediator-Client header, {string} as a fileId parameter and body containing applicantId: {string}',
+  (fileId, applicantId) =>
     specUpdateApplicationFile
       .put(baseUrl)
       .withHeaders(header.key, header.value)
       .withPathParams('fileId', fileId)
       .withJson({
         applicationName: 'Amya Yuko',
-        applicantId: '42962de0-bdb2-11ed-9397-0242ac120004',
+        applicantId: applicantId,
         created: '2000-10-23T00:00:00.000Z',
         formData: {
           data: {

@@ -11,6 +11,7 @@ Feature: API endpoint that returns a list of services (Services available to use
     Then The response from the /services endpoint is received
     And The /services response should be returned in a timely manner 15000ms
     And The /services response should have status 200
+    And The /services response should have "content-type": "application/json" header
     And The /services response should match json schema
 
   @unit @positive
@@ -21,6 +22,7 @@ Feature: API endpoint that returns a list of services (Services available to use
     Then The response from the /services endpoint is received
     And The /services response should be returned in a timely manner 15000ms
     And The /services response should have status 200
+    And The /services response should have "content-type": "application/json" header
     And The /services response should match json schema
     And The name field in the response matches with "<name>" provided as name in the query parameter
 
