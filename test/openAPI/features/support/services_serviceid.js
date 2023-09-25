@@ -51,6 +51,13 @@ Then(/^The \/services\/\{serviceId\} response should have status (\d+)$/, (statu
   specServiceId.response().to.have.status(status)
 );
 
+Then(/^The \/services\/\{serviceId\} response should have "([^"]*)": "([^"]*)" header$/,
+  (key, value) =>
+    specServiceId
+      .response()
+      .should.have.headerContains(key, value)
+);
+
 Then(/^The \/services\/\{serviceId\} response should match json schema$/, () =>
   chai
     .expect(specServiceId._response.json)

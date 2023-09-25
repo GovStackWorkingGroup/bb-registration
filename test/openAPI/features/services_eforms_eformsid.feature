@@ -9,6 +9,7 @@ Feature: The API endpoint used to get eForm information by eForm id
     Then The response from the /eForms/{eFormId} endpoint is received
     And The /eForms/{eFormId} response should be returned in a timely manner 15000ms
     And The /eForms/{eFormId} response should have status 200
+    And The /eForms/{eFormId} response should have "content-type": "application/json" header
     And The /eForms/{eFormId} response should match json schema
     And The /eForms/{eFormId} response's eFormId should be equal to the eFormId from the request "d98a205a-679b-485b-823d-7a32a391e744"
 
@@ -20,3 +21,4 @@ Feature: The API endpoint used to get eForm information by eForm id
     Then The response from the /eForms/{eFormId} endpoint is received
     And The /eForms/{eFormId} response should be returned in a timely manner 15000ms
     And The /eForms/{eFormId} response should have status 404
+    And The /eForms/{eFormId} response should have "content-type": "application/json" header

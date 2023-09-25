@@ -26,20 +26,20 @@ Given(
 );
 
 When(
-  'User sends GET \\/services\\/\\{serviceKey}\\/eForms request with given {string} as serviceKey',
-  serviceKey =>
+  'User sends GET \\/services\\/\\{serviceId}\\/eForms request with given {string} as serviceId',
+  serviceId =>
     specServicesServiceKeyEForms
       .get(baseUrl)
-      .withPathParams('serviceKey', serviceKey)
+      .withPathParams('serviceId', serviceId)
 );
 
 Then(
-  'The response from the GET \\/services\\/\\{serviceKey}\\/eForms endpoint is received',
+  'The response from the GET \\/services\\/\\{serviceId}\\/eForms endpoint is received',
   async () => await specServicesServiceKeyEForms.toss()
 );
 
 Then(
-  'The \\/services\\/\\{serviceKey}\\/eForms response should be returned in a timely manner 15000ms',
+  'The \\/services\\/\\{serviceId}\\/eForms response should be returned in a timely manner 15000ms',
   () =>
     specServicesServiceKeyEForms
       .response()
@@ -47,12 +47,19 @@ Then(
 );
 
 Then(
-  'The \\/services\\/\\{serviceKey}\\/eForms response should have status 200',
+  'The \\/services\\/\\{serviceId}\\/eForms response should have status 200',
   () => specServicesServiceKeyEForms.response().to.have.status(200)
 );
 
+Then('The \\/services\\/\\{serviceId}\\/eForms response should have {string}: {string} header',
+  (key, value) => {
+    specServicesServiceKeyEForms
+      .response()
+      .should.have.headerContains(key, value)
+  });
+
 Then(
-  'The \\/services\\/\\{serviceKey}\\/eForms response should match json schema',
+  'The \\/services\\/\\{serviceId}\\/eForms response should match json schema',
   () =>
     chai
       .expect(specServicesServiceKeyEForms._response.json)

@@ -9,4 +9,5 @@ Feature: API endpoint that returns an information of single service
     Then The response from the /services/{serviceId} endpoint is received
     And The /services/{serviceId} response should be returned in a timely manner 15000ms
     And The /services/{serviceId} response should have status 200
+    And The /services/{serviceId} response should have "content-type": "application/json" header
     And The /services/{serviceId} response should match json schema
