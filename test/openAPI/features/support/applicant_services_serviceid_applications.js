@@ -35,7 +35,7 @@ When(
 
 When(
   /^The request contains a payload with "([^"]*)" as applicantId$/,
-  applicantID => specSubmitApplication.withJson({ applicantId: applicantID })
+  applicantID => specSubmitApplication.withForm({ applicantId: applicantID })
 );
 
 Then(
@@ -61,7 +61,7 @@ Then(
 When(
   /^The request contains a payload with "([^"]*)" as applicationName, "([^"]*)" as applicantId and "([^"]*)" as created$/,
   (applicationName, applicantID, created) =>
-    specSubmitApplication.withJson({
+    specSubmitApplication.withForm({
       applicationName: applicationName,
       applicantId: applicantID,
       created: created,
