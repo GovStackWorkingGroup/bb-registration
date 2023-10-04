@@ -19,11 +19,15 @@ Before(endpointTag, () => {
   specDocuments = spec();
 });
 
+Given(/^The API supports all media types for document upload$/,
+() => /^The API supports all media types for document upload$/
+);
+
 // Scenario: Successfully uploaded a document smoke type test
 Given(/^Wants to upload a document$/, () => 'Wants to upload a document');
 
 When(/^POST request with given document is sent$/, () =>
-  specDocuments.post(baseUrl).withJson({ file: [documentToUpload] })
+  specDocuments.post(baseUrl).withForm({ file: [documentToUpload] })
 );
 
 Then(

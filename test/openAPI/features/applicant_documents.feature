@@ -3,6 +3,9 @@ Feature: API endpoint that allows to upload a required document
   
   Upload a document/attachment to receive a documentId that can be linked to applications when submitting a new registration.
 
+  Background:
+      Given The API supports all media types for document upload
+
   @smoke
   Scenario: Successfully uploaded a document smoke type test
 
