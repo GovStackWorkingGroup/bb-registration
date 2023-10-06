@@ -13,14 +13,8 @@
     },
     "version": "1.0.0"
   },
-  "servers": [
-    {
-      "url": "http://ss2.egovstack.net/r1/eGovStack/COM/11222456/RegistrationBB/creg/",
-      "description": "Information Mediator BB Security server"
-    }
-  ],
   "paths": {
-    "/data/statistics/1.0": {
+    "/data/statistics": {
       "get": {
         "tags": [
           "Statistics API"
@@ -38,8 +32,7 @@
               "type": "string"
             },
             "example" : "eGovStack/GOV/90000009/eregistrations-dev",
-            "description" : "Format is: INSTANCE/CLASS/MEMBER/SUBSYSTEM",
-            
+            "description" : "Format is: INSTANCE/CLASS/MEMBER/SUBSYSTEM"
           },
           {
             "name": "startDate",

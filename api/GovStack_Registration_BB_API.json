@@ -13,11 +13,6 @@
 		},
 		"version": "0.1.1"
 	},
-	"servers": [{
-		"url": "http://ss2.egovstack.net/r1/eGovStack/COM/11222456/RegistrationBB/creg/api/",
-		"description": "Information Mediator BB Security server"
-	}],
-
 	"paths": {
 		"/services": {
 			"get": {
@@ -336,7 +331,7 @@
 		"/applications/{fileId}": {
 			"get": {
 				"tags": ["Applicant", "Operator"],
-				"summary": "Get application file by	ID",
+				"summary": "Get application file by ID",
 				"description": "Returns application file",
 				"operationId": "getApplicationFileById",
 				"parameters": [{
