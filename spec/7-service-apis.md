@@ -16,76 +16,60 @@ The tests for the Registration Building Block can be found in [this GitHub repos
 
 The available services (i.e. registration processes) and form definitions within such a service can be accessed:
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/services" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
+{% swagger src=".gitbook/assets/GovStack_Registration_BB_API.json" path="/services" method="get" %}
+[GovStack_Registration_BB_API.json](.gitbook/assets/GovStack_Registration_BB_API.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/services/{serviceId}" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
+{% swagger src=".gitbook/assets/GovStack_Registration_BB_API.json" path="/services/{serviceId}" method="get" %}
+[GovStack_Registration_BB_API.json](.gitbook/assets/GovStack_Registration_BB_API.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/services/{serviceId}/eForms" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
+{% swagger src=".gitbook/assets/GovStack_Registration_BB_API.json" path="/services/{serviceId}/eForms" method="get" %}
+[GovStack_Registration_BB_API.json](.gitbook/assets/GovStack_Registration_BB_API.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/services/{serviceId}" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
-{% endswagger %}
-
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/services/{serviceId}/eForms" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
-{% endswagger %}
-
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/eForms/{eFormId}" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
+{% swagger src=".gitbook/assets/GovStack_Registration_BB_API.json" path="/eForms/{eFormId}" method="get" %}
+[GovStack_Registration_BB_API.json](.gitbook/assets/GovStack_Registration_BB_API.json)
 {% endswagger %}
 
 ### 8.1.2 Generic Registration Steps
 
 Going through the registration process as an applicant requires multiple steps available via API endpoints:
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/services/{serviceId}/applications" method="post" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
+{% swagger src=".gitbook/assets/GovStack_Registration_BB_API.json" path="/services/{serviceId}/applications" method="post" %}
+[GovStack_Registration_BB_API.json](.gitbook/assets/GovStack_Registration_BB_API.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/services/{serviceId}/applications" method="post" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
-{% endswagger %}
-
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/documents" method="post" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
+{% swagger src=".gitbook/assets/GovStack_Registration_BB_API.json" path="/documents" method="post" %}
+[GovStack_Registration_BB_API.json](.gitbook/assets/GovStack_Registration_BB_API.json)
 {% endswagger %}
 
 ## 8.2 Processing of Registrations
 
 Operators can access and process existing application files:
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/applications" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
+{% swagger src=".gitbook/assets/GovStack_Registration_BB_API.json" path="/applications" method="get" %}
+[GovStack_Registration_BB_API.json](.gitbook/assets/GovStack_Registration_BB_API.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/applications/{fileId}" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
+{% swagger src=".gitbook/assets/GovStack_Registration_BB_API.json" path="/applications/{fileId}" method="get" %}
+[GovStack_Registration_BB_API.json](.gitbook/assets/GovStack_Registration_BB_API.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/applications/{fileId}" method="put" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
+{% swagger src=".gitbook/assets/GovStack_Registration_BB_API.json" path="/applications/{fileId}" method="put" %}
+[GovStack_Registration_BB_API.json](.gitbook/assets/GovStack_Registration_BB_API.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/documents" method="post" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
+{% swagger src=".gitbook/assets/GovStack_Registration_BB_API.json" path="/tasks" method="get" %}
+[GovStack_Registration_BB_API.json](.gitbook/assets/GovStack_Registration_BB_API.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/tasks" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
+{% swagger src=".gitbook/assets/GovStack_Registration_BB_API.json" path="/tasks/{taskId}" method="get" %}
+[GovStack_Registration_BB_API.json](.gitbook/assets/GovStack_Registration_BB_API.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/tasks/{taskId}" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
-{% endswagger %}
-
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json" path="/tasks/{taskId}/complete" method="post" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API.json)
+{% swagger src=".gitbook/assets/GovStack_Registration_BB_API.json" path="/tasks/{taskId}/complete" method="post" %}
+[GovStack_Registration_BB_API.json](.gitbook/assets/GovStack_Registration_BB_API.json)
 {% endswagger %}
 
 ## 8.3 Development Platform
@@ -96,6 +80,6 @@ Currently there are no specifications for API endpoints to manage and design ser
 
 The statistics API gives Building Block operational statistics, that reference the number of processed applications (per operator, registration, service, date):
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API_statistics.json" path="/data/statistics/1.0" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API_statistics.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-registration/04fe789c8ef82106f7699007d765ea5474f90ea4/api/GovStack_Registration_BB_API_statistics.json)
+{% swagger src=".gitbook/assets/GovStack_Registration_BB_API_statistics.json" path="/data/statistics" method="get" %}
+[GovStack_Registration_BB_API_statistics.json](.gitbook/assets/GovStack_Registration_BB_API_statistics.json)
 {% endswagger %}

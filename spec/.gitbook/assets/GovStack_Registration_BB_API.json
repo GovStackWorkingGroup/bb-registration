@@ -1,0 +1,1131 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Registration Building Block API",
+		"description": "Applicants can access and submit registration applications and operators can access applications through this API.",
+		"termsOfService": "#",
+		"contact": {
+			"email": "ingmar.vali@gmail.com"
+		},
+		"license": {
+			"name": "MIT",
+			"url": "https://opensource.org/license/mit/"
+		},
+		"version": "0.1.1"
+	},
+	"paths": {
+		"/services": {
+			"get": {
+				"tags": ["Available Services"],
+				"summary": "returns a list of services (Services available to use)",
+				"description": "Listing of all services with basic information",
+				"operationId": "getServiceList",
+				"parameters": [{
+					"name": "name",
+					"in": "query",
+					"schema": {
+						"type": "string"
+					},
+					"required": false,
+					"example": "Register Mother and Child"
+				}
+
+				],
+				"responses": {
+					"200": {
+						"description": "list of services or an empty array if none are available",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/service"
+									}
+								}
+							}
+						}
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				}
+			}
+		},
+		"/services/{serviceId}": {
+			"get": {
+				"tags": ["Available Services"],
+				"summary": "returns detailed information about a service",
+				"description": "Pass in the ID of the service and it will return all information about that service\n",
+				"operationId": "getService",
+				"parameters": [{
+					"$ref": "#/components/parameters/serviceIdParam"
+				}],
+				"responses": {
+					"200": {
+						"description": "Service found and representation returned",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/service"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "service not found"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				}
+			}
+		},
+
+		"/services/{serviceId}/eForms": {
+			"get": {
+				"tags": ["Available Services"],
+				"summary": "Retrieve all available e-forms",
+				"description": "Get the list of all e-service forms with schema related to the given service",
+				"operationId": "getServiceSchemaByServiceKey",
+				"parameters": [{
+					"$ref": "#/components/parameters/serviceIdParam"
+				}],
+				"responses": {
+					"200": {
+						"description": "list of eForms or an empty array if none are available",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/EFormListItem"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/eForms/{eFormId}": {
+			"get": {
+				"tags": ["Available Services"],
+				"summary": "Retrieve a specific e-form by ID",
+				"parameters": [{
+					"name": "eFormId",
+					"in": "path",
+					"description": "The ID of the e-form to retrieve",
+					"required": true,
+					"schema": {
+						"type": "string"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/EForm"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+
+		"/services/{serviceId}/applications": {
+			"post": {
+				"tags": ["Applicant"],
+				"summary": "Submit an application file as an applicant",
+				"description": "Send an application file including all documents and form data to submit a registration request to be processed by operators.",
+				"parameters": [{
+					"$ref": "#/components/parameters/Information-Mediator-Client"
+				},
+					{
+						"$ref": "#/components/parameters/serviceIdParam"
+					}
+				],
+				"requestBody": {
+					"description": "Create a new application file in the system",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/applicationFileSubmit"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					},
+					"200": {
+						"description": "Returns started application file ID",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/applicationFileResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Service was not found"
+					}
+				}
+			}
+		},
+
+		"/documents": {
+			"post": {
+				"summary": "Upload a required document",
+				"description": "Upload a document/attachment to receive a documentId that can be linked to applications when submitting a new registration",
+				"operationId": "uploadFile",
+				"tags": [
+					"Applicant",
+					"Operator"
+				],
+				"parameters": [{
+					"name": "additionalMetadata",
+					"in": "query",
+					"description": "Additional Metadata",
+					"required": false,
+					"schema": {
+						"type": "string"
+					}
+				}],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"multipart/form-data": {
+							"schema": {
+								"properties": {
+									"file": {
+										"type": "array",
+										"items": {
+											"type": "string",
+											"format": "base64",
+											"example": "V2UgbG92ZSBqc29uIQ=="
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "File successfully uploaded",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/uploadResponse"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad request, file upload failed",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/systemError"
+								}
+							}
+						}
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				}
+			}
+		},
+
+		"/applications": {
+			"get": {
+				"tags": ["Applicant", "Operator"],
+				"summary": "Retrieve all application files",
+				"description": "Returns a list of application files the user has permission to access (i.e. either only the applicant's own applications or all applications for an operator to process)",
+				"operationId": "getApplicantFileList",
+				"parameters": [{
+					"$ref": "#/components/parameters/Information-Mediator-Client"
+				},
+					{
+						"name": "serviceId",
+						"description": "id of a service to filter for applications of only this service",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"format": "uuid"
+						}
+					},
+					{
+						"name": "applicantId",
+						"description": "Applicant user ID",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"example": "42962de0-bdb2-11ed-9397-0242ac120004"
+						}
+					},
+					{
+						"name": "firstResult",
+						"in": "query",
+						"description": "Pagination of results. Specifies the index of the first result to return.",
+						"schema": {
+							"type": "integer",
+							"example": 1
+						}
+					}, {
+						"name": "maxResult",
+						"in": "query",
+						"description": "Pagination of results. Specifies the maximum number of results to return. Will return less results if there are no more results left.",
+						"schema": {
+							"type": "integer",
+							"example": 10
+						}
+					}, {
+						"name": "sortBy",
+						"in": "query",
+						"description": "Sort the results lexicographically by a given criterion. Valid values are instanceId, caseInstanceId, dueDate, executionId, caseExecutionId,assignee, created, description, id, name, nameCaseInsensitive and priority. Must be used in conjunction with the sortOrder parameter.",
+						"schema": {
+							"type": "string",
+							"example": "created"
+						}
+					}, {
+						"name": "sortOrder",
+						"in": "query",
+						"description": "Sort the results in a given order. Values may be asc for ascending order or desc for descending order. Must be used in conjunction with the sortBy parameter.",
+						"schema": {
+							"type": "string",
+							"example": "asc"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "list of applications or an empty array if none are available",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/applicantApplicationFileListResponse"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+
+		"/applications/{fileId}": {
+			"get": {
+				"tags": ["Applicant", "Operator"],
+				"summary": "Get application file by ID",
+				"description": "Returns application file",
+				"operationId": "getApplicationFileById",
+				"parameters": [{
+					"$ref": "#/components/parameters/Information-Mediator-Client"
+				},
+					{
+						"name": "fileId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"example": "8a70cd6d-bdb2-11ed-9397-0242ac120004"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Returns application file by id",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/applicationFileResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Application file was not found"
+					}
+				}
+			},
+
+			"put": {
+				"tags": ["Operator"],
+				"summary": "Update service application file with operator's form data",
+				"description": "Returns updated service application file ID",
+				"operationId": "updateApplicationFileForm",
+				"parameters": [{
+					"$ref": "#/components/parameters/Information-Mediator-Client"
+				},
+					{
+						"name": "fileId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"description": "Update application file data with operators input",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/applicationFileSubmit"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "Returns updated application file",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/applicationFileResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Application file was not found"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				}
+			}
+		},
+
+		"/tasks": {
+			"get": {
+				"tags": ["Operator", "Applicant"],
+				"summary": "Retrieve all tasks",
+				"description": "Returns task list",
+				"operationId": "getTasks",
+				"parameters": [{
+					"name": "mainTaskId",
+					"in": "query",
+					"required": false,
+					"schema": {
+						"type": "string"
+					}
+				},
+					{
+						"name": "fileId",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "assigneeId",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "firstResult",
+						"in": "query",
+						"description": "Pagination of results. Specifies the index of the first result to return.",
+						"schema": {
+							"type": "integer"
+						}
+					}, {
+						"name": "maxResult",
+						"in": "query",
+						"description": "Pagination of results. Specifies the maximum number of results to return. Will return less results if there are no more results left.",
+						"schema": {
+							"type": "integer"
+						}
+					}, {
+						"name": "sortBy",
+						"in": "query",
+						"description": "Sort the results lexicographically by a given criterion. Valid values are instanceId, caseInstanceId, dueDate, executionId, caseExecutionId,assignee, created, description, id, name, nameCaseInsensitive and priority. Must be used in conjunction with the sortOrder parameter.",
+						"schema": {
+							"type": "string"
+						}
+					}, {
+						"name": "sortOrder",
+						"in": "query",
+						"description": "Sort the results in a given order. Values may be asc for ascending order or desc for descending order. Must be used in conjunction with the sortBy parameter.",
+						"schema": {
+							"type": "string"
+						}
+					}],
+				"responses": {
+					"200": {
+						"description": "list of tasks or an empty array if none are available",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/userTaskResponse"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+
+		"/tasks/{taskId}": {
+			"get": {
+				"tags": ["Operator", "Applicant"],
+				"summary": "Get task by id",
+				"description": "Returns task by id",
+				"operationId": "getTaskById",
+				"parameters": [{
+					"name": "taskId",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "Returns task by id",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/dataUserTaskResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Task hasn't found"
+					}
+				}
+			}
+		},
+
+
+		"/tasks/{taskId}/complete": {
+			"post": {
+				"tags": ["Operator", "Applicant"],
+				"summary": "Complete task by id",
+				"operationId": "completeTaskById",
+				"parameters": [{
+					"name": "taskId",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
+					}
+				}],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/additionalData"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "Task successfully completed",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/completedTaskResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Task was not found"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				}
+			}
+		}
+
+
+	},
+	"components": {
+		"parameters": {
+			"Information-Mediator-Client": {
+				"in": "header",
+				"name": "Information-Mediator-Client",
+				"example": "eGovStack/GOV/90000009/digitalregistries",
+				"description": "Format is: INSTANCE/CLASS/MEMBER/SUBSYSTEM",
+				"schema": {
+					"type": "string"
+				},
+				"required": true
+			},
+			"serviceIdParam": {
+				"in": "path",
+				"name": "serviceId",
+				"required": true,
+				"schema": {
+					"type": "string",
+					"format": "uuid",
+					"example": "f7d33db0-2809-484e-a780-76b7ccd4ecbf"
+				},
+				"description": "The id for a defined service in the registration BB workflow engine."
+			}
+		},
+		"schemas": {
+			"service": {
+				"type": "object",
+				"required": [
+					"id",
+					"name",
+					"type",
+					"version"
+				],
+				"properties": {
+					"id": {
+						"type": "string",
+						"format": "uuid",
+						"description": "unique identifier (serviceId)",
+						"example": "f7d33db0-2809-484e-a780-76b7ccd4ecbf"
+					},
+					"name": {
+						"type": "string",
+						"description": "name of a service",
+						"example": "Mother and Child Registration"
+					},
+					"version": {
+						"type": "string",
+						"description": "service version number",
+						"example": "123"
+					},
+					"type": {
+						"type": "string",
+						"enum": [
+							"None",
+							"Private",
+							"Public"
+						]
+					},
+					"isExecutable": {
+						"type": "boolean",
+						"description": "Specifies whether the service is executable"
+					},
+					"isClosed": {
+						"type": "boolean",
+						"description": "whether Messages and Events, not modeled in Service, can occur when the service is executed or performed"
+					},
+					"description": {
+						"type": "string"
+					},
+					"serviceBody": {
+						"$ref": "#/components/schemas/ListOfProperties"
+					}
+				}
+			},
+
+			"ListOfProperties": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"code": {
+							"type": "string"
+						},
+						"value": {
+							"type": "string"
+						}
+					}
+				}
+			},
+
+			"EFormListItem": {
+				"type": "object",
+				"properties": {
+					"eFormId": {
+						"type": "string",
+						"description": "The unique identifier of the e-form",
+						"example": "d98a205a-679b-485b-823d-7a32a391e744"
+
+					},
+					"name": {
+						"type": "string",
+						"description": "The name of the e-form",
+						"example": "FORM"
+					},
+					"description": {
+						"type": "string",
+						"description": "A description of the e-form"
+					},
+					"version": {
+						"type": "string",
+						"description": "Version of the e-form",
+						"example": "1"
+					},
+					"latest": {
+						"type": "boolean",
+						"description": "True if the last version"
+					}
+
+				}
+			},
+			"EForm": {
+				"type": "object",
+				"properties": {
+					"eFormId": {
+						"type": "string",
+						"description": "The unique identifier of the e-form",
+						"example": "d98a205a-679b-485b-823d-7a32a391e744"
+
+					},
+					"name": {
+						"type": "string",
+						"description": "The name of the e-form",
+						"example": "A1"
+					},
+					"description": {
+						"type": "string",
+						"description": "A description of the e-form"
+					},
+					"version": {
+						"type": "string",
+						"description": "Version of the e-form",
+						"example": "1"
+					},
+					"latest": {
+						"type": "boolean",
+						"description": "True if the last version"
+					},
+
+					"schema": {
+						"description": "The schema of the e-form",
+						"$ref": "#/components/schemas/EFormSchema"
+					}
+				}
+			},
+			"EFormSchema": {
+				"type": "object",
+				"additionalProperties": true,
+				"description": "The JSON schema of the e-form"
+			},
+			"applicationFileSubmit": {
+				"required": [
+					"applicantId"
+				],
+				"properties": {
+
+					"applicationName": {
+						"type": "string",
+						"description": "Free text application name",
+						"example": "Amya Yuko"
+					},
+					"applicantId": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004",
+						"description": "Applicant is a user who submitted application, this id references the user account logged in on the system and submitting this request. The applicantId could also come from OAuth2 and OpenID Connect authentication. New applicant records are created by the system internally if necessary."
+					},
+					"created": {
+						"type": "string",
+						"format": "date-time",
+						"example": "2000-10-23T00:00:00.000Z",
+						"description": "Time when the application file was created by the user- Draft"
+					},
+
+					"formData": {
+						"$ref": "#/components/schemas/formData"
+					},
+
+					"documentUrls": {
+						"$ref": "#/components/schemas/documentUrls"
+					}
+
+				}
+			},
+			"applicationFileResponse": {
+				"required": [
+					"applicantId",
+					"serviceId"
+				],
+				"properties": {
+
+					"fileId": {
+						"type": "string",
+						"description": " Application file identifier 81c4445c-bff6-11ed-afa1-0242ac120002",
+						"example": "81c4445c-bff6-11ed-afa1-0242ac120002"
+					},
+					"registered": {
+						"type": "string",
+						"format": "date-time",
+						"example": "2000-10-23T00:00:00.000Z",
+						"description": "Time when the application file was registered in the Registration BB system"
+					},
+					"serviceId": {
+						"type": "string",
+						"format": "uuid",
+						"description": "id of the service this application relates to"
+					},
+					"serviceName": {
+						"type": "string",
+						"example": "Post partum registration service"
+					},
+					"status": {
+						"$ref": "#/components/schemas/statusModel"
+					},
+					"ended": {
+						"type": "boolean",
+						"example": "false",
+						"description": "True, if application file processing has ended"
+					},
+					"applicationData": {
+						"$ref": "#/components/schemas/applicationFileSubmit"
+					}
+				}
+			},
+			"formData": {
+				"type": "object",
+				"properties": {
+					"data": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "object"
+						}
+					},
+					"eFormId": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004",
+						"description": "Form ID used in the data capturing"
+					}
+				}
+			},
+			"additionalData": {
+				"type": "object",
+				"properties": {
+					"data": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "object"
+						}
+					}
+				}
+			},
+			"documentUrls": {
+				"type": "array",
+				"xml": {
+					"wrapped": true
+				},
+				"items": {
+					"type": "string",
+					"xml": {
+						"name": "photoUrl"
+					}
+				}
+			},
+			"statusModel": {
+				"type": "object",
+				"properties": {
+					"code": {
+						"type": "string",
+						"enum": ["PENDING", "APPROVED", "SENDBACK", "REJECTED"],
+						"example": "PENDING"
+					},
+					"title": {
+						"type": "string",
+						"example": "Pending"
+					}
+				}
+			},
+
+			"applicantApplicationFileListResponse": {
+				"type": "object",
+				"properties": {
+					"fileId": {
+						"type": "string",
+						"description": " Application file identifier 81c4445c-bff6-11ed-afa1-0242ac120002",
+						"example": "81c4445c-bff6-11ed-afa1-0242ac120002"
+					},
+					"mainTaskId": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
+					},
+					"taskTitle": {
+						"type": "string",
+						"example": "Application xyz"
+					},
+					"roleId": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
+					},
+					"roleName": {
+						"type": "string",
+						"example": "Registrar"
+					},
+					"assigneeId": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004",
+						"description": "operator ID who is processing the applicant file"
+					},
+					"operatorName": {
+						"type": "string",
+						"example": "John Smith",
+						"description": "operator ID who has the task of processing the application file"
+					},
+					"status": {
+						"$ref": "#/components/schemas/statusModel"
+					},
+
+					"applicantId": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
+					},
+					"created": {
+						"type": "string",
+						"format": "date-time",
+						"example": "2000-10-23T00:00:00.000Z",
+						"description": "Time when the application file was created by the user- Draft"
+					},
+					"registered": {
+						"type": "string",
+						"format": "date-time",
+						"example": "2000-10-23T00:00:00.000Z",
+						"description": "Time when the application file was registered in the Registration BB system"
+					},
+
+					"description": {
+						"type": "string",
+						"example": "Any text."
+					},
+					"serviceName": {
+						"type": "string",
+						"example": "Post partum registration service"
+					},
+
+					"serviceId": {
+						"type": "string",
+						"format": "uuid",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
+					},
+					"eformId": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
+					},
+					"documentUrls": {
+						"$ref": "#/components/schemas/documentUrls"
+					},
+					"additionalMeta": {
+						"$ref": "#/components/schemas/additionalData"
+					}
+
+
+				}
+			},
+			"uploadResponse": {
+				"type": "object",
+				"properties": {
+					"code": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"type": {
+						"type": "string"
+					},
+					"message": {
+						"type": "string"
+
+					},
+					"url": {
+						"type": "string"
+
+					}
+				}
+			},
+			"completedTaskResponse": {
+				"type": "object",
+				"properties": {
+					"taskId": {
+						"type": "string"
+					},
+					"fileId": {
+						"type": "string"
+					},
+					"serviceId": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"status": {
+						"$ref": "#/components/schemas/statusModel"
+					},
+					"variables": {
+						"type": "object",
+						"additionalProperties": {
+							"$ref": "#/components/schemas/additionalData"
+						}
+					}
+				}
+			},
+			"userTaskResponse": {
+				"type": "object",
+				"properties": {
+					"taskId": {
+						"type": "string"
+					},
+					"mainTaskId": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"assigneeId": {
+						"type": "string"
+					},
+					"roleId": {
+						"type": "string"
+					},
+					"created": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"description": {
+						"type": "string"
+					},
+					"serviceId": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"serviceName": {
+						"type": "string"
+					},
+					"fileId": {
+						"type": "string"
+					},
+
+					"eFormId": {
+						"type": "string"
+					},
+					"status": {
+						"$ref": "#/components/schemas/statusModel"
+					}
+				}
+			},
+
+			"dataUserTaskResponse": {
+				"type": "object",
+				"properties": {
+					"taskId": {
+						"type": "string"
+					},
+					"taskName": {
+						"type": "string"
+					},
+					"assigneeId": {
+						"type": "string"
+					},
+					"roleId": {
+						"type": "string",
+						"example": "42962de0-bdb2-11ed-9397-0242ac120004"
+					},
+					"created": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"description": {
+						"type": "string"
+					},
+					"fileId": {
+						"type": "string"
+					},
+					"serviceId": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"serviceName": {
+						"type": "string"
+					},
+					"eFormId": {
+						"type": "string"
+					},
+
+					"formVariables": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "object"
+						}
+					},
+
+					"status": {
+						"$ref": "#/components/schemas/statusModel"
+					},
+					"data": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "object"
+						}
+					}
+				}
+			},
+
+			"systemError": {
+				"type": "object",
+				"properties": {
+					"traceId": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					},
+					"message": {
+						"type": "string"
+					},
+					"localizedMessage": {
+						"type": "string"
+					}
+				}
+			}
+		},
+
+		"requestBodies": {
+			"applicationFile": {
+				"content": {
+					"application/json": {
+						"schema": {
+							"$ref": "#/components/schemas/applicationFileSubmit"
+						}
+					}
+				},
+				"description": "Application file object that needs to be added to the system"
+			}
+		},
+
+		"responses": {
+			"InternalServerError": {
+				"description": "Internal server error, please contact administrator",
+				"content": {
+					"*/*": {
+						"schema": {
+							"$ref": "#/components/schemas/systemError"
+						}
+					}
+				}
+			}
+		}
+	}
+}
